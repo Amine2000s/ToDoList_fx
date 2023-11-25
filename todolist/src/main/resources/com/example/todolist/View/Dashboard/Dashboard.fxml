@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.svg.SVGGlyph?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="APane" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #fff;" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+    <children>
+        <JFXButton id="AddTaskBtn" fx:id="AddTaskBtn" layoutX="1124.0" layoutY="99.0" minHeight="38.0"  prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Add Task" AnchorPane.bottomAnchor="513.0" AnchorPane.leftAnchor="865.0" AnchorPane.rightAnchor="282.67" AnchorPane.topAnchor="169.0">
+            <graphic>
+                <SVGGlyph id="btnSvg" fx:id="btnSvg" prefHeight="25.0" prefWidth="25.0" snapToPixel="false" stylesheets="@Dashboard.css" translateY="3.0">
+                    <rotationAxis>
+                        <Point3D />
+                    </rotationAxis>
+                </SVGGlyph>
+            </graphic>
+            <padding>
+                <Insets bottom="8.0" right="3.0" top="8.0" />
+            </padding>
+        </JFXButton>
+        <AnchorPane id="hbox" prefHeight="720.0" prefWidth="205.0" stylesheets="@Dashboard.css">
+            <children>
+                <Rectangle fill="#3d8ffb" height="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="166.0" />
+                <JFXButton id="Dashboard" layoutX="6.0" layoutY="156.0" prefHeight="56.0" prefWidth="191.0" stylesheets="@Dashboard.css" text="Dashboard" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="166.0">
+                    <graphic>
+                        <SVGGlyph id="svg1" prefHeight="44.0" prefWidth="45.0" stylesheets="@Dashboard.css" translateX="-10.0" />
+                    </graphic>
+                </JFXButton>
+            </children>
+        </AnchorPane>
+        <StackPane layoutX="291.0" layoutY="169.0" prefHeight="488.0" prefWidth="780.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="274.0" AnchorPane.topAnchor="232.0">
+            <children>
+                <Pane prefHeight="200.0" prefWidth="200.0">
+                    <StackPane.margin>
+                        <Insets />
+                    </StackPane.margin>
+                </Pane>
+                <Pane prefHeight="488.0" prefWidth="801.0">
+                    <children>
+                        <ScrollPane id="ScrollPane" hbarPolicy="NEVER" hmax="0.0" prefHeight="488.0" prefWidth="785.0" style="-fx-background-color: #ffffff;" stylesheets="@Dashboard.css" vmax="5.0">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0">
+                                    <children>
+                                        <VBox fx:id="TaskVbox" prefHeight="802.0" prefWidth="769.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 0px;">
+                                            
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </Pane>
+            </children></StackPane>
+        <TextField id="SearchInput" layoutX="226.0" stylesheets="@Dashboard.css" text="Search..." AnchorPane.bottomAnchor="667.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="395.0" AnchorPane.topAnchor="0.0" />
+        <JFXComboBox layoutX="226.0" layoutY="176.0" promptText="  Category" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="891.0" AnchorPane.topAnchor="170.0" />
+        <JFXComboBox layoutX="236.0" layoutY="186.0" promptText="  Priority" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="416.0" AnchorPane.rightAnchor="701.0" AnchorPane.topAnchor="170.0" />
+        <JFXComboBox layoutX="246.0" layoutY="196.0" promptText="  Status" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="606.0" AnchorPane.rightAnchor="511.0" AnchorPane.topAnchor="170.0">
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+        </JFXComboBox>
+        <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1013.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" />
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

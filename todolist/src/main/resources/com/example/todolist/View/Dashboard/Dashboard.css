@@ -1,0 +1,128 @@
+#hbox{
+    -fx-background-color: #006AF5;
+}
+@font-face {
+    font-family: 'Inter-Bold';
+    src: url('com/example/todolist/View/Font/Inter-Bold.ttf');
+}
+@font-face {
+    font-family: 'Inter-Medium';
+    src: url('com/example/todolist/View/Font/Inter-Medium.ttf');
+}
+@font-face {
+    font-family: 'Inter-Regular';
+    src: url('com/example/todolist/View/Font/Inter-Regular.ttf');
+}
+#svg1{
+    -fx-background-image: url("grid-big.png");
+    -fx-background-repeat: no-repeat;
+}
+#svg2{
+    -fx-background-image: url("com/example/todolist/View/Images/folder.png");
+    -fx-background-repeat: no-repeat;
+}
+#svg3{
+    -fx-background-image: url("com/example/todolist/View/Images/bar-chart.png");
+    -fx-background-repeat: no-repeat;
+}
+#svg4{
+    -fx-background-image: url("com/example/todolist/View/Images/exclamation-circle.png");
+    -fx-background-repeat: no-repeat;
+}
+#svg5{
+    -fx-background-image: url("com/example/todolist/View/Images/wrench.png");
+    -fx-background-repeat: no-repeat;
+}
+.label{
+    -fx-text-fill: #FFF;
+    -fx-text-alignment: center;
+    -fx-font-family: 'Inter-Regular';
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-line-height: 125.303%;
+
+}
+#AddTaskBtn {
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+    -fx-font: bold 16px 'Inter';
+    -fx-font-weight: 650;
+    -fx-line-height: normal;
+    -fx-min-width: 128px;
+    -fx-min-height: 40px;
+    -fx-max-width: 128px;
+    -fx-max-height: 40px;
+    -fx-background-radius: 4.256px;
+    -fx-background-color: #006AF5;
+}
+#btnSvg {
+    -fx-background-image: url("plus-white.png");
+    -fx-background-repeat: no-repeat;
+}
+#SearchInput{
+    -fx-background-color: rgba(26, 59, 96, 0.1);
+    -fx-font:  16px 'Inter-Medium';
+    -fx-border-color: #B8B8B8;
+    -fx-border-width: 0.5px;
+}
+.jfx-checkbox {
+    -fx-background-color: #F3F5F7;
+    -fx-background-radius: 4px;
+    -fx-border-color: #C4CBD3;
+    -fx-border-width: 1px;
+    -fx-pref-width: 771.2px;
+    -fx-pref-height: 58.4px;
+    -fx-font-family: Inter-Regular;
+    -fx-font-size: 16px;
+    -fx-padding: 10px;
+}
+.jfx-checkbox .box{
+    -fx-border-color: #C4CBD3;
+    -fx-border-width: 1px;
+}
+.jfx-checkbox:selected .box {
+    -fx-background-color: #006AF5;
+    -fx-background-radius: 4px;
+
+}
+
+
+#APane{
+    -fx-background-color: #f9edd4;
+
+}
+#Dashboard{
+    -fx-text-fill: #FFF;
+    -fx-text-alignment: center;
+    -fx-font-family: 'Inter-Regular';
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-line-height: 125.303%;
+}
+.jfx-combobox {
+    -fx-background-color: #E5F0FF;
+    -fx-background-radius: 4.256px;
+}
+.jfx-combobox{
+    -fx-text-fill: #FFF;
+    -fx-text-alignment: left;
+    -fx-font-family: 'Inter-Regular';
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-line-height: 125.303%;
+}
+#ScrollPane .scroll-bar{
+    -fx-opacity: 0;
+}
+#TaskDescription{
+
+    -fx-text-fill: rgba(33, 33, 33, 0.69);
+    -fx-alignment: top-left;
+    -fx-font-family: 'Inter';
+    -fx-font-size: 16px;
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-line-height: 22px;
+    -fx-background-color: rgba(26, 56, 96, 0.1);
+    -fx-background-radius:4.256px;
+}
