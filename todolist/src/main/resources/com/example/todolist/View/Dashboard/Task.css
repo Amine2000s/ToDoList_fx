@@ -1,0 +1,132 @@
+#Svg {
+    -fx-background-radius: 17px;
+    -fx-background-image: url("Rectangle7.png");
+    -fx-background-repeat: no-repeat;
+    -fx-border-radius: 17px;
+}
+#btnSvg{
+    -fx-background-image: url("plus.png");
+    -fx-background-repeat: no-repeat;
+
+
+}
+
+@font-face {
+    font-family: 'Inter-Bold';
+    src: url("com/example/todolist/View/Font/Inter-Bold.ttf");
+}
+
+#AddTaskLabel {
+    -fx-text-fill: #FFF;
+    -fx-font-family: 'Inter';
+    -fx-font-size: 64px;
+    -fx-font-style: normal;
+    -fx-font-weight: 900;
+    -fx-line-spacing: 125.303%;
+}
+
+#AddTaskPane {
+    -fx-bachground-color: #fff;
+    -fx-background-radius: 17px;
+    -fx-border-radius: 17px;
+}
+
+#TaskNameLabel {
+    -fx-display: flex;
+    -fx-width: 313px;
+    -fx-height: 32px;
+    -fx-flex-direction: column;
+    -fx-justify-content: center;
+    -fx-flex-shrink: 0;
+    -fx-text-fill: rgba(27, 43, 65, 0.69);
+    -fx-font-family: 'Inter';
+    -fx-font-size: 14px;
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-line-height: normal;
+}
+
+#TaskName {
+    -fx-display: flex;
+    -fx-width: 314px;
+    -fx-height: 36px;
+    -fx-justify-content: center;
+    -fx-align-items: center;
+    -fx-flex-shrink: 0;
+    -fx-text-fill: rgba(25, 39, 57, 0.94);
+    -fx-font-family: 'Inter';
+    -fx-font-size: 16px;
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-line-height: 22px;
+    -fx-background-color: rgba(26, 56, 96, 0.1);
+    -fx-background-radius: 4px;
+
+}
+#TaskNameLabel1{
+    -fx-display: flex;
+    -fx-width: 312px;
+    -fx-height: 14px;
+    -fx-flex-direction: column;
+    -fx-justify-content: center;
+    -fx-flex-shrink: 0;
+    -fx-text-fill: rgba(33, 33, 33, 0.69);
+    -fx-font-family: 'Inter';
+    -fx-font-size: 14px;
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-line-height: normal;
+}
+
+#TaskDesctiption{
+    -fx-pref-width: 313px;
+    -fx-pref-height: 58px;
+    -fx-text-fill: rgba(33, 33, 33, 0.69);
+    -fx-alignment: top-left;
+    -fx-font-family: 'Inter';
+    -fx-font-size: 16px;
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-line-height: 22px;
+    -fx-background-color: rgba(26, 56, 96, 0.1);
+    -fx-background-radius:4px;
+}
+
+#PriorityLabel {
+    -fx-alignment: top-left;
+    -fx-text-fill: rgba(27, 43, 65, 0.69);
+    -fx-font-family: 'Inter';
+    -fx-font-size: 14px;
+    -fx-font-style: normal;
+    -fx-font-weight: 500;
+    -fx-line-height: normal;
+}
+.jfx-radio-button {
+    -fx-text-fill: rgba(25, 39, 57, 0.94);
+    -fx-font-family: "Inter";
+    -fx-font-size: 16px;
+    -fx-font-style: normal;
+    -fx-font-weight: 400;
+    -fx-line-height: 161.104%;
+}
+#AddTaskBtn {
+    -fx-text-fill: #005FDB;
+    -fx-alignment: center;
+    -fx-font: normal 16px 'Inter';
+    -fx-font-weight: 650;
+    -fx-line-height: normal;
+    -fx-min-width: 128px;
+    -fx-min-height: 40px;
+    -fx-max-width: 128px;
+    -fx-max-height: 40px;
+    -fx-background-radius: 8px;
+    -fx-background-color: rgba(25, 59, 103, 0.05);
+}
+#DateField{
+    -fx-text-fill:rgba(25, 39, 57, 0.94);
+    -fx-font-family: 'Inter';
+    -fx-background-color: rgba(26, 56, 96, 0.1);
+}
+#HboxDate{
+    /*-fx-bakcground-color:rgba(26, 56, 96, 0.1);*/
+}
