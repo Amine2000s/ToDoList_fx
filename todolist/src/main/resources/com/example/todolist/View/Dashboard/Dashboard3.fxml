@@ -2,6 +2,8 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXScrollPane?>
 <?import com.jfoenix.svg.SVGGlyph?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
@@ -10,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane id="APane" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #fff;" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.DashBoardController">
@@ -49,11 +50,13 @@
                         <ScrollPane id="ScrollPane" hbarPolicy="NEVER" hmax="0.0" prefHeight="488.0" prefWidth="785.0" style="-fx-background-color: #ffffff;" stylesheets="@Dashboard.css" vmax="5.0">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0">
-                                    <children>
-                                        <VBox fx:id="TaskVbox" prefHeight="802.0" prefWidth="769.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 0px;">
-                                            
-                                        </VBox>
-                                    </children>
+                           <children>
+                              <JFXScrollPane>
+                                 <children>
+                                    <JFXListView fx:id="Tasks_list" prefHeight="481.0" prefWidth="761.0" />
+                                 </children>
+                              </JFXScrollPane>
+                           </children>
                                 </AnchorPane>
                             </content>
                         </ScrollPane>

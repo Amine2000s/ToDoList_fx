@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane id="mini_task" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="600.0" stylesheets="@mini_task_pane2.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.mini_task_paneController">
+   <children>
+      <Label fx:id="task_name_label" layoutX="49.0" layoutY="19.0" prefHeight="39.0" prefWidth="165.0" text="Task_name" />
+      <Label fx:id="priority_label" layoutX="292.0" layoutY="19.0" prefHeight="39.0" prefWidth="144.0" text="Priority" />
+      <JFXCheckBox fx:id="checkbox" layoutX="14.0" layoutY="15.0" prefHeight="47.0" prefWidth="26.0" text=" " />
+   </children>
+</Pane>

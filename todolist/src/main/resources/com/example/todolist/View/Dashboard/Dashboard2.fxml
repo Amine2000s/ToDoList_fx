@@ -3,8 +3,10 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.svg.SVGGlyph?>
+<?import io.github.palexdev.materialfx.controls.MFXCheckbox?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -51,8 +53,29 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0">
                                     <children>
                                         <VBox fx:id="TaskVbox" prefHeight="802.0" prefWidth="769.0" spacing="10.0" style="-fx-background-color: #fff; -fx-background-radius: 0px;">
-                                            
-                                        </VBox>
+                                 <children>
+                                    <VBox fx:id="mini_tasks_pane" prefHeight="470.0" prefWidth="770.0" spacing="3.0" style="-fx-background-color: #ff; -fx-padding: 5;">
+                                       <children>
+                                          <Pane prefHeight="74.0" prefWidth="770.0" style="-fx-border-style: solid; -fx-border-radius: 15; -fx-background-insets: 5; -fx-padding: 30;">
+                                             <children>
+                                                <Label layoutX="92.0" layoutY="21.0" prefHeight="32.0" prefWidth="175.0" style="-fx-text-fill: black;" text="Task name " />
+                                                <MFXCheckbox layoutX="38.0" layoutY="27.0" textFill="#1b1b1b" />
+                                                <Label layoutX="395.0" layoutY="23.0" prefHeight="32.0" prefWidth="214.0" style="-fx-text-fill: black;" text="Priority : high " />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="74.0" prefWidth="770.0" style="-fx-border-style: solid; -fx-border-radius: 15; -fx-background-insets: 5; -fx-padding: 30;">
+                                             <children>
+                                                <MFXCheckbox layoutX="38.0" layoutY="27.0" prefHeight="20.0" prefWidth="18.0" />
+                                                <Label layoutX="86.0" layoutY="23.0" prefHeight="32.0" prefWidth="175.0" style="-fx-text-fill: black;" text="Task name" />
+                                                <Label layoutX="388.0" layoutY="23.0" prefHeight="32.0" prefWidth="191.0" style="-fx-text-fill: Black;" text="Priority : Medium" />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                       <opaqueInsets>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                       </opaqueInsets>
+                                    </VBox>
+                                 </children></VBox>
                                     </children>
                                 </AnchorPane>
                             </content>
