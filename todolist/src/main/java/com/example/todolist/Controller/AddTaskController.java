@@ -2,27 +2,19 @@ package com.example.todolist.Controller;
 
 import com.example.todolist.DAO.TaskDaoImp;
 import com.example.todolist.Model.Task;
-import com.example.todolist.Model.TasksList;
 import com.jfoenix.controls.*;
-import javafx.application.Platform;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbar.SnackbarEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import other.mini_task_pane;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
+
 
 public class AddTaskController {
 
@@ -39,12 +31,6 @@ public class AddTaskController {
     @FXML
     JFXButton AddTaskBtn;
     @FXML
-    JFXRadioButton radiobtn1 ;
-    @FXML
-    JFXRadioButton radiobtn2 ;
-    @FXML
-    JFXRadioButton radiobtn3 ;
-    @FXML
     JFXSnackbar error_msg;
 
     TableView<Task> TableView_local ;
@@ -53,7 +39,7 @@ public class AddTaskController {
 
 
 
-    int taskid ;// variable used te determine if we should update or delete
+    int Task_id;// variable used te determine if we should update or create
 
     //linking the dashboard Tableview with a Local variable of same type for easy Access
     public void setTableView__local(TableView<Task> task_list_local) {
@@ -121,9 +107,9 @@ public class AddTaskController {
             java.sql.Date date_Value = java.sql.Date.valueOf(date1);//transforming date type to SQL
 
             // if task is already created
-            if(taskid>0) {
+            if(Task_id >0) {
 
-                task = new Task(taskid,task_name, date_Value, priorty_Value, task_desc, "All", false);
+                task = new Task(Task_id,task_name, date_Value, priorty_Value, task_desc, "All", false);
 
             }else{//new Task
 
@@ -132,7 +118,7 @@ public class AddTaskController {
 
             }
 
-            taskid = 0; // Resetting the id for future Use
+            Task_id = 0; // Resetting the id for future Use
 
             Task_Dao.CreateTask(task); // task Query exeuction
 
@@ -185,9 +171,9 @@ public class AddTaskController {
     }
 
     //function for ssetting the Task id , Important for Updating Tasks
-    public void setTaskid(int taskid) {
+    public void setTask_id(int task_id) {
 
-        this.taskid = taskid;
+        this.Task_id = task_id;
     }
 
 }

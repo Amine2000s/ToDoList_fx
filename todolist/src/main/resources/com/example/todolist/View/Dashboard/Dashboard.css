@@ -14,7 +14,7 @@
     src: url('com/example/todolist/View/Font/Inter-Regular.ttf');
 }
 #svg1{
-    -fx-background-image: url("grid-big.png");
+    -fx-background-image: url("../Images/grid-big.png");
     -fx-background-repeat: no-repeat;
 }
 #svg2{
@@ -56,7 +56,7 @@
     -fx-background-color: #006AF5;
 }
 #btnSvg {
-    -fx-background-image: url("plus-white.png");
+    -fx-background-image: url("../Images/plus-white.png");
     -fx-background-repeat: no-repeat;
 }
 #SearchInput{
@@ -175,7 +175,11 @@ table-view .column-header,
 .table-view .column-header-background {
     -fx-background-color: transparent; /* Set background color to transparent */
 }
-
+#Svgrefresh{
+    -fx-background-image: url("../Images/rotate-left.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 30px;
+}
 #refreshbtn{
     -fx-text-fill: #fff;
     -fx-alignment: center;
@@ -184,4 +188,19 @@ table-view .column-header,
     -fx-line-height: normal;
     -fx-background-radius: 4.256px;
     -fx-background-color: #006AF5;
+}
+#ScrollPane .scroll-bar{
+    -fx-opacity: 1;
+    -fx-background-color: #E5F0FF;
+}
+#ScrollPane .scroll-bar .thumb {
+    -fx-background-color: #006AF5;
+    -fx-scale-y: 1.5px;
+    -fx-scale-x: 0.5px;
+}
+#TableView{
+    -fx-text-fill: rgba(33, 33, 33, 0.69);
+    -fx-font-family: 'Inter';
+    -fx-font-size: 16px;
+    -fx-font-style: normal;
 }
