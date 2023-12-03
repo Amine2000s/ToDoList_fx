@@ -126,3 +126,62 @@
     -fx-background-color: rgba(26, 56, 96, 0.1);
     -fx-background-radius:4.256px;
 }
+
+/**/
+
+table-view .column-header,
+.table-view .filler {
+    -fx-padding: 0; /* Remove padding */
+}
+
+.table-view .column-header-background .label {
+    -fx-background-color: transparent; /* Set label background color to transparent */
+    -fx-border-width: 0; /* Remove border width */
+}
+
+
+.table-cell {
+    -fx-padding: 10px; /* Adjust padding */
+    -fx-font-size: 14px; /* Adjust font size */
+    -fx-min-height: 30px; /* Adjust cell height */
+}
+.btn:hover{
+    -fx-cursor:hand ;
+}
+.table-view {
+    -fx-background-color:#006AF5;
+    -fx-background-radius:14 14 0 0;
+
+}
+.table-view .column-header-background{
+    -fx-background-color: #006AF5;
+    -fx-background-radius:10;
+    -fx-background-insets: 0 0 10 0;
+
+
+
+}
+.table-view .column-header, .table-view .filler{
+    -fx-size:50px;
+    -fx-border-width: 0 0 10 0;
+    -fx-background-color:transparent;
+
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white ;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent; /* Set background color to transparent */
+}
+
+#refreshbtn{
+    -fx-text-fill: #fff;
+    -fx-alignment: center;
+    -fx-font: bold 16px 'Inter';
+    -fx-font-weight: 650;
+    -fx-line-height: normal;
+    -fx-background-radius: 4.256px;
+    -fx-background-color: #006AF5;
+}

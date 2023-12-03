@@ -9,15 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TasksList extends AbstractTasksList {
-    public ObservableList<Task> List ;
 
+    public ObservableList<Task> List ;//this list is very mportnae its one we need in order to make 80% of content actions
+    //Synchronized
 
     public TasksList() {
         List = FXCollections.observableArrayList();
     }
 
     public ObservableList<Task> getList() {
-
          this.loadfromDB();
          return List ;
     }
@@ -26,11 +26,16 @@ public class TasksList extends AbstractTasksList {
     }
 
     public void loadfromDB(){
-
         TaskDao taskDao = new TaskDaoImp();
-
         List.clear();
         List.addAll(taskDao.GetAll());
+
+    }
+
+    public void Delete_task(Task task){
+
+
+
 
     }
 }

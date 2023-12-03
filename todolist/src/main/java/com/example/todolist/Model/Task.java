@@ -3,6 +3,9 @@ package com.example.todolist.Model;
 import java.util.Date;
 
 public class Task extends AbstractTask {
+
+    public int id ;
+
     public String  name ;
 
     public Date deadline;
@@ -11,20 +14,30 @@ public class Task extends AbstractTask {
 
     public String description;
 
-
-
     public String category;
 
     public boolean done;
 
     public Task(String name, Date deadline, String periority, String descrition, String category, boolean done) {
-
+        this.id=0;
         this.name = name;
         this.deadline = deadline;
         this.periority = periority;
         this.description = descrition;
         this.category = category;
         this.done = done;
+    }
+    public Task(int id , String name, Date deadline, String periority, String descrition, String category, boolean done) {
+        this.id=id;
+        this.name = name;
+        this.deadline = deadline;
+        this.periority = periority;
+        this.description = descrition;
+        this.category = category;
+        this.done = done;
+    }
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {

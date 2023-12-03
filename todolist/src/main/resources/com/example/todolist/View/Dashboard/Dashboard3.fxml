@@ -2,19 +2,22 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXListView?>
-<?import com.jfoenix.controls.JFXScrollPane?>
 <?import com.jfoenix.svg.SVGGlyph?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane id="APane" maxHeight="720.0" maxWidth="1280.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1280.0" style="-fx-background-color: #fff;" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.DashBoardController">
+<AnchorPane id="APane" maxHeight="720.0" maxWidth="1283.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1283.0" style="-fx-background-color: #fff;" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.DashBoardController">
     <children>
         <JFXButton id="AddTaskBtn" fx:id="AddTaskBtn" layoutX="1124.0" layoutY="99.0" minHeight="38.0" onAction="#onAddTaskButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Add Task" AnchorPane.bottomAnchor="513.0" AnchorPane.leftAnchor="865.0" AnchorPane.rightAnchor="282.67" AnchorPane.topAnchor="169.0">
             <graphic>
@@ -51,11 +54,19 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0">
                            <children>
-                              <JFXScrollPane>
-                                 <children>
-                                    <JFXListView fx:id="Tasks_list" prefHeight="481.0" prefWidth="761.0" />
-                                 </children>
-                              </JFXScrollPane>
+                              <TableView fx:id="Tasks_Tableview" fixedCellSize="-5.0" prefHeight="494.0" prefWidth="767.0" stylesheets="@Dashboard.css">
+                                <columns>
+                                  <TableColumn fx:id="isDone_Column" editable="false" prefWidth="73.59998780488968" resizable="false" sortable="false" text="Status" />
+                                  <TableColumn fx:id="name" editable="false" prefWidth="201.3333282470703" sortable="false" text="Name" />
+                                    <TableColumn fx:id="periority" editable="false" prefWidth="120.2667236328125" sortable="false" text="Priority" />
+                                    <TableColumn fx:id="category" editable="false" prefWidth="138.66680908203125" sortable="false" text="Category" />
+                                    <TableColumn fx:id="deadline" editable="false" prefWidth="106.4000244140625" sortable="false" text="Deadline " />
+                                    <TableColumn fx:id="edit_Column" editable="false" prefWidth="131.199951171875" sortable="false" text="Edit" />
+                                </columns>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </TableView>
                            </children>
                                 </AnchorPane>
                             </content>
@@ -73,8 +84,20 @@
         </JFXComboBox>
         <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1013.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #fff;" />
+                <Pane prefHeight="720.0" prefWidth="93.0" style="-fx-background-color: #fff;" />
             </children>
         </StackPane>
+      <JFXButton id="refreshbtn" fx:id="AddTaskBtn1" layoutX="797.0" layoutY="172.0" minHeight="29.0" minWidth="39.0" onAction="#load_data" prefHeight="36.0" prefWidth="47.0" snapToPixel="false" stylesheets="@Dashboard.css" text=" ">
+         <padding>
+            <Insets bottom="8.0" right="3.0" top="8.0" />
+         </padding>
+      </JFXButton>
+      <SVGGlyph layoutX="584.0" layoutY="101.0" prefHeight="31.0" prefWidth="41.0" />
+      <ImageView fitHeight="22.0" fitWidth="31.0" layoutX="805.0" layoutY="179.0" nodeOrientation="RIGHT_TO_LEFT">
+         <image>
+            <Image url="@../Images/refresh-icon-white-1.jpg" />
+         </image>
+      </ImageView>
+
     </children>
 </AnchorPane>
