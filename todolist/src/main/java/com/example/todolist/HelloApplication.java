@@ -14,7 +14,9 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/Dashboard/Dashboard3.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("View/Dashboard/Dashboard.css")).toExternalForm());
-        stage.setTitle("Hello!");
+
+        stage.setTitle("Le Task Manager");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }

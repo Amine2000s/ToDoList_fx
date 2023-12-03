@@ -2,9 +2,9 @@
 
 <?import com.jfoenix.controls.JFXSnackbar?>
 <?import com.jfoenix.svg.SVGGlyph?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AddTaskPane" maxHeight="569.0" maxWidth="400.0" minHeight="569.0" minWidth="400.0" prefHeight="569.0" prefWidth="400.0" stylesheets="@Task.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.TaskInfoController">
@@ -18,26 +18,40 @@
                 </Label>
             </children>
         </SVGGlyph>
-        <AnchorPane layoutY="178.0" prefHeight="200.0" prefWidth="314.0" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="166.0">
+        <AnchorPane layoutY="178.0" prefHeight="200.0" prefWidth="314.0" stylesheets="@Task_info.css" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="166.0">
             <children>
-                <Label id="TaskNameLabel" layoutY="14.0" prefHeight="18.0" prefWidth="314.0" stylesheets="@Task.css" text="Task Name :" AnchorPane.bottomAnchor="41.0" AnchorPane.topAnchor="14.0" />
-            <Label id="TaskNameLabel" fx:id="name_label" layoutY="37.0" prefHeight="41.0" prefWidth="314.0" stylesheets="@Task.css" />
+                <Label id="TaskNameLabel" layoutY="14.0" prefHeight="18.0" prefWidth="314.0" stylesheets="@Task_info.css" text="Task Name :" AnchorPane.bottomAnchor="41.0" AnchorPane.topAnchor="14.0" />
+            <Label id="TaskNameInfo" fx:id="name_label" layoutY="37.0" prefHeight="41.0" prefWidth="314.0" stylesheets="@Task_info.css">
+               <padding>
+                  <Insets left="3.0" />
+               </padding></Label>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="43.0" layoutY="256.0" prefHeight="117.0" prefWidth="313.0" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="253.0">
+        <AnchorPane layoutX="43.0" layoutY="256.0" prefHeight="117.0" prefWidth="313.0" stylesheets="@Task_info.css" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="253.0">
             <children>
-                <Label fx:id="TaskNameLabel1" layoutX="1.0" layoutY="3.0" prefHeight="14.0" prefWidth="312.0" stylesheets="@Task.css" text="Description :" AnchorPane.bottomAnchor="74.0" AnchorPane.topAnchor="3.0" />
-            <Label id="TaskNameLabel" fx:id="desc_label" layoutX="-1.0" layoutY="29.0" prefHeight="70.0" prefWidth="314.0" stylesheets="@Task.css" />
+                <Label id="TaskDescriptionLabel" fx:id="TaskNameLabel1" layoutX="1.0" layoutY="3.0" prefHeight="14.0" prefWidth="312.0" stylesheets="@Task_info.css" text="Description :" AnchorPane.bottomAnchor="74.0" AnchorPane.topAnchor="3.0" />
+            <Label id="TaskDescriptionInfo" fx:id="desc_label" layoutY="29.0" prefHeight="70.0" prefWidth="314.0" stylesheets="@Task_info.css" wrapText="true">
+               <padding>
+                  <Insets left="3.0" />
+               </padding></Label>
             </children>
         </AnchorPane>
-        <HBox layoutX="46.0" layoutY="513.0" prefHeight="41.0" prefWidth="308.0" spacing="50.0" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="513.0" />
-      <JFXSnackbar fx:id="error_msg" layoutX="42.0" layoutY="503.0" stylesheets="@Task.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-          <Label id="PriorityLabel" alignment="TOP_LEFT" layoutX="46.0" layoutY="372.0" prefHeight="18.0" prefWidth="142.0" stylesheets="@Task.css" text="Priority :" />
-          <Label id="TaskNameLabel" layoutX="42.0" layoutY="458.0" stylesheets="@Task.css" text="DeadLine :" />
-      <Label fx:id="priority_label" layoutX="117.0" layoutY="370.0" prefHeight="23.0" prefWidth="142.0" text="Label" />
-      <Label fx:id="deadline_label" layoutX="113.0" layoutY="459.0" prefHeight="18.0" prefWidth="149.0" text="Label" />
-      <Label id="PriorityLabel" alignment="TOP_LEFT" layoutX="41.0" layoutY="420.0" prefHeight="20.0" prefWidth="65.0" stylesheets="@Task.css" text="Category :" />
-      <Label fx:id="category_label" layoutX="116.0" layoutY="418.0" prefHeight="23.0" prefWidth="142.0" text="Label" />
+      <JFXSnackbar fx:id="error_msg" layoutX="42.0" layoutY="503.0" stylesheets="@Task_info.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+          <Label id="PriorityLabel" alignment="TOP_LEFT" layoutX="46.0" layoutY="371.0" prefHeight="18.0" prefWidth="57.0" stylesheets="@Task_info.css" text="Priority :" AnchorPane.leftAnchor="43.0" />
+          <Label id="TaskNameLabel" layoutX="42.0" layoutY="460.0" stylesheets="@Task_info.css" text="DeadLine :" />
+      <Label id="Informations" fx:id="priority_label" layoutX="117.0" layoutY="370.0" prefHeight="23.0" prefWidth="142.0" stylesheets="@Task_info.css" text="Label" AnchorPane.leftAnchor="120.0">
+         <padding>
+            <Insets left="10.0" />
+         </padding></Label>
+      <Label id="Informations" fx:id="deadline_label" layoutX="113.0" layoutY="459.0" prefHeight="23.0" prefWidth="142.0" stylesheets="@Task_info.css" text="Label" AnchorPane.leftAnchor="120.0">
+         <padding>
+            <Insets left="10.0" />
+         </padding></Label>
+      <Label id="PriorityLabel" alignment="TOP_LEFT" layoutX="43.0" layoutY="414.0" prefHeight="20.0" prefWidth="65.0" stylesheets="@Task_info.css" text="Category :" AnchorPane.leftAnchor="43.0" />
+      <Label id="Informations" fx:id="category_label" layoutX="120.0" layoutY="413.0" prefHeight="23.0" prefWidth="142.0" stylesheets="@Task_info.css" text="Label" AnchorPane.leftAnchor="120.0">
+         <padding>
+            <Insets left="10.0" />
+         </padding></Label>
 
     </children>
 </AnchorPane>
