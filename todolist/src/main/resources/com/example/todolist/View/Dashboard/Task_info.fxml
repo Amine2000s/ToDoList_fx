@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AddTaskPane" maxHeight="569.0" maxWidth="400.0" minHeight="569.0" minWidth="400.0" prefHeight="569.0" prefWidth="400.0" stylesheets="@Task.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.TaskInfoController">
+<AnchorPane id="AddTaskPane" maxHeight="569.0" maxWidth="400.0" minHeight="569.0" minWidth="400.0" prefHeight="569.0" prefWidth="400.0" stylesheets="@Add_Task.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.TaskInfoController">
     <children>
-        <SVGGlyph id="Svg" fx:id="Svg" prefHeight="156.0" prefWidth="400.0" stylesheets="@Task.css" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-8.0">
+        <SVGGlyph id="Svg" fx:id="Svg" prefHeight="156.0" prefWidth="400.0" stylesheets="@Add_Task.css" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-8.0">
             <children>
-                <Label fx:id="AddTaskLabel" contentDisplay="CENTER" layoutX="40.0" layoutY="70.0" stylesheets="@Task.css" text="TASK INFO" textFill="WHITE">
+                <Label fx:id="AddTaskLabel" contentDisplay="CENTER" layoutX="40.0" layoutY="70.0" stylesheets="@Add_Task.css" text="TASK INFO" textFill="WHITE">
                     <font>
                         <Font size="2.0" />
                     </font>

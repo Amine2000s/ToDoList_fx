@@ -132,7 +132,7 @@ public class AddTaskController {
 
             error_msg = new JFXSnackbar(pane);
             error_msg.setPrefWidth(400);
-            error_msg.fireEvent(new SnackbarEvent(new JFXSnackbarLayout("Please Fill Input Fields !")));
+            error_msg.fireEvent(new SnackbarEvent(new JFXSnackbarLayout("Please fill input fields")));
 
         }
 

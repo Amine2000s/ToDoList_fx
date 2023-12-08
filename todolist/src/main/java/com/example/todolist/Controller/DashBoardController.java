@@ -70,7 +70,7 @@ public class DashBoardController implements Initializable {
 
     public void onAddTaskButton(ActionEvent event) throws IOException {
         //load fxml file
-        FXMLLoader addtaskloader = new FXMLLoader(HelloApplication.class.getResource("View/Dashboard/AddTask2.fxml"));
+        FXMLLoader addtaskloader = new FXMLLoader(HelloApplication.class.getResource("View/Dashboard/Add_Task.fxml"));
 
         Parent root = addtaskloader.load();
 
