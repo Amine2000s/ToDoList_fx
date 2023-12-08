@@ -4,7 +4,7 @@
     this is a new branch of amin 
 ## Upcoming tasks
 
-- [ ] add search functionality 
+- [X] add search functionality 
 - [ ] add filtreing functionality 
 - [ ] add import and export fucntionality 
 - [ ] statistics 
