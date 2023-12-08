@@ -9,5 +9,6 @@
     <orderEntry type="library" exported="" scope="RUNTIME" name="io.github.palexdev.materialfx" level="project" />
     <orderEntry type="library" name="mysql-connector-j-8.1.02" level="project" />
     <orderEntry type="library" name="annotations-13.01" level="project" />
+    <orderEntry type="library" name="mysql-connector-j-8.1.0" level="application" />
   </component>
 </module>

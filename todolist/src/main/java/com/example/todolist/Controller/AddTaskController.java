@@ -113,8 +113,9 @@ public class AddTaskController {
 
             }else{//new Task
 
-                task = new Task(task_name, date_Value, priorty_Value, task_desc, "all", false);
-                TableView_local.getItems().add(task);
+                task = new Task(task_name, date_Value, priorty_Value, task_desc, "All", false);
+
+               // TableView_local.getItems().add(task);
 
 
             }

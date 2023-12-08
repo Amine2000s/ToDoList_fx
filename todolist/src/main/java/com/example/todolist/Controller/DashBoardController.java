@@ -6,6 +6,8 @@ import com.example.todolist.Model.Task;
 import com.example.todolist.Model.TasksList;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -35,6 +38,8 @@ public class DashBoardController implements Initializable {
 
     @FXML
     private TableView<Task> Tasks_Tableview;
+    @FXML
+    private TextField searchbar;
 
     @FXML
     private TableColumn<Task, Boolean> isDone_Column;
@@ -54,7 +59,7 @@ public class DashBoardController implements Initializable {
     TasksList tasks_list_model = new TasksList();
 
 
-    Task Task; // used for retrieving info and gputting them into object task from add or for the info panel
+    Task Task ; // used for retrieving info and gputting them into object task from add or for the info panel
 
     TaskDaoImp TaskDAO = new TaskDaoImp();//Data access Object for CRUD operations
 
@@ -83,6 +88,8 @@ public class DashBoardController implements Initializable {
                 }
             };
         });
+
+
     }
 
 
@@ -231,5 +238,37 @@ public class DashBoardController implements Initializable {
         };
         Edit_Column.setCellFactory(cellFoctory);//linking the cell with the edit column
         //Tasks_Tableview.setItems(tasks_list_model.getList());
+
+        FilteredList<Task> filtredTasks = new FilteredList<>(tasks_list_model.getList(), b -> true);
+
+        searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filtredTasks.setPredicate(task -> {
+
+                if(newValue.isEmpty() || newValue.isBlank() || newValue == null || newValue =="Search..."){
+                    return  true;
+                }
+
+                String tasksearchkeyword = newValue.toLowerCase();
+
+                if(task.getName().toLowerCase().indexOf(tasksearchkeyword) >-1){
+
+                    return true;
+                }else{
+                    return false ;
+                }
+
+            });
+
+        });
+
+        SortedList<Task> sortedTasks = new SortedList<>(filtredTasks);
+
+        sortedTasks.comparatorProperty().bind(Tasks_Tableview.comparatorProperty());
+
+        Tasks_Tableview.setItems(sortedTasks);
+
     }
+
+
 }
