@@ -4,6 +4,7 @@ import com.example.todolist.DAO.TaskDaoImp;
 import com.example.todolist.HelloApplication;
 import com.example.todolist.Model.Task;
 import com.example.todolist.Model.TasksList;
+import com.jfoenix.controls.JFXCheckBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.transformation.FilteredList;
@@ -42,7 +43,7 @@ public class DashBoardController implements Initializable {
     private TextField searchbar;
 
     @FXML
-    private TableColumn<Task, Boolean> isDone_Column;
+    private TableColumn<Task, JFXCheckBox> isDone_Column;
     @FXML
     private TableColumn<Task, String> Name;
     @FXML
@@ -136,7 +137,7 @@ public class DashBoardController implements Initializable {
         //Linking every Column with its propery value from the Task Class ,
 
         /////////////////////////////////////////////////////////////////////////////////////
-        isDone_Column.setCellValueFactory(new PropertyValueFactory<Task, Boolean>("done"));
+        isDone_Column.setCellValueFactory(new PropertyValueFactory<Task, JFXCheckBox>("status"));
         Name.setCellValueFactory(new PropertyValueFactory<Task, String>("name"));
         Priority.setCellValueFactory(new PropertyValueFactory<Task, String>("periority"));
         Category.setCellValueFactory(new PropertyValueFactory<Task, String>("category"));
