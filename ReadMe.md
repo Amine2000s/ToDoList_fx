@@ -1,7 +1,6 @@
 # Description
  Taks Manager Application using Java and JavaFx with MYSQL database.
  
-    this is a new branch of amin 
 ## Upcoming tasks
 
 - [X] add search functionality 
