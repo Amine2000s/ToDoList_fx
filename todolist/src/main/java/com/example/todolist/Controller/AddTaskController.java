@@ -117,6 +117,7 @@ public class AddTaskController {
 
                // TableView_local.getItems().add(task);
 
+
             }
 
             Task_id = 0; // Resetting the id for future Use
@@ -133,7 +134,7 @@ public class AddTaskController {
 
             error_msg = new JFXSnackbar(pane);
             error_msg.setPrefWidth(400);
-            error_msg.fireEvent(new SnackbarEvent(new JFXSnackbarLayout("Please Fill Input Fields !")));
+            error_msg.fireEvent(new SnackbarEvent(new JFXSnackbarLayout("Please fill input fields")));
 
         }
 
@@ -171,10 +172,11 @@ public class AddTaskController {
 
     }
 
-    //function for ssetting the Task id , Important for Updating Tasks
+    //function for setting the Task id , Important for Updating Tasks
     public void setTask_id(int task_id) {
 
         this.Task_id = task_id;
     }
+
 
 }

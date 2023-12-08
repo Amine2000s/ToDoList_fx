@@ -1,6 +1,7 @@
 #Svg {
-    -fx-background-radius: 17px;
+
     -fx-background-image: url("../Images/Rectangle7.png");
+    -fx-background-radius: 17px;
     -fx-background-repeat: no-repeat;
     -fx-border-radius: 17px;
 }
@@ -110,6 +111,19 @@
     -fx-line-height: 161.104%;
 }
 #AddTaskBtn {
+    -fx-text-fill: #F3F5F7;
+    -fx-alignment: center;
+    -fx-font: normal 16px 'Inter';
+    -fx-font-weight: 650;
+    -fx-line-height: normal;
+    -fx-min-width: 128px;
+    -fx-min-height: 40px;
+    -fx-max-width: 128px;
+    -fx-max-height: 40px;
+    -fx-background-radius: 8px;
+    -fx-background-color: #005FDB;
+}
+#CancelBtn{
     -fx-text-fill: #005FDB;
     -fx-alignment: center;
     -fx-font: normal 16px 'Inter';
@@ -127,13 +141,12 @@
     -fx-font-family: 'Inter';
     -fx-background-color: rgba(26, 56, 96, 0.1);
 }
-#HboxDate{
-    /*-fx-bakcground-color:rgba(26, 56, 96, 0.1);*/
-}
+
 .jfx-snackbar-content{
-
-    -fx-background-color: #006AF5;
-
+    -fx-background-color: #E21D12;
+}
+#SnakeBar{
+    -fx-padding: 10px 24px;
 }
 
 .jfx-snackbar-toast{
@@ -142,7 +155,6 @@
     -fx-font-family: Inter-Regular;
     -fx-font-style: Bold;
     -fx-font-size: 22px;
-
 }
 
 #mini_task{
@@ -162,26 +174,4 @@
 .btn:hover{
     -fx-cursor:hand ;
 }
-.table-view {
-    -fx-background-color:#651FFF;
-    -fx-background-radius:14 14 0 0;
 
-}
-.table-view .column-header-background{
-    -fx-background-color: #651FFF;
-    -fx-background-radius:14;
-    -fx-background-insets: 0 0 10 0;
-
-
-
-}
-.table-view .column-header, .table-view .filler{
-    -fx-size:50px;
-    -fx-border-width: 0 0 10 0;
-    -fx-background-color:transparent;
-
-}
-
-.table-view .column-header .label {
-    -fx-text-fill: white ;
-}

@@ -14,11 +14,11 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AddTaskPane" fx:id="AddTaskPane" maxHeight="569.0" maxWidth="400.0" minHeight="569.0" minWidth="400.0" prefHeight="569.0" prefWidth="400.0" stylesheets="@../Dashboard/Task.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.AddTaskController">
+<AnchorPane id="AddTaskPane" fx:id="AddTaskPane" maxHeight="569.0" maxWidth="400.0" minHeight="569.0" minWidth="400.0" prefHeight="569.0" prefWidth="400.0" stylesheets="@../Dashboard/Add_Task.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.AddTaskController">
     <children>
-        <SVGGlyph id="Svg" fx:id="Svg" prefHeight="156.0" prefWidth="400.0" stylesheets="@../Dashboard/Task.css" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-8.0">
+        <SVGGlyph id="Svg" fx:id="Svg" prefHeight="156.0" prefWidth="400.0" stylesheets="@../Dashboard/Add_Task.css" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-8.0">
             <children>
-                <Label fx:id="AddTaskLabel" contentDisplay="CENTER" layoutX="40.0" layoutY="70.0" stylesheets="@../Dashboard/Task.css" text="ADD TASK" textFill="WHITE">
+                <Label fx:id="AddTaskLabel" contentDisplay="CENTER" layoutX="40.0" layoutY="70.0" stylesheets="@../Dashboard/Add_Task.css" text="ADD TASK" textFill="WHITE">
                     <font>
                         <Font size="2.0" />
                     </font>
@@ -27,24 +27,24 @@
         </SVGGlyph>
         <AnchorPane layoutY="178.0" prefHeight="200.0" prefWidth="314.0" AnchorPane.bottomAnchor="325.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="166.0">
             <children>
-                <Label id="TaskNameLabel" layoutY="19.0" prefHeight="18.0" prefWidth="314.0" stylesheets="@../Dashboard/Task.css" text="Task :" AnchorPane.bottomAnchor="41.0" AnchorPane.topAnchor="14.0" />
-                <MFXTextField id="TaskName" fx:id="takename" prefHeight="36.0" prefWidth="314.0" stylesheets="@../Dashboard/Task.css" textLimit="1000" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="37.0" />
+                <Label id="TaskNameLabel" layoutY="19.0" prefHeight="18.0" prefWidth="314.0" stylesheets="@../Dashboard/Add_Task.css" text="Task :" AnchorPane.bottomAnchor="41.0" AnchorPane.topAnchor="14.0" />
+                <MFXTextField id="TaskName" fx:id="takename" prefHeight="36.0" prefWidth="314.0" stylesheets="@../Dashboard/Add_Task.css" textLimit="1000" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="37.0" />
             </children>
         </AnchorPane>
         <AnchorPane layoutX="43.0" layoutY="256.0" prefHeight="117.0" prefWidth="313.0" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="253.0">
             <children>
-                <Label fx:id="TaskNameLabel1" layoutX="1.0" layoutY="3.0" prefHeight="14.0" prefWidth="312.0" stylesheets="@../Dashboard/Task.css" text="Description :" AnchorPane.bottomAnchor="74.0" AnchorPane.topAnchor="3.0" />
-                <MFXTextField id="TaskDesctiption" fx:id="taskdescription" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" layoutY="17.0" maxHeight="58.0" maxWidth="313.0" minHeight="58.0" minWidth="313.0" prefColumnCount="0" prefHeight="58.0" prefWidth="313.0" promptText="description..." stylesheets="@../Dashboard/Task.css" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="29.0" />
+                <Label fx:id="TaskNameLabel1" layoutX="1.0" layoutY="3.0" prefHeight="14.0" prefWidth="312.0" stylesheets="@../Dashboard/Add_Task.css" text="Description :" AnchorPane.bottomAnchor="74.0" AnchorPane.topAnchor="3.0" />
+                <MFXTextField id="TaskDesctiption" fx:id="taskdescription" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" layoutY="17.0" maxHeight="58.0" maxWidth="313.0" minHeight="58.0" minWidth="313.0" prefColumnCount="0" prefHeight="58.0" prefWidth="313.0" promptText="description..." stylesheets="@../Dashboard/Add_Task.css" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="29.0" />
             </children>
         </AnchorPane>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="362.0">
             <children>
-                <Label id="PriorityLabel" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="142.0" stylesheets="@../Dashboard/Task.css" text="Priority :">
+                <Label id="PriorityLabel" alignment="TOP_LEFT" prefHeight="18.0" prefWidth="142.0" stylesheets="@../Dashboard/Add_Task.css" text="Priority :">
                     <VBox.margin>
                         <Insets top="16.0" />
                     </VBox.margin>
                 </Label>
-                <JFXRadioButton fx:id="radionbtn" stylesheets="@../Dashboard/Task.css" text="Hight" textFill="#e21d12">
+                <JFXRadioButton fx:id="radionbtn" stylesheets="@../Dashboard/Add_Task.css" text="Hight" textFill="#e21d12">
                     <VBox.margin>
                         <Insets top="12.0" />
                     </VBox.margin>
@@ -61,7 +61,7 @@
                         <ToggleGroup fx:id="Priority" />
                     </toggleGroup>
                 </JFXRadioButton>
-                <JFXRadioButton fx:id="radionbtn1" stylesheets="@../Dashboard/Task.css" text="Medium" textFill="#f7b200" toggleGroup="$Priority">
+                <JFXRadioButton fx:id="radionbtn1" stylesheets="@../Dashboard/Add_Task.css" text="Medium" textFill="#f7b200" toggleGroup="$Priority">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -72,7 +72,7 @@
                         <Color red="0.9686274528503418" green="0.6980392336845398" />
                     </selectedColor>
                 </JFXRadioButton>
-                <JFXRadioButton fx:id="radionbtn2" prefHeight="0.0" stylesheets="@../Dashboard/Task.css" text="Low" textFill="#158443" toggleGroup="$Priority">
+                <JFXRadioButton fx:id="radionbtn2" prefHeight="0.0" stylesheets="@../Dashboard/Add_Task.css" text="Low" textFill="#158443" toggleGroup="$Priority">
                     <VBox.margin>
                         <Insets />
                     </VBox.margin>
@@ -87,7 +87,7 @@
         </VBox>
         <HBox layoutX="46.0" layoutY="513.0" prefHeight="41.0" prefWidth="308.0" spacing="50.0" AnchorPane.bottomAnchor="15.0" AnchorPane.topAnchor="513.0">
             <children>
-                <JFXButton id="AddTaskBtn" cancelButton="true" onAction="#onCancelbtn" stylesheets="@../Dashboard/Task.css" text="Cancel" textFill="#ff9f9f">
+                <JFXButton id="AddTaskBtn" cancelButton="true" onAction="#onCancelbtn" stylesheets="@../Dashboard/Add_Task.css" text="Cancel" textFill="#ff9f9f">
                     <font>
                         <Font name="System Italic" size="33.0" />
                     </font>
@@ -95,24 +95,24 @@
                         <Insets />
                     </HBox.margin>
                 </JFXButton>
-                <JFXButton fx:id="AddTaskBtn" stylesheets="@../Dashboard/Task.css" text="Add Task" textFill="#ff9f9f">
+                <JFXButton fx:id="AddTaskBtn" stylesheets="@../Dashboard/Add_Task.css" text="Add Task" textFill="#ff9f9f">
                     <font>
                         <Font name="System Italic" size="33.0" />
                     </font>
                     <graphic>
-                        <SVGGlyph fx:id="btnSvg" prefHeight="25.0" prefWidth="25.0" stylesheets="@../Dashboard/Task.css" />
+                        <SVGGlyph fx:id="btnSvg" prefHeight="25.0" prefWidth="25.0" stylesheets="@../Dashboard/Add_Task.css" />
                     </graphic>
                 </JFXButton>
             </children>
         </HBox>
         <VBox prefHeight="78.0" prefWidth="142.0" spacing="5.0" AnchorPane.bottomAnchor="113.0" AnchorPane.leftAnchor="214.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="378.0">
             <children>
-                <Label id="TaskNameLabel" stylesheets="@../Dashboard/Task.css" text="DeadLine :" />
-                <HBox id="HboxDate" alignment="CENTER" fillHeight="false" prefHeight="27.0" prefWidth="142.0" stylesheets="@../Dashboard/Task.css">
+                <Label id="TaskNameLabel" stylesheets="@../Dashboard/Add_Task.css" text="DeadLine :" />
+                <HBox id="HboxDate" alignment="CENTER" fillHeight="false" prefHeight="27.0" prefWidth="142.0" stylesheets="@../Dashboard/Add_Task.css">
                     <children>
-                        <TextField id="DateField" promptText="DD" stylesheets="@../Dashboard/Task.css" />
-                        <TextField id="DateField" promptText="MM" stylesheets="@../Dashboard/Task.css" />
-                        <TextField id="DateField" prefHeight="26.0" prefWidth="165.0" promptText="YY" stylesheets="@../Dashboard/Task.css" />
+                        <TextField id="DateField" promptText="DD" stylesheets="@../Dashboard/Add_Task.css" />
+                        <TextField id="DateField" promptText="MM" stylesheets="@../Dashboard/Add_Task.css" />
+                        <TextField id="DateField" prefHeight="26.0" prefWidth="165.0" promptText="YY" stylesheets="@../Dashboard/Add_Task.css" />
                     </children>
                     <opaqueInsets>
                         <Insets />
