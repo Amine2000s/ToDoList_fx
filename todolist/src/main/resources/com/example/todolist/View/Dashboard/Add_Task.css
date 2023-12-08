@@ -141,9 +141,7 @@
     -fx-font-family: 'Inter';
     -fx-background-color: rgba(26, 56, 96, 0.1);
 }
-#HboxDate{
-    /*-fx-bakcground-color:rgba(26, 56, 96, 0.1);*/
-}
+
 .jfx-snackbar-content{
     -fx-background-color: #E21D12;
 }

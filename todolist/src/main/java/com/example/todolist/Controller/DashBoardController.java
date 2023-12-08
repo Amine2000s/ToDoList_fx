@@ -6,7 +6,6 @@ import com.example.todolist.Model.Task;
 import com.example.todolist.Model.TasksList;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -54,7 +53,6 @@ public class DashBoardController implements Initializable {
     // returns and obersrvable list for task obejcts by using its method getList()
     TasksList tasks_list_model = new TasksList();
 
-    String DBQeury; // for qeury
 
     Task Task; // used for retrieving info and gputting them into object task from add or for the info panel
 
@@ -88,7 +86,7 @@ public class DashBoardController implements Initializable {
     }
 
 
-    public void onAddTaskButton(ActionEvent event) throws IOException {
+    public void onAddTaskButton() throws IOException {
         //load fxml file
         FXMLLoader addtaskloader = new FXMLLoader(HelloApplication.class.getResource("View/Dashboard/Add_Task.fxml"));
 
