@@ -199,8 +199,20 @@ table-view .column-header,
     -fx-scale-x: 0.5px;
 }
 #TableView{
-    -fx-text-fill: rgba(33, 33, 33, 0.69);
     -fx-font-family: 'Inter';
     -fx-font-size: 16px;
     -fx-font-style: normal;
+}
+.delet-Icon{
+    -fx-cursor: hand;
+    -fx-fill: red;
+    -glyph-size:28px;
+}
+.info-Icon{
+    -fx-fill: rgba(0, 108, 250, 0.76);
+    -glyph-size:28px;
+}
+.edit-Icon{
+    -glyph-size:28px;
+    -fx-fill:#00E676;
 }

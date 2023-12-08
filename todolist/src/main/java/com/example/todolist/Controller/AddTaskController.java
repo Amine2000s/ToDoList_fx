@@ -116,6 +116,7 @@ public class AddTaskController {
                 task = new Task(task_name, date_Value, priorty_Value, task_desc, "all", false);
                 TableView_local.getItems().add(task);
 
+
             }
 
             Task_id = 0; // Resetting the id for future Use
@@ -170,10 +171,11 @@ public class AddTaskController {
 
     }
 
-    //function for ssetting the Task id , Important for Updating Tasks
+    //function for setting the Task id , Important for Updating Tasks
     public void setTask_id(int task_id) {
 
         this.Task_id = task_id;
     }
+
 
 }

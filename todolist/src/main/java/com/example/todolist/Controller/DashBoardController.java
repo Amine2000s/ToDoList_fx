@@ -22,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
@@ -65,8 +66,27 @@ public class DashBoardController implements Initializable {
 
         System.out.println("hello from init ");
         load_data();
-
+        //setting the color of the priority column
+        Priority.setCellFactory(column -> {
+            return new TableCell<Task, String>() {
+                @Override
+                protected void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    if(!empty) {
+                        if(item.equals("Hight")) {
+                            setTextFill(Color.RED);
+                        } else if(item.equals("Medium")) {
+                            setTextFill(Color.ORANGE);
+                        } else if(item.equals("Low")) {
+                            setTextFill(Color.GREEN);
+                        }
+                        setText(item);
+                    }
+                }
+            };
+        });
     }
+
 
     public void onAddTaskButton(ActionEvent event) throws IOException {
         //load fxml file
@@ -135,35 +155,23 @@ public class DashBoardController implements Initializable {
                         FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
                         FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
                         FontAwesomeIconView infoIcon = new FontAwesomeIconView(FontAwesomeIcon.INFO_CIRCLE);
+                        deleteIcon.getStyleClass().add("delet-Icon");
+                        infoIcon.getStyleClass().add("info-Icon");
+                        editIcon.getStyleClass().add("edit-Icon");
 
-                        deleteIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                        + "-glyph-size:28px;"
-                                        + "-fx-fill:#ff1744;"
-                        );
-                        editIcon.setStyle(
-                                " -fx-cursor: hand ;"
-                                        + "-glyph-size:28px;"
-                                        + "-fx-fill:#00E676;"
-                        );
-                        infoIcon.setStyle(
-                                "-fx-cursor: hand ;"
-                                + "-glyph-size:28px;"
-                                + "-fx-fill:#00E676;"
-                        );
 
                         //when delete icno is click
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
                             Task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
-                            TaskDAO.DeleteTask(Task);//query excutiong
+                            TaskDAO.DeleteTask(Task);//query execution
                             load_data();//updating the table view
                         });
 
                         //when edit icon is clicked
                         editIcon.setOnMouseClicked((MouseEvent event) -> {
                             FXMLLoader loader = new FXMLLoader ();
-                            loader.setLocation(getClass().getResource("/com/example/todolist/View/Dashboard/addTask2.fxml"));
+                            loader.setLocation(getClass().getResource("/com/example/todolist/View/Dashboard/Add_Task.fxml"));
                             try {
                                 loader.load();
                             } catch (IOException ex) {
