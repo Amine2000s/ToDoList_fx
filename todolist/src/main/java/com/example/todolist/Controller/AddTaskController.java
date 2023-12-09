@@ -122,7 +122,7 @@ public class AddTaskController {
 
             Task_id = 0; // Resetting the id for future Use
 
-            Task_Dao.CreateTask(task); // task Query exeuction
+            Task_Dao.CreateTask(task); // task Query execution
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.close();
