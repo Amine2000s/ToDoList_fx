@@ -12,6 +12,8 @@ public interface TaskDao {
     public Task SearchTask();//search task from DB
     public void DeleteTask(Task task );//Delete from DB
 
+    public void Update_Task_status(int id , boolean status );
+
 
 
 
