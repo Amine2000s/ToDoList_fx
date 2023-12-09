@@ -73,9 +73,9 @@
                 </Pane>
             </children></StackPane>
         <TextField id="SearchInput" fx:id="searchbar" layoutX="226.0" layoutY="28.0" promptText="Search..." stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="639.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="395.0" AnchorPane.topAnchor="28.0" />
-        <JFXComboBox layoutX="226.0" layoutY="176.0" promptText="  Category" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="891.0" AnchorPane.topAnchor="170.0" />
-        <JFXComboBox layoutX="236.0" layoutY="186.0" promptText="  Priority" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="416.0" AnchorPane.rightAnchor="701.0" AnchorPane.topAnchor="170.0" />
-        <JFXComboBox layoutX="246.0" layoutY="196.0" promptText="  Status" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="606.0" AnchorPane.rightAnchor="511.0" AnchorPane.topAnchor="170.0">
+        <JFXComboBox fx:id="categoryCombobox" layoutX="226.0" layoutY="176.0" promptText="  Category" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="891.0" AnchorPane.topAnchor="170.0" />
+        <JFXComboBox fx:id="priorityCombobox" layoutX="236.0" layoutY="186.0" promptText="  Priority" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="416.0" AnchorPane.rightAnchor="701.0" AnchorPane.topAnchor="170.0" />
+        <JFXComboBox fx:id="statusCombobox" layoutX="246.0" layoutY="196.0" promptText="  Status" styleClass="jfx-combobox" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="514.0" AnchorPane.leftAnchor="606.0" AnchorPane.rightAnchor="511.0" AnchorPane.topAnchor="170.0">
             <opaqueInsets>
                 <Insets />
             </opaqueInsets>
