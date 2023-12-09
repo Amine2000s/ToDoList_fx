@@ -16,6 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ComboBox?>
 <AnchorPane id="AddTaskPane" fx:id="AddTaskPane" maxHeight="569.0" maxWidth="400.0" minHeight="569.0" minWidth="400.0" prefHeight="569.0" prefWidth="400.0" stylesheets="@Add_Task.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.AddTaskController">
     <children>
         <SVGGlyph id="Svg" fx:id="Svg" prefHeight="156.0" prefWidth="400.0" style="-fx-background-radius: 17px; -fx-border-radius: 17px;" stylesheets="@Add_Task.css" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-8.0">
