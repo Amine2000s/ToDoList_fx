@@ -129,6 +129,7 @@ public class AddTaskController implements Initializable {
 
             Task_id = 0; // Resetting the id for future Use
 
+          
             Task_Dao.CreateTask(task); // task Query exeuction
             tasksList_local.loadfromDB();
 

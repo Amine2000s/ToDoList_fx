@@ -7,7 +7,6 @@
 <?import com.jfoenix.svg.SVGGlyph?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToggleGroup?>
@@ -102,7 +101,7 @@
         <VBox layoutX="215.0" layoutY="370.0" prefHeight="122.0" prefWidth="142.0" spacing="5.0" AnchorPane.bottomAnchor="85.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="43.0" AnchorPane.topAnchor="364.0">
             <children>
                 <Label id="TaskNameLabel" stylesheets="@Add_Task.css" text="DeadLine :" />
-            <DatePicker fx:id="date" layoutY="50.0" prefHeight="23.0" prefWidth="117.0" />
+            <DatePicker fx:id="date" layoutY="50.0" prefHeight="23.0" prefWidth="117.0" promptText="Pick a date" stylesheets="@Add_Task.css" />
             <Label id="TaskNameLabel" stylesheets="@Add_Task.css" text="Category :" />
             <ComboBox fx:id="categoryCombobox" prefHeight="26.0" prefWidth="118.0" />
             </children>

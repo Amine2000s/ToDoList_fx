@@ -172,10 +172,14 @@ public class DashBoardController implements Initializable {
         addTaskController.setTableView__local(tasks_list_model);
 
         Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+
 
         Stage stage = new Stage();
 
         stage.setResizable(false);
+        stage.initStyle(StageStyle.TRANSPARENT);
+
 
         stage.setScene(scene);
         stage.initStyle(StageStyle.TRANSPARENT);
@@ -266,6 +270,7 @@ public class DashBoardController implements Initializable {
                             stage.setScene(new Scene(parent));
                             stage.initStyle(StageStyle.TRANSPARENT);
 
+
                             stage.show();
 
                             load_data();//updating
@@ -279,7 +284,8 @@ public class DashBoardController implements Initializable {
                             FXMLLoader loader = new FXMLLoader (fxmlLocation);
                             try {
                                 loader.load();
-                            } catch (IOException ex) {                             ex.printStackTrace();
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
                             }
 
                             TaskInfoController taskInfoController = loader.getController();
