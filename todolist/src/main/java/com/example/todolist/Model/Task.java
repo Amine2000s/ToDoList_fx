@@ -1,6 +1,7 @@
 package com.example.todolist.Model;
 
 import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 
 import java.util.Date;
 

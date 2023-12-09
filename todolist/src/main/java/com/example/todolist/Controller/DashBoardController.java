@@ -31,7 +31,6 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.scene.paint.Color;
 
-import java.awt.event.ActionEvent;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -42,9 +41,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class DashBoardController implements Initializable {
 
@@ -100,12 +96,12 @@ public class DashBoardController implements Initializable {
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
                     if(!empty) {
-                        if(item.equals("Hight")) {
-                            setTextFill(Color.RED);
+                        if(item.equals("High")) {
+                            setTextFill(Color.rgb(226, 29, 18, 1));
                         } else if(item.equals("Medium")) {
-                            setTextFill(Color.ORANGE);
+                            setTextFill(Color.rgb(247, 178, 0, 1));
                         } else if(item.equals("Low")) {
-                            setTextFill(Color.GREEN);
+                            setTextFill(Color.rgb(21, 132, 67, 1));
                         }
                         setText(item);
                     }
@@ -311,9 +307,9 @@ public class DashBoardController implements Initializable {
                         //the buttongs alignment
                         HBox managebtn = new HBox(infoIcon,editIcon, deleteIcon);
                         managebtn.setStyle("-fx-alignment:center");
-                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 3));
-                        HBox.setMargin(editIcon, new Insets(2, 3, 0, 2));
-                        HBox.setMargin(infoIcon, new Insets(2, 3, 0, 2));
+                        HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 2));
+                        HBox.setMargin(editIcon, new Insets(2, 2, 0, 2));
+                        HBox.setMargin(infoIcon, new Insets(2, 2, 0, 2));
 
                         setGraphic(managebtn);
 
@@ -422,6 +418,7 @@ public class DashBoardController implements Initializable {
             private final JFXCheckBox checkBox = new JFXCheckBox();
 
             {
+                checkBox.getStyleClass().add("checkbox");
                 checkBox.setOnAction(event -> {
                     Task task = getTableView().getItems().get(getIndex());
                     task.setDone(checkBox.isSelected());

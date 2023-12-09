@@ -14,7 +14,7 @@ public class TaskInfoController {
 
     @FXML
     Label priority_label;
-   @FXML
+    @FXML
     Label category_label;
     @FXML
     Label deadline_label;

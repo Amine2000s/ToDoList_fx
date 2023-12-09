@@ -57,6 +57,7 @@
     -fx-line-height: 22px;
     -fx-background-color: rgba(26, 56, 96, 0.1);
     -fx-background-radius:4px;
+
 }
 #Informations{
     -fx-text-fill: rgba(25, 39, 57, 0.94);
