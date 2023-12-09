@@ -6,6 +6,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,6 +14,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane id="APane" maxHeight="720.0" maxWidth="1283.0" minHeight="720.0" minWidth="1280.0" prefHeight="720.0" prefWidth="1283.0" style="-fx-background-color: #fff;" stylesheets="@Dashboard.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todolist.Controller.DashBoardController">
@@ -48,18 +50,18 @@
                 </Pane>
                 <Pane prefHeight="488.0" prefWidth="801.0">
                     <children>
-                        <ScrollPane id="ScrollPane" hbarPolicy="NEVER" hmax="0.0" prefHeight="488.0" prefWidth="785.0" style="-fx-background-color: #ffffff;" stylesheets="@Dashboard.css" vmax="5.0">
+                        <ScrollPane id="ScrollPane" hbarPolicy="NEVER" hmax="0.0" layoutY="-1.0" prefHeight="489.0" prefWidth="795.0" style="-fx-background-color: #ffffff;" stylesheets="@Dashboard.css" vmax="5.0">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0">
                            <children>
-                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" prefHeight="830.0" prefWidth="767.0" style="-fx-background-color: #006af5;" stylesheets="@Dashboard.css">
+                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutY="-1.0" prefHeight="831.0" prefWidth="773.0" style="-fx-background-color: #006af5;" stylesheets="@Dashboard.css">
                                 <columns>
                                   <TableColumn id="TableView" fx:id="isDone_Column" editable="false" prefWidth="73.59998780488968" resizable="false" sortable="false" text="Status" />
                                   <TableColumn id="TableView" fx:id="Name" editable="false" prefWidth="201.3333282470703" resizable="false" sortable="false" text="Name" />
                                     <TableColumn id="TableView" fx:id="Priority" editable="false" prefWidth="120.2667236328125" resizable="false" sortable="false" text="Priority" />
                                     <TableColumn id="TableView" fx:id="Category" editable="false" prefWidth="138.66680908203125" resizable="false" sortable="false" text="Category" />
                                     <TableColumn id="TableView" fx:id="Deadline" editable="false" prefWidth="106.4000244140625" resizable="false" sortable="false" text="Deadline " />
-                                    <TableColumn id="TableView" fx:id="Edit_Column" editable="false" maxWidth="131.199951171875" minWidth="131.199951171875" prefWidth="131.199951171875" resizable="false" sortable="false" text="Edit" />
+                                    <TableColumn id="TableView" fx:id="Edit_Column" editable="false" maxWidth="131.199951171875" minWidth="130.39998779296877" prefWidth="130.39998779296877" resizable="false" sortable="false" text="Edit" />
                                 </columns>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -90,7 +92,19 @@
       </JFXButton>
         <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1013.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Pane prefHeight="720.0" prefWidth="93.0" style="-fx-background-color: #fff;" />
+                <Pane prefHeight="720.0" prefWidth="93.0" style="-fx-background-color: #fff; -fx-border-radius: 0.5px; -fx-border-color: #B8B8B8;">
+               <children>
+                  <VBox fx:id="NotificationBox" layoutX="5.0" layoutY="70.0" prefHeight="359.0" prefWidth="261.0" spacing="5.0" stylesheets="@Dashboard.css">
+                     <children>
+                        <JFXButton id="removeNotification" fx:id="removeNotification" minHeight="25.0" onAction="#removeNotification" prefHeight="38.0" prefWidth="95.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Clear" translateX="166.0">
+                           <padding>
+                              <Insets left="8.0" right="8.0" />
+                           </padding>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <Label id="NotificaionLabel" layoutX="5.0" layoutY="42.0" prefWidth="150.0" stylesheets="@Dashboard.css" text="Notifications :" />
+               </children></Pane>
             </children>
         </StackPane>
 

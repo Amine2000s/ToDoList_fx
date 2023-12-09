@@ -4,6 +4,7 @@ import com.example.todolist.DAO.TaskDaoImp;
 import com.example.todolist.HelloApplication;
 import com.example.todolist.Model.Task;
 import com.example.todolist.Model.TasksList;
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
@@ -20,17 +21,20 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.scene.paint.Color;
+
+import java.awt.event.ActionEvent;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 import java.io.IOException;
 import java.net.URL;
@@ -38,12 +42,18 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class DashBoardController implements Initializable {
 
 
 
-
+    @FXML
+    private VBox NotificationBox;
+    @FXML
+    private JFXButton removeNotification;
     @FXML
     private TableView<Task> Tasks_Tableview;
     @FXML
@@ -81,7 +91,6 @@ public class DashBoardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         System.out.println("hello from init ");
         load_data();
         //setting the color of the priority column
@@ -103,6 +112,8 @@ public class DashBoardController implements Initializable {
                 }
             };
         });
+
+        checkDeadLine();
         categoryCombobox.setItems(FXCollections.observableArrayList("All","General","Study","Sport"));
         priorityCombobox.setItems(FXCollections.observableArrayList("All","High","Medium","Low","Descending","Ascending"));
         statusCombobox.setItems(FXCollections.observableArrayList("All","Done","Undone"));
@@ -470,7 +481,38 @@ public class DashBoardController implements Initializable {
         ////////
 
 
+
+
     }
 
+    public void checkDeadLine(){
+        LocalDate currentDate = LocalDate.now();
+        for(Task task : Tasks_Tableview.getItems()){
+            java.sql.Date sqlDate = (java.sql.Date) task.getDeadline();
+            java.util.Date deadline = new java.util.Date(sqlDate.getTime());
+            LocalDate localDeadLine = deadline.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            if(localDeadLine.minusDays(1).isEqual(currentDate)){
+                Label label = new Label(task.getName()+"Dead Line is Tommorow");
+                label.getStyleClass().add("NotificationBoxlabel");
+                label.setWrapText(true);
+                NotificationBox.getChildren().add(label);
 
+                label.toBack();
+            }
+            else if(localDeadLine.isEqual(currentDate)) {
+                Label label = new Label(task.getName() + "Dead Line is today");
+                label.getStyleClass().add("NotificationBoxlabel");
+                label.setWrapText(true);
+                NotificationBox.getChildren().add(label);
+                label.toBack();
+            }
+        }
+    }
+    @FXML
+    private void removeNotification(){
+        if(!NotificationBox.getChildren().isEmpty()){
+            removeNotification.setVisible(false);
+        }
+        NotificationBox.getChildren().clear();
+    }
 }
