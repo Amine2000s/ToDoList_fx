@@ -9,8 +9,11 @@ import com.jfoenix.controls.JFXComboBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +34,9 @@ import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class DashBoardController implements Initializable {
@@ -71,7 +76,7 @@ public class DashBoardController implements Initializable {
 
     Task task; // used for retrieving info and gputting them into object task from add or for the info panel
 
-    TaskDaoImp TaskDAO = new TaskDaoImp();//Data access Object for CRUD operations
+    TaskDaoImp taskDAO = new TaskDaoImp();//Data access Object for CRUD operations
 
 
     @Override
@@ -99,10 +104,60 @@ public class DashBoardController implements Initializable {
             };
         });
         categoryCombobox.setItems(FXCollections.observableArrayList("All","General","Study","Sport"));
-        priorityCombobox.setItems(FXCollections.observableArrayList("All","High","Medium","Low"));
+        priorityCombobox.setItems(FXCollections.observableArrayList("All","High","Medium","Low","Descending","Ascending"));
         statusCombobox.setItems(FXCollections.observableArrayList("All","Done","Undone"));
 
 
+        categoryCombobox.setOnAction(event -> {
+
+            String selction = categoryCombobox.getSelectionModel().getSelectedItem();
+            if(selction=="All"){
+                    load_data();
+            }else{
+                List<Task> new_list = taskDAO.Update_TableViewByCategory(selction);
+                //tasks_list_model.getList().clear();
+                //tasks_list_model.getList().addAll(new_list);
+                ObservableList<Task> newlist = FXCollections.observableList(new_list);
+                Tasks_Tableview.setItems(newlist);
+            }
+
+        });
+
+        priorityCombobox.setOnAction(event -> {
+            String selction = categoryCombobox.getSelectionModel().getSelectedItem();
+            //if(selction=="All"){
+             //   load_data();
+            //}else {
+                List<Task> new_list = taskDAO.Update_TableViewByCategory(selction);
+                String selectedpriority = priorityCombobox.getSelectionModel().getSelectedItem();
+
+                if(selectedpriority=="Descending"){
+                    //execute dessending sort
+                }else if (selectedpriority=="Ascending"){
+                        //executing assencding sort
+                }else{
+                    System.out.println("selected priorirty is "+selectedpriority);
+
+                    List<Task> filtered_list = new ArrayList<>();
+                    for(Task t : new_list){
+
+                        if(t.getPeriority()!=selectedpriority)
+                        {new_list.remove(t);}
+                    }
+
+                    ObservableList<Task> newlist = FXCollections.observableList(new_list);
+                    Tasks_Tableview.setItems(newlist);
+                }
+            //}
+
+
+        });
+
+        class EnlargeHandler implements EventHandler<ActionEvent> {
+            public void handle(ActionEvent e) {
+
+            }
+        }
     }
 
 
@@ -114,7 +169,7 @@ public class DashBoardController implements Initializable {
 
         AddTaskController addTaskController = addtaskloader.getController();
 
-        addTaskController.setTableView__local(Tasks_Tableview);
+        addTaskController.setTableView__local(tasks_list_model);
 
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -189,7 +244,7 @@ public class DashBoardController implements Initializable {
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
                             task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
-                            TaskDAO.DeleteTask(task);//query execution
+                            taskDAO.DeleteTask(task);//query execution
                             load_data();//updating the table view
                         });
 
@@ -206,7 +261,7 @@ public class DashBoardController implements Initializable {
                             AddTaskController addTaskController = loader.getController();//loading the Controller
                             addTaskController.setAddTaskBtn_name("Confirm");//editing on the add task btn to Confrim
 
-                            addTaskController.setTableView__local(Tasks_Tableview);//linking the dashboard table view
+                            addTaskController.setTableView__local(tasks_list_model);//linking the dashboard table view
                             addTaskController.setTask_id(task.getId());//getting the task id
                             addTaskController.filltextfields(task);//filling the textfields by old data
                             //need to fix the date bug
@@ -299,9 +354,84 @@ public class DashBoardController implements Initializable {
             return cell2 ;
         };
         isDone_Column.setCellFactory(cellcheckbox);//linking the cell with the edit column
+        ///////////////////////////////checkbox*/
+        /*
+        * isDoneColumn.setCellValueFactory(cellData -> cellData.getValue().isDoneProperty());
+
+        // Set the cell factory to use a CheckBox for the isDoneColumn
+        isDoneColumn.setCellFactory(new Callback<>() {
+            @Override
+            public TableCell<Task, Boolean> call(TableColumn<Task, Boolean> param) {
+                return new TableCell<>() {
+                    private final CheckBox checkBox = new CheckBox();
+
+                    {
+                        // Handle checkbox action
+                        checkBox.setOnAction(event -> {
+                            Task task = getTableView().getItems().get(getIndex());
+                            task.setDone(checkBox.isSelected()); // Update the Task's property
+
+                            // Update the database here (execute an update query)
+                            // You'll need to implement database update logic
+
+                            // Refresh the TableView to reflect changes
+                            getTableView().refresh();
+                        });
+                    }
+
+                    @Override
+                    protected void updateItem(Boolean item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setGraphic(null);
+                        } else {
+                            checkBox.setSelected(item); // Set checkbox value based on Task's property
+                            setGraphic(checkBox);
+                        }
+                    }
+                };
+            }
+        });
+
+        // Add other columns to the TableView
+
+        tableView.getColumns().addAll(isDoneColumn);
+
+        *
+        *
+        * */
 
 
-*/
+        isDone_Column.setCellValueFactory(cellData -> {
+            boolean isDone = cellData.getValue().isDone();
+            return new javafx.beans.property.SimpleBooleanProperty(isDone);
+        });
+
+        isDone_Column.setCellFactory(column -> new TableCell<>() {
+            private final JFXCheckBox checkBox = new JFXCheckBox();
+
+            {
+                checkBox.setOnAction(event -> {
+                    Task task = getTableView().getItems().get(getIndex());
+                    task.setDone(checkBox.isSelected());
+                    taskDAO.Update_Task_status(task.getId(),checkBox.isSelected());
+
+                    //System.out.println("Task: " + task.getName() + ", Is Done: " + task.isDone());
+                });
+            }
+
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setGraphic(null);
+                } else {
+                    checkBox.setSelected(item);
+                    setGraphic(checkBox);
+                }
+            }
+        });
+
         //////////////////////////////
         FilteredList<Task> filtredTasks = new FilteredList<>(tasks_list_model.getList(), b -> true);
 

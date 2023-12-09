@@ -96,7 +96,7 @@ public class TaskDaoImp implements TaskDao {
     @Override
     public void DeleteTask(Task task) {
 
-        String query = "DELETE FROM `tasks` WHERE id  = ?";
+        String query = "DELETE FROM tasks WHERE id  = ?";
         try (Connection connection = DbConnection.getConnection()) {
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -114,18 +114,19 @@ public class TaskDaoImp implements TaskDao {
     }
 
     @Override
-
     public void Update_Task_status(int id  , boolean  status ){
 
-        String query ="UPDATE tasks SET done= ? WHERE id= ?";
+        String query ="UPDATE tasks SET done=? WHERE id=?";
 
         try (Connection connection = DbConnection.getConnection()) {
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 
-                preparedStatement.setInt(1,id);
-                preparedStatement.setBoolean(2,status);
+                preparedStatement.setBoolean(1,status);
+                preparedStatement.setInt(2,id);
+
                 preparedStatement.executeUpdate();
+                System.out.println("done with succes ");
 
             }
 
@@ -133,9 +134,43 @@ public class TaskDaoImp implements TaskDao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("done with succes ");
+    }
+    @Override
+    public List<Task> Update_TableViewByCategory(String category){
+
+        String query ="Select * FROM tasks WHERE category=?";
+        ArrayList<Task> Tasks_list = new ArrayList<>();
+
+        try(Connection connection = DbConnection.getConnection()){
+
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query)){
+
+                preparedStatement.setString(1,category);
+
+                ResultSet resultSet = preparedStatement.executeQuery();
+                while (resultSet.next()) {
+                    Tasks_list.add(new Task(resultSet.getInt("id"), resultSet.getString("name"), resultSet.getDate("deadline"), resultSet.getString("periority"), resultSet.getString("descrpition"), resultSet.getString("category"), resultSet.getBoolean("done")));
+                }
+
+            }
+
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return Tasks_list;
     }
 
+        @Override
+        public List<Task> Filter_Tasks(String category , String priority , String status ){
+
+
+
+
+
+
+            return null ;
+        }
 
 
     }
