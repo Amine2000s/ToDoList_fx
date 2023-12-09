@@ -7,8 +7,9 @@
 - [X] add checkbox
 - [X] add category options in add task
 - [X] add category options in dashboardad
-- [ ] add checkbox functionallity soon
-- [ ] add filtreing functionality 
+- [X] add checkbox functionallity soon
+- [X] add filtreing functionality(1/3) 
+- [X] add notification functionality (very soon) 
 - [ ] add import and export fucntionality 
 - [ ] statistics 
 
