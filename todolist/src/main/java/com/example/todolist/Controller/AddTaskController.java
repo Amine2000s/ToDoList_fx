@@ -2,6 +2,7 @@ package com.example.todolist.Controller;
 
 import com.example.todolist.DAO.TaskDaoImp;
 import com.example.todolist.Model.Task;
+import com.example.todolist.Model.TasksList;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbar.SnackbarEvent;
@@ -37,7 +38,7 @@ public class AddTaskController implements Initializable {
     @FXML
     JFXSnackbar error_msg;
 
-    TableView<Task> TableView_local ;
+    TasksList tasksList_local;
 
     TaskDaoImp Task_Dao = new TaskDaoImp();//Dao function for main manipulation(CRUD)
 
@@ -46,9 +47,9 @@ public class AddTaskController implements Initializable {
     int Task_id;// variable used te determine if we should update or create
 
     //linking the dashboard Tableview with a Local variable of same type for easy Access
-    public void setTableView__local(TableView<Task> task_list_local) {
+    public void setTableView__local(TasksList task_list_local) {
 
-        TableView_local = task_list_local;
+        tasksList_local = task_list_local;
 
     }
 
@@ -62,6 +63,8 @@ public class AddTaskController implements Initializable {
         if(date.getValue()==null){return false;}
 
         if(!checktogglevalue(Priority)){return false;}
+
+        if(categoryCombobox.getValue().isEmpty()||categoryCombobox.getValue().isBlank()||categoryCombobox.getValue()==null){return false ;}
 
         return true;
     }
@@ -105,7 +108,7 @@ public class AddTaskController implements Initializable {
             String task_name = taskename.getText();
             String task_desc = taskdescription.getText();
             String priorty_Value = getSelectedRadioButton(Priority);
-
+            String category = categoryCombobox.getValue();
             LocalDate date1 = date.getValue();
 
             java.sql.Date date_Value = java.sql.Date.valueOf(date1);//transforming date type to SQL
@@ -113,11 +116,11 @@ public class AddTaskController implements Initializable {
             // if task is already created
             if(Task_id >0) {
 
-                task = new Task(Task_id,task_name, date_Value, priorty_Value, task_desc, "All", false);
+                task = new Task(Task_id,task_name, date_Value, priorty_Value, task_desc, category, false);
 
             }else{//new Task
 
-                task = new Task(task_name, date_Value, priorty_Value, task_desc, "All", false);
+                task = new Task(task_name, date_Value, priorty_Value, task_desc, category, false);
 
                // TableView_local.getItems().add(task);
 
@@ -127,6 +130,7 @@ public class AddTaskController implements Initializable {
             Task_id = 0; // Resetting the id for future Use
 
             Task_Dao.CreateTask(task); // task Query exeuction
+            tasksList_local.loadfromDB();
 
             Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.close();
