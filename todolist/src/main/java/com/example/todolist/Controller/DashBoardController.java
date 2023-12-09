@@ -4,8 +4,11 @@ import com.example.todolist.DAO.TaskDaoImp;
 import com.example.todolist.HelloApplication;
 import com.example.todolist.Model.Task;
 import com.example.todolist.Model.TasksList;
+import com.jfoenix.controls.JFXCheckBox;
+import com.jfoenix.controls.JFXComboBox;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
@@ -42,6 +45,13 @@ public class DashBoardController implements Initializable {
     private TextField searchbar;
 
     @FXML
+    private JFXComboBox<String> categoryCombobox ;
+    @FXML
+    private JFXComboBox<String> priorityCombobox ;
+    @FXML
+    private JFXComboBox<String> statusCombobox ;
+
+    @FXML
     private TableColumn<Task, Boolean> isDone_Column;
     @FXML
     private TableColumn<Task, String> Name;
@@ -59,7 +69,7 @@ public class DashBoardController implements Initializable {
     TasksList tasks_list_model = new TasksList();
 
 
-    Task Task ; // used for retrieving info and gputting them into object task from add or for the info panel
+    Task task; // used for retrieving info and gputting them into object task from add or for the info panel
 
     TaskDaoImp TaskDAO = new TaskDaoImp();//Data access Object for CRUD operations
 
@@ -88,6 +98,9 @@ public class DashBoardController implements Initializable {
                 }
             };
         });
+        categoryCombobox.setItems(FXCollections.observableArrayList("All","General","Study","Sport"));
+        priorityCombobox.setItems(FXCollections.observableArrayList("All","High","Medium","Low"));
+        statusCombobox.setItems(FXCollections.observableArrayList("All","Done","Undone"));
 
 
     }
@@ -136,14 +149,17 @@ public class DashBoardController implements Initializable {
         //Linking every Column with its propery value from the Task Class ,
 
         /////////////////////////////////////////////////////////////////////////////////////
-        isDone_Column.setCellValueFactory(new PropertyValueFactory<Task, Boolean>("done"));
+        //isDone_Column.setCellValueFactory(new PropertyValueFactory<Task, Boolean>("status"));
+        //isDone_Column.setCellValueFactory(cellData ->cellData.getValue().isDone(););
+        /**coonitnute tommorow here chof kifah trj3 el boolean bollean property ou kamel akhdm 3la check box */
+
         Name.setCellValueFactory(new PropertyValueFactory<Task, String>("name"));
         Priority.setCellValueFactory(new PropertyValueFactory<Task, String>("periority"));
         Category.setCellValueFactory(new PropertyValueFactory<Task, String>("category"));
         Deadline.setCellValueFactory(new PropertyValueFactory<Task, Date>("deadline"));
         /////////////////////////////////////////////////////////////////////////////////////
 
-        Callback<TableColumn<Task, String>, TableCell<Task, String>> cellFoctory = (TableColumn<Task, String> param) -> {
+        Callback<TableColumn<Task, String>, TableCell<Task, String>> cellFactory = (TableColumn<Task, String> param) -> {
             // make cell containing buttons
 
             final TableCell<Task, String> cell = new TableCell<Task, String>() {
@@ -168,8 +184,8 @@ public class DashBoardController implements Initializable {
                         //when delete icno is click
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
-                            Task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
-                            TaskDAO.DeleteTask(Task);//query execution
+                            task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
+                            TaskDAO.DeleteTask(task);//query execution
                             load_data();//updating the table view
                         });
 
@@ -182,13 +198,13 @@ public class DashBoardController implements Initializable {
                             } catch (IOException ex) {
                                 ex.printStackTrace();
                             }
-                            Task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
+                            task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
                             AddTaskController addTaskController = loader.getController();//loading the Controller
                             addTaskController.setAddTaskBtn_name("Confirm");//editing on the add task btn to Confrim
 
                             addTaskController.setTableView__local(Tasks_Tableview);//linking the dashboard table view
-                            addTaskController.setTask_id(Task.getId());//getting the task id
-                            addTaskController.filltextfields(Task);//filling the textfields by old data
+                            addTaskController.setTask_id(task.getId());//getting the task id
+                            addTaskController.filltextfields(task);//filling the textfields by old data
                             //need to fix the date bug
                             Parent parent = loader.getRoot();
                             Stage stage = new Stage();
@@ -203,7 +219,7 @@ public class DashBoardController implements Initializable {
                         //clicking on the info buttong
                         infoIcon.setOnMouseClicked((MouseEvent event)->{
 
-                            Task = Tasks_Tableview.getSelectionModel().getSelectedItem();
+                            task = Tasks_Tableview.getSelectionModel().getSelectedItem();
                             URL fxmlLocation = getClass().getResource("/com/example/todolist/View/Dashboard/Task_info.fxml");
                             FXMLLoader loader = new FXMLLoader (fxmlLocation);
                             try {
@@ -212,7 +228,7 @@ public class DashBoardController implements Initializable {
                             }
 
                             TaskInfoController taskInfoController = loader.getController();
-                            taskInfoController.filllabelfield(Task);
+                            taskInfoController.filllabelfield(task);
                             Parent parent = loader.getRoot();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(parent));
@@ -236,9 +252,51 @@ public class DashBoardController implements Initializable {
             };
             return cell;
         };
-        Edit_Column.setCellFactory(cellFoctory);//linking the cell with the edit column
+        Edit_Column.setCellFactory(cellFactory);//linking the cell with the edit column
         //Tasks_Tableview.setItems(tasks_list_model.getList());
+        //////checkbox functionality //
+   /*     Callback<TableColumn<Task, String>, TableCell<Task, String>> cellcheckbox = (TableColumn<Task, String> param) -> {
+            // make cell containing buttons
 
+            final TableCell<Task, String> cell2 = new TableCell<Task, String>() {
+                @Override
+                public void updateItem(String item, boolean empty) {
+                    super.updateItem(item, empty);
+                    //that cell created only on non-empty rows
+                    if (empty) {
+                        setGraphic(null);
+                        setText(null);
+
+                    } else {
+                        JFXCheckBox checkbox = new JFXCheckBox() ;
+
+                        checkbox.setOnMouseClicked((MouseEvent event) ->{
+                            task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
+
+                            if(checkbox.isSelected()){
+                                //query to updates to true ;
+                                TaskDAO.Update_Task_status(task.getId(),true);
+                            }else{
+                                //query to update it to false ;
+                                TaskDAO.Update_Task_status(task.getId(),false);
+
+                            }
+                            load_data();
+                        });
+                        setGraphic(checkbox);
+
+                        setText(null);
+                    }
+                }
+
+            };
+            return cell2 ;
+        };
+        isDone_Column.setCellFactory(cellcheckbox);//linking the cell with the edit column
+
+
+*/
+        //////////////////////////////
         FilteredList<Task> filtredTasks = new FilteredList<>(tasks_list_model.getList(), b -> true);
 
         searchbar.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -267,6 +325,14 @@ public class DashBoardController implements Initializable {
         sortedTasks.comparatorProperty().bind(Tasks_Tableview.comparatorProperty());
 
         Tasks_Tableview.setItems(sortedTasks);
+
+        ////// checkbox functoinality
+
+
+
+
+        ////////
+
 
     }
 

@@ -5,18 +5,22 @@ import com.example.todolist.Model.Task;
 import com.jfoenix.controls.*;
 import com.jfoenix.controls.JFXSnackbar;
 import com.jfoenix.controls.JFXSnackbar.SnackbarEvent;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
 
-public class AddTaskController {
+public class AddTaskController implements Initializable {
 
     @FXML
     TextField taskename;
@@ -26,8 +30,8 @@ public class AddTaskController {
     DatePicker date ;
     @FXML
     ToggleGroup Priority;
-
-
+    @FXML
+    ComboBox<String> categoryCombobox;
     @FXML
     JFXButton AddTaskBtn;
     @FXML
@@ -179,4 +183,8 @@ public class AddTaskController {
     }
 
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+            categoryCombobox.setItems(FXCollections.observableArrayList("General","Study","Sport"));
+    }
 }

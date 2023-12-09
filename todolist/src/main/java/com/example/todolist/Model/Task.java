@@ -1,5 +1,7 @@
 package com.example.todolist.Model;
 
+import com.jfoenix.controls.JFXCheckBox;
+
 import java.util.Date;
 
 public class Task extends AbstractTask {
@@ -16,6 +18,7 @@ public class Task extends AbstractTask {
 
     public String category;
 
+    public JFXCheckBox status ;
     public boolean done;
 
     public Task(String name, Date deadline, String periority, String descrition, String category, boolean done) {
@@ -26,6 +29,7 @@ public class Task extends AbstractTask {
         this.description = descrition;
         this.category = category;
         this.done = done;
+        status = new JFXCheckBox();
     }
     public Task(int id , String name, Date deadline, String periority, String descrition, String category, boolean done) {
         this.id=id;
@@ -35,6 +39,7 @@ public class Task extends AbstractTask {
         this.description = descrition;
         this.category = category;
         this.done = done;
+        status = new JFXCheckBox();
     }
     public Integer getId() {
         return id;
@@ -62,6 +67,14 @@ public class Task extends AbstractTask {
 
     public boolean isDone() {
         return done;
+    }
+
+    public JFXCheckBox getStatus() {
+        return status;
+    }
+
+    public void setStatus(JFXCheckBox status) {
+        this.status = status;
     }
 
     @Override

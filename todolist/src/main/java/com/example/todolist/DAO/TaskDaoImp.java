@@ -1,6 +1,7 @@
 package com.example.todolist.DAO;
 
 import com.example.todolist.Model.Task;
+import javafx.fxml.FXML;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -112,5 +113,31 @@ public class TaskDaoImp implements TaskDao {
         }
     }
 
+    @Override
 
-}
+    public void Update_Task_status(int id  , boolean  status ){
+
+        String query ="UPDATE tasks SET done= ? WHERE id= ?";
+
+        try (Connection connection = DbConnection.getConnection()) {
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+                preparedStatement.setInt(1,id);
+                preparedStatement.setBoolean(2,status);
+                preparedStatement.executeUpdate();
+
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("done with succes ");
+    }
+
+
+
+    }
+
+
