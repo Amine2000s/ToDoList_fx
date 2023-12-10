@@ -37,7 +37,7 @@
         <AnchorPane layoutX="43.0" layoutY="256.0" prefHeight="117.0" prefWidth="313.0" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="253.0">
             <children>
                 <Label fx:id="TaskNameLabel1" layoutX="1.0" layoutY="3.0" prefHeight="14.0" prefWidth="312.0" stylesheets="@Add_Task.css" text="Description :" AnchorPane.bottomAnchor="74.0" AnchorPane.topAnchor="3.0" />
-                <MFXTextField id="TaskDesctiption" fx:id="taskdescription" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" layoutY="17.0" maxHeight="58.0" maxWidth="313.0" minHeight="58.0" minWidth="313.0" prefColumnCount="0" prefHeight="58.0" prefWidth="313.0" promptText="description..." stylesheets="@Add_Task.css" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="29.0" />
+                <MFXTextField id="TaskDesctiption" fx:id="taskdescription" accessibleRole="TEXT_AREA" alignment="TOP_LEFT" layoutY="17.0" maxHeight="58.0" maxWidth="313.0" minHeight="58.0" minWidth="313.0" prefColumnCount="0" prefHeight="58.0" prefWidth="313.0" promptText="description...(optional)" stylesheets="@Add_Task.css" AnchorPane.bottomAnchor="5.0" AnchorPane.topAnchor="29.0" />
             </children>
         </AnchorPane>
         <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="215.0" AnchorPane.topAnchor="362.0">

@@ -58,7 +58,7 @@ public class AddTaskController implements Initializable {
 
         if(taskename.getText().isEmpty()){return false;}
 
-        if(taskdescription.getText().isEmpty()){return false;}
+//        if(taskdescription.getText().isEmpty()){return false;}
 
         if(date.getValue()==null){return false;}
 

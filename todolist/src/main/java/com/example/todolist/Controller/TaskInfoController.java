@@ -3,6 +3,7 @@ package com.example.todolist.Controller;
 import com.example.todolist.Model.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 
 public class TaskInfoController {
 
@@ -10,7 +11,7 @@ public class TaskInfoController {
     Label name_label;
 
     @FXML
-    Label desc_label;
+    TextArea desc_label;
 
     @FXML
     Label priority_label;

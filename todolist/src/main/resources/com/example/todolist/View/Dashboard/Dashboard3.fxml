@@ -54,7 +54,7 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0">
                            <children>
-                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutY="-1.0" prefHeight="831.0" prefWidth="773.0" style="-fx-background-color: #006af5;" stylesheets="@Dashboard.css">
+                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutY="-1.0" prefHeight="831.0" prefWidth="773.0" stylesheets="@Dashboard.css">
                                 <columns>
                                   <TableColumn id="TableView" fx:id="isDone_Column" editable="false" prefWidth="73.59998780488968" resizable="false" sortable="false" text="Status" />
                                   <TableColumn id="TableView" fx:id="Name" editable="false" prefWidth="201.3333282470703" resizable="false" sortable="false" text="Name" />
