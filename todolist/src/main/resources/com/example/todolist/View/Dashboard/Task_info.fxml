@@ -4,6 +4,7 @@
 <?import com.jfoenix.svg.SVGGlyph?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -30,10 +31,11 @@
         <AnchorPane layoutX="43.0" layoutY="256.0" prefHeight="117.0" prefWidth="313.0" stylesheets="@Task_info.css" AnchorPane.bottomAnchor="216.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="44.0" AnchorPane.topAnchor="253.0">
             <children>
                 <Label id="TaskDescriptionLabel" fx:id="TaskNameLabel1" layoutX="1.0" layoutY="3.0" prefHeight="14.0" prefWidth="312.0" stylesheets="@Task_info.css" text="Description :" AnchorPane.bottomAnchor="74.0" AnchorPane.topAnchor="3.0" />
-            <Label id="TaskDescriptionInfo" fx:id="desc_label" layoutY="29.0" prefHeight="70.0" prefWidth="314.0" stylesheets="@Task_info.css" wrapText="true">
+            <Label layoutY="29.0" prefHeight="70.0" prefWidth="314.0" stylesheets="@Task_info.css" wrapText="true">
                <padding>
                   <Insets left="3.0" />
                </padding></Label>
+            <TextArea id="TaskDescriptionInfo" fx:id="desc_label" editable="false" layoutY="29.0" prefHeight="70.0" prefWidth="314.0" stylesheets="@Dashboard.css" />
             </children>
         </AnchorPane>
       <JFXSnackbar fx:id="error_msg" layoutX="42.0" layoutY="503.0" stylesheets="@Task_info.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
