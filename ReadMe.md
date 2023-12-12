@@ -9,7 +9,8 @@
 - [X] add category options in dashboardad
 - [X] add checkbox functionallity soon
 - [X] add filtreing functionality(1/3) 
-- [X] add notification functionality (very soon) 
+- [ ] add notification functionality (smtp email sending) (very soon) 
 - [ ] add import and export fucntionality 
+- [ ] javadoc 
 - [ ] statistics 
 
