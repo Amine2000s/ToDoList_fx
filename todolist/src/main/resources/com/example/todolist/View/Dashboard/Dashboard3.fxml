@@ -90,9 +90,9 @@
             <Insets bottom="8.0" right="3.0" top="8.0" />
          </padding>
       </JFXButton>
-        <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1013.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <StackPane layoutY="-6.0" prefHeight="726.0" prefWidth="270.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1013.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
             <children>
-                <Pane prefHeight="720.0" prefWidth="93.0" style="-fx-background-color: #fff; -fx-border-radius: 0.5px; -fx-border-color: #B8B8B8;">
+                <Pane prefHeight="751.0" prefWidth="270.0" style="-fx-background-color: #fff; -fx-border-radius: 0.5px; -fx-border-color: #B8B8B8;">
                <children>
                   <VBox fx:id="NotificationBox" layoutX="5.0" layoutY="70.0" prefHeight="359.0" prefWidth="261.0" spacing="5.0" stylesheets="@Dashboard.css">
                      <children>
@@ -107,6 +107,11 @@
                </children></Pane>
             </children>
         </StackPane>
+      <JFXButton layoutX="895.0" layoutY="30.0" prefHeight="50.0" prefWidth="50.0" AnchorPane.bottomAnchor="640.0" AnchorPane.topAnchor="30.0">
+         <graphic>
+            <SVGGlyph id="svgInfo" prefHeight="50.0" prefWidth="50.0" stylesheets="@Dashboard.css" translateX="-7.0" />
+         </graphic>
+      </JFXButton>
 
     </children>
 </AnchorPane>

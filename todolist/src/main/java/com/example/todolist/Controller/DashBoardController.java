@@ -76,7 +76,7 @@ public class DashBoardController implements Initializable {
     private TableColumn<Task, String> Edit_Column;
 
 
-    // returns and obersrvable list for task obejcts by using its method getList()
+    // returns and obersrvable list for task object by using its method getList()
     TasksList tasks_list_model = new TasksList();
 
 
@@ -238,7 +238,7 @@ public class DashBoardController implements Initializable {
                         setText(null);
 
                     } else {
-                        //thre icons that are on the edit column
+                        //there icons that are on the edit column
                         FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
                         FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.PENCIL_SQUARE);
                         FontAwesomeIconView infoIcon = new FontAwesomeIconView(FontAwesomeIcon.INFO_CIRCLE);
@@ -247,7 +247,7 @@ public class DashBoardController implements Initializable {
                         editIcon.getStyleClass().add("edit-Icon");
 
 
-                        //when delete icno is click
+                        //when delete icon is click
                         deleteIcon.setOnMouseClicked((MouseEvent event) -> {
 
                             task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
@@ -283,7 +283,7 @@ public class DashBoardController implements Initializable {
                             load_data();//updating
                         });
 
-                        //clicking on the info buttong
+                        //clicking on the info button
                         infoIcon.setOnMouseClicked((MouseEvent event)->{
 
                             task = Tasks_Tableview.getSelectionModel().getSelectedItem();
@@ -304,7 +304,7 @@ public class DashBoardController implements Initializable {
                             stage.show();
 
                         });
-                        //the buttongs alignment
+                        //the buttons alignment
                         HBox managebtn = new HBox(infoIcon,editIcon, deleteIcon);
                         managebtn.setStyle("-fx-alignment:center");
                         HBox.setMargin(deleteIcon, new Insets(2, 2, 0, 2));
