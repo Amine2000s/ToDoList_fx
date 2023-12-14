@@ -64,6 +64,7 @@
     -fx-font:  16px 'Inter-Medium';
     -fx-border-color: #B8B8B8;
     -fx-border-width: 0.5px;
+    -fx-border-radius: 4.256px;
 }
 .jfx-checkbox {
     -fx-background-color: #F3F5F7;
@@ -271,4 +272,9 @@
     -fx-translate-x: 14px;
     -fx-scale-x: 1.4;
     -fx-scale-y: 1.4;
+}
+#svgInfo{
+    -fx-background-image: url("../Images/exclamation-circle-grey.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 50px;
 }
