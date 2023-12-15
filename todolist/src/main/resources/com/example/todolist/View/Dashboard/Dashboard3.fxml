@@ -39,22 +39,27 @@
                         <SVGGlyph id="svg1" prefHeight="44.0" prefWidth="45.0" stylesheets="@Dashboard.css" translateX="-10.0" />
                     </graphic>
                 </JFXButton>
+            <JFXButton id="Dashboard" alignment="TOP_LEFT" layoutX="6.0" layoutY="236.0" prefHeight="56.0" prefWidth="191.0" stylesheets="@Dashboard.css" text="Statics">
+               <graphic>
+                  <SVGGlyph id="svg2" prefHeight="44.0" prefWidth="51.0" stylesheets="@Dashboard.css" translateX="-10.0" translateY="-2.0" />
+               </graphic>
+            </JFXButton>
             </children>
         </AnchorPane>
-        <StackPane layoutX="291.0" layoutY="169.0" prefHeight="488.0" prefWidth="780.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="274.0" AnchorPane.topAnchor="232.0">
+        <StackPane layoutX="291.0" layoutY="169.0" prefHeight="488.0" prefWidth="780.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="274.0" AnchorPane.topAnchor="232.0">
             <children>
-                <Pane prefHeight="200.0" prefWidth="200.0">
+                <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
                     <StackPane.margin>
                         <Insets />
                     </StackPane.margin>
                 </Pane>
-                <Pane prefHeight="488.0" prefWidth="801.0">
+                <Pane prefHeight="488.0" prefWidth="801.0" style="-fx-background-color: #ffffff;">
                     <children>
-                        <ScrollPane id="ScrollPane" hbarPolicy="NEVER" hmax="0.0" layoutY="-1.0" prefHeight="489.0" prefWidth="795.0" style="-fx-background-color: #ffffff;" stylesheets="@Dashboard.css" vmax="5.0">
+                        <ScrollPane id="ScrollPane" hbarPolicy="NEVER" hmax="0.0" layoutY="-1.0" prefHeight="489.0" prefWidth="795.0" stylesheets="@Dashboard.css" vmax="5.0">
                             <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0" style="-fx-background-color: #ffffff;">
                            <children>
-                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutY="-1.0" prefHeight="831.0" prefWidth="773.0" stylesheets="@Dashboard.css">
+                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutY="-1.0" prefHeight="834.0" prefWidth="773.0" stylesheets="@Dashboard.css" AnchorPane.topAnchor="0.0">
                                 <columns>
                                   <TableColumn id="TableView" fx:id="isDone_Column" editable="false" prefWidth="73.59998780488968" resizable="false" sortable="false" text="Status" />
                                   <TableColumn id="TableView" fx:id="Name" editable="false" prefWidth="201.3333282470703" resizable="false" sortable="false" text="Name" />
@@ -107,11 +112,11 @@
                </children></Pane>
             </children>
         </StackPane>
-      <JFXButton layoutX="895.0" layoutY="30.0" prefHeight="50.0" prefWidth="50.0" AnchorPane.bottomAnchor="640.0" AnchorPane.topAnchor="30.0">
-         <graphic>
-            <SVGGlyph id="svgInfo" prefHeight="50.0" prefWidth="50.0" stylesheets="@Dashboard.css" translateX="-7.0" />
-         </graphic>
-      </JFXButton>
+      <SVGGlyph id="svgInfo" layoutX="949.0" layoutY="29.0" prefHeight="50.0" prefWidth="50.0" stylesheets="@Dashboard.css">
+         <children>
+            <JFXButton id="infoButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100px; -fx-border-radius: 100%;" stylesheets="@Dashboard.css" translateX="5.0" translateY="4.0" />
+         </children>
+      </SVGGlyph>
 
     </children>
 </AnchorPane>

@@ -7,9 +7,11 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="jfoenix" level="project" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="io.github.palexdev.materialfx" level="project" />
-    <orderEntry type="library" name="mysql-connector-j-8.1.02" level="project" />
     <orderEntry type="library" name="annotations-13.01" level="project" />
+    <orderEntry type="library" name="activation" level="project" />
+    <orderEntry type="library" name="mail" level="project" />
     <orderEntry type="library" name="mysql-connector-j-8.1.0" level="project" />
-    <orderEntry type="library" name="mysql-connector-j-8.1.01" level="project" />
+    <orderEntry type="library" name="mysql.connector.java" level="project" />
+    <orderEntry type="library" name="sun.mail.javax" level="project" />
   </component>
 </module>
