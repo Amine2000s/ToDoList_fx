@@ -130,51 +130,11 @@
 
 /**/
 
-.table-view .filler {
-    -fx-padding: 0;
-}
 
-.table-view .column-header-background .label {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-}
-
-
-.table-cell {
-    -fx-padding: 10px;
-    -fx-font-size: 14px;
-    -fx-min-height: 30px;
-}
 .btn:hover{
     -fx-cursor:hand ;
 }
-.table-view {
-    -fx-background-color:#006AF5;
-    -fx-background-radius:14 14 0 0;
 
-}
-.table-view .column-header-background{
-    -fx-background-color: #006AF5;
-    -fx-background-radius:10;
-    -fx-background-insets: 0 0 10 0;
-
-
-
-}
-.table-view .column-header, .table-view .filler{
-    -fx-size:50px;
-    -fx-border-width: 0 0 10 0;
-    -fx-background-color:transparent;
-
-}
-
-.table-view .column-header .label {
-    -fx-text-fill: white ;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: transparent; /* Set background color to transparent */
-}
 #Svgrefresh{
     -fx-background-image: url("../Images/rotate-left.png");
     -fx-background-repeat: no-repeat;
@@ -191,18 +151,20 @@
 }
 #ScrollPane .scroll-bar{
     -fx-opacity: 0;
-    -fx-background-color: #E5F0FF;
+    -fx-background-color: #FFF;
 }
 #ScrollPane .scroll-bar .thumb {
-    -fx-background-color: #006AF5;
-    -fx-scale-y: 1.5px;
-    -fx-scale-x: 0.5px;
+    -fx-background-color: #FFF;
+
 }
-#TableView{
-    -fx-font-family: 'Inter';
-    -fx-font-size: 16px;
-    -fx-font-style: normal;
+#ScrollPane .scroll-bar .track{
+    -fx-background-color: #FFF;
 }
+#ScrollPane {
+    -fx-background-color: #FFF;
+
+}
+
 .delet-Icon{
     -fx-cursor: hand;
     -fx-fill: red;
@@ -277,4 +239,89 @@
     -fx-background-image: url("../Images/exclamation-circle-grey.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: 50px;
+}
+#svg2{
+    -fx-background-image: url("../Images/bar-chart.png");
+    -fx-background-repeat: no-repeat;
+}
+
+.table-cell {
+    -fx-padding: 10px;
+    -fx-font-size: 14px;
+    -fx-min-height: 30px;
+}
+#TableView{
+    -fx-font-family: 'Inter';
+    -fx-font-size: 16px;
+    -fx-font-style: normal;
+}
+
+.table-button {
+    -fx-background-color: -fx-primary-color;
+    -fx-cursor: hand;
+}
+.table-button:hover{
+    -fx-background-color: transparent;
+}
+.table-view {
+    -fx-border-color: #006AF5;
+    -fx-border-radius: 8px 8px 0 0;
+    -fx-border-width: 1;
+    -fx-background-color: transparent; /* OR  -fx-background-insets: 0.0; */
+}
+.table-view .column-header-background,
+.table-view .column-header-background .filler,
+.table-view .corner {
+    -fx-background-color: #006AF5;
+    -fx-background-radius: 8px 8px 0 0;
+    -fx-border-width: 5;
+    -fx-border-color: #006AF5;
+    -fx-border-radius: 8px 8px 0 0;
+}
+.table-view .column-header {
+    -fx-background-color: -fx-light-grey-color;
+    -fx-border-color: -fx-grey-color;
+}
+.table-view .column-header .label{
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+}
+/* This is just magic */
+.table-row-cell:filled {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent -fx-lightest-grey-color -fx-lightest-grey-color -fx-lightest-grey-color, transparent;
+    -fx-border-insets: 0, 1;
+}
+.table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+.table-row-cell:filled:hover {
+    -fx-background-color: -fx-light-grey-color;
+}
+.table-row-cell:filled:selected:hover {
+    -fx-background-color: -fx-light-grey-color;
+}
+.table-row-cell:filled:selected {
+    -fx-background-color: #eaeaea;
+    -fx-background-insets: 0.0;
+    -fx-background-radius: 0.0;
+}
+.table-row-cell:filled:selected .table-cell {
+    -fx-text-fill: black;
+}
+.table-view .cell:filled{
+    -fx-cell-size: 30;
+    -fx-alignment: center-left;
+}
+.check-box-table-cell > .check-box:selected .box .mark {
+    -fx-background-color: white;
+}
+.check-box-table-cell > .check-box:selected .box{
+    -fx-background-color: -fx-accent-color;
+}
+.table-view .placeholder .label {
+    -fx-text-fill: red;
+    -fx-padding:20px;
 }

@@ -33,14 +33,14 @@ import javafx.scene.paint.Color;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.ResourceBundle;
+
 
 public class DashBoardController implements Initializable {
 
@@ -96,12 +96,10 @@ public class DashBoardController implements Initializable {
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
                     if(!empty) {
-                        if(item.equals("High")) {
-                            setTextFill(Color.rgb(226, 29, 18, 1));
-                        } else if(item.equals("Medium")) {
-                            setTextFill(Color.rgb(247, 178, 0, 1));
-                        } else if(item.equals("Low")) {
-                            setTextFill(Color.rgb(21, 132, 67, 1));
+                        switch (item) {
+                            case "High" -> setTextFill(Color.rgb(226, 29, 18, 1));
+                            case "Medium" -> setTextFill(Color.rgb(247, 178, 0, 1));
+                            case "Low" -> setTextFill(Color.rgb(21, 132, 67, 1));
                         }
                         setText(item);
                     }
@@ -118,7 +116,7 @@ public class DashBoardController implements Initializable {
         categoryCombobox.setOnAction(event -> {
 
             String selction = categoryCombobox.getSelectionModel().getSelectedItem();
-            if(selction=="All"){
+            if(selction.equals("All")){
                     load_data();
             }else{
                 List<Task> new_list = taskDAO.Update_TableViewByCategory(selction);
@@ -493,14 +491,15 @@ public class DashBoardController implements Initializable {
                 label.getStyleClass().add("NotificationBoxlabel");
                 label.setWrapText(true);
                 NotificationBox.getChildren().add(label);
-
+                //SendMail(task.getName()+" Deadline is Tommorow");
                 label.toBack();
             }
             else if(localDeadLine.isEqual(currentDate)) {
-                Label label = new Label(task.getName() + "Dead Line is today");
+                Label label = new Label(task.getName() + "Deadline is today");
                 label.getStyleClass().add("NotificationBoxlabel");
                 label.setWrapText(true);
                 NotificationBox.getChildren().add(label);
+                //SendMail(task.getName() + " Deadline is today");
                 label.toBack();
             }
         }
@@ -512,4 +511,50 @@ public class DashBoardController implements Initializable {
         }
         NotificationBox.getChildren().clear();
     }
+//    public void SendMail(String notification) {
+//        // Sender's credentials
+//        final String username = "edd07bf091e201";
+//        final String password = "de739a16c27665";
+//
+//        // Recipient's email address
+//        String toEmail = "abdoukermiche123@gmail.com";
+//
+//        // Email properties
+//        Properties props = new Properties();
+//        props.put("mail.smtp.host", "sandbox.smtp.mailtrap.io");
+//        props.put("mail.smtp.port", "25");
+//        props.put("mail.smtp.auth", "true");
+//        props.put("mail.smtp.starttls.enable", "true");
+//
+//
+//        // Session to get debug information
+//        Session session = Session.getInstance(props, new Authenticator() {
+//            @Override
+//            protected PasswordAuthentication getPasswordAuthentication() {
+//                return new PasswordAuthentication(username, password);
+//            }
+//        });
+//
+//        try {
+//            // Create a MimeMessage object
+//            Message message = new MimeMessage(session);
+//
+//            // Set the sender and recipient addresses
+//            message.setFrom(new InternetAddress(username));
+//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+//
+//            // Set the email subject and content
+//            message.setSubject(" Deadline is close");
+//            message.setText(notification);
+//
+//            // Send the email
+//            Transport.send(message);
+//
+//            System.out.println("Email sent successfully.");
+//
+//        } catch (MessagingException e) {
+//            e.printStackTrace();
+//            System.err.println("Error sending email: " + e.getMessage());
+//        }
+//    }
 }
