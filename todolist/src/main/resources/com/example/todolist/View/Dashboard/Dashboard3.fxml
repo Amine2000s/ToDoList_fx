@@ -59,14 +59,14 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0" style="-fx-background-color: #ffffff;">
                            <children>
-                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutY="-1.0" prefHeight="834.0" prefWidth="773.0" stylesheets="@Dashboard.css" AnchorPane.topAnchor="0.0">
+                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutX="-9.0" layoutY="-44.0" prefHeight="878.0" prefWidth="783.0" stylesheets="@Dashboard.css" AnchorPane.topAnchor="-44.0">
                                 <columns>
                                   <TableColumn id="TableView" fx:id="isDone_Column" editable="false" prefWidth="73.59998780488968" resizable="false" sortable="false" text="Status" />
                                   <TableColumn id="TableView" fx:id="Name" editable="false" prefWidth="201.3333282470703" resizable="false" sortable="false" text="Name" />
                                     <TableColumn id="TableView" fx:id="Priority" editable="false" prefWidth="120.2667236328125" resizable="false" sortable="false" text="Priority" />
                                     <TableColumn id="TableView" fx:id="Category" editable="false" prefWidth="138.66680908203125" resizable="false" sortable="false" text="Category" />
                                     <TableColumn id="TableView" fx:id="Deadline" editable="false" prefWidth="106.4000244140625" resizable="false" sortable="false" text="Deadline " />
-                                    <TableColumn id="TableView" fx:id="Edit_Column" editable="false" maxWidth="131.199951171875" minWidth="130.39998779296877" prefWidth="130.39998779296877" resizable="false" sortable="false" text="Edit" />
+                                    <TableColumn id="TableView" fx:id="Edit_Column" editable="false" maxWidth="137.39998779296877" minWidth="130.39998779296877" prefWidth="141.39998779296877" resizable="false" sortable="false" text="Edit" />
                                 </columns>
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -117,6 +117,7 @@
             <JFXButton id="infoButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100px; -fx-border-radius: 100%;" stylesheets="@Dashboard.css" translateX="5.0" translateY="4.0" />
          </children>
       </SVGGlyph>
+      <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
 
     </children>
 </AnchorPane>

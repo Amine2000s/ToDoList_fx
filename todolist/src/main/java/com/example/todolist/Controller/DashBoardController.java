@@ -74,6 +74,8 @@ public class DashBoardController implements Initializable {
     private TableColumn<Task, Date> Deadline;
     @FXML
     private TableColumn<Task, String> Edit_Column;
+    @FXML
+    private Label CurrentCategoryLabel;
 
 
     // returns and obersrvable list for task object by using its method getList()
@@ -117,7 +119,9 @@ public class DashBoardController implements Initializable {
 
             String selction = categoryCombobox.getSelectionModel().getSelectedItem();
             if(selction.equals("All")){
+
                     load_data();
+
             }else{
                 List<Task> new_list = taskDAO.Update_TableViewByCategory(selction);
                 //tasks_list_model.getList().clear();
