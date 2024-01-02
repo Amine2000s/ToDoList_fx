@@ -118,6 +118,16 @@
          </children>
       </SVGGlyph>
       <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
+      <JFXButton id="AddTaskBtn" fx:id="AddTaskBtn2" layoutX="245.0" layoutY="94.0" minHeight="38.0" onAction="#OnImportButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Import ">
+         <padding>
+            <Insets right="8.0" />
+         </padding>
+      </JFXButton>
+      <JFXButton id="AddTaskBtn" layoutX="412.0" layoutY="94.0" minHeight="38.0" onAction="#OnExportButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="export">
+         <padding>
+            <Insets right="8.0" />
+         </padding>
+      </JFXButton>
 
     </children>
 </AnchorPane>

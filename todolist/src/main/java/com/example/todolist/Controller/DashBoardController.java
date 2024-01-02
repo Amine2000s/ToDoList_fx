@@ -19,33 +19,38 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.scene.paint.Color;
 
+import java.io.*;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.swing.*;
 
-import java.io.IOException;
 import java.net.URL;
 
 
 public class DashBoardController implements Initializable {
 
 
-
+    FileChooser fileChooser;
     @FXML
     private VBox NotificationBox;
     @FXML
@@ -77,27 +82,45 @@ public class DashBoardController implements Initializable {
     @FXML
     private Label CurrentCategoryLabel;
 
+    @FXML
+    private JFXButton Statics_button ;
 
-    // returns and obersrvable list for task object by using its method getList()
+
+    @FXML
+    StackPane main_board ;
+
+    /**returns and obersrvable list for task object by using its method getList()*/
     TasksList tasks_list_model = new TasksList();
 
 
-    Task task; // used for retrieving info and gputting them into object task from add or for the info panel
+    Task task; /** used for retrieving info and gputting them into object task from add or for the info panel*/
 
-    TaskDaoImp taskDAO = new TaskDaoImp();//Data access Object for CRUD operations
+    TaskDaoImp taskDAO = new TaskDaoImp();/**Data access Object for CRUD operations**/
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("hello from init ");
+        //System.out.println("hello from init ");
+
+         fileChooser = new FileChooser() ;
+         fileChooser.setInitialDirectory(new File("C:\\Users\\amin\\Documents\\ToDoList_fx\\inputfiles"));
         load_data();
+        //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/Dashboard/Dashboardactl.fxml"));
+
+        //try {
+          //  main_board.getChildren().add((Node) fxmlLoader.load());
+            //System.out.println("added with succes");
+        /*} catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
         //setting the color of the priority column
         Priority.setCellFactory(column -> {
             return new TableCell<Task, String>() {
                 @Override
                 protected void updateItem(String item, boolean empty) {
                     super.updateItem(item, empty);
-                    if(!empty) {
+                    if (!empty) {
                         switch (item) {
                             case "High" -> setTextFill(Color.rgb(226, 29, 18, 1));
                             case "Medium" -> setTextFill(Color.rgb(247, 178, 0, 1));
@@ -110,65 +133,193 @@ public class DashBoardController implements Initializable {
         });
 
         checkDeadLine();
-        categoryCombobox.setItems(FXCollections.observableArrayList("All","General","Study","Sport"));
-        priorityCombobox.setItems(FXCollections.observableArrayList("All","High","Medium","Low","Descending","Ascending"));
-        statusCombobox.setItems(FXCollections.observableArrayList("All","Done","Undone"));
+        categoryCombobox.setItems(FXCollections.observableArrayList("All", "General", "Study", "Sport"));
+        priorityCombobox.setItems(FXCollections.observableArrayList("All", "High", "Medium", "Low", "Descending", "Ascending"));
+        statusCombobox.setItems(FXCollections.observableArrayList("All", "Done", "Undone"));
 
-
-        categoryCombobox.setOnAction(event -> {
-
-            String selction = categoryCombobox.getSelectionModel().getSelectedItem();
-            if(selction.equals("All")){
-
-                    load_data();
-
-            }else{
-                List<Task> new_list = taskDAO.Update_TableViewByCategory(selction);
-                //tasks_list_model.getList().clear();
-                //tasks_list_model.getList().addAll(new_list);
-                ObservableList<Task> newlist = FXCollections.observableList(new_list);
-                Tasks_Tableview.setItems(newlist);
-            }
-
-        });
-
-        priorityCombobox.setOnAction(event -> {
-            String selction = categoryCombobox.getSelectionModel().getSelectedItem();
-            //if(selction=="All"){
-             //   load_data();
-            //}else {
-                List<Task> new_list = taskDAO.Update_TableViewByCategory(selction);
-                String selectedpriority = priorityCombobox.getSelectionModel().getSelectedItem();
-
-                if(selectedpriority=="Descending"){
-                    //execute dessending sort
-                }else if (selectedpriority=="Ascending"){
-                        //executing assencding sort
-                }else{
-                    System.out.println("selected priorirty is "+selectedpriority);
-
-                    List<Task> filtered_list = new ArrayList<>();
-                    for(Task t : new_list){
-
-                        if(t.getPeriority()!=selectedpriority)
-                        {new_list.remove(t);}
-                    }
-
-                    ObservableList<Task> newlist = FXCollections.observableList(new_list);
-                    Tasks_Tableview.setItems(newlist);
-                }
-            //}
-
-
-        });
-
-        class EnlargeHandler implements EventHandler<ActionEvent> {
+        initFilterListeners();
+    }
+        /*class EnlargeHandler implements EventHandler<ActionEvent> {
             public void handle(ActionEvent e) {
 
             }
         }
+    }*/
+    /**
+     * initialise Listeners for Categrory,priority,status Combox boxes
+     * */
+    public void initFilterListeners(){
+
+            categoryCombobox.setOnAction(event -> {
+
+                String selction = categoryCombobox.getSelectionModel().getSelectedItem();
+                if (selction.equals("All")) {
+
+                    load_data();
+
+                } else {
+                    List<Task> new_list = taskDAO.Update_TableViewByCategory(selction);
+                    //tasks_list_model.getList().clear();
+                    //tasks_list_model.getList().addAll(new_list);
+                    ObservableList<Task> newlist = FXCollections.observableList(new_list);
+                    Tasks_Tableview.setItems(newlist);
+                }
+
+            });
+
+        //    initFilterListeners();
+
+
+
+       // filtered_observable_list.clear();
+
+        priorityCombobox.setOnAction(event -> {
+
+            List<Task> filtred_list = new ArrayList<>();
+
+            ObservableList<Task> filtered_observable_list = FXCollections.observableList(filtred_list);
+
+            String selction = categoryCombobox.getSelectionModel().getSelectedItem();
+
+            String selectedpriority = priorityCombobox.getSelectionModel().getSelectedItem();
+
+            if(selectedpriority=="Descending"){
+
+                //execute dessending sort
+                dessending_sort(filtered_observable_list);
+                System.out.println(filtered_observable_list.toString());
+
+            }else if (selectedpriority=="Ascending"){
+
+                //executing assencding sort
+                assending_sort(filtered_observable_list);
+                System.out.println(filtered_observable_list.toString());
+
+            }else{
+
+                //System.out.println("selected priorirty is "+selectedpriority);
+
+
+                for (Task task : tasks_list_model.getList()){
+
+                    if(task.getPeriority().equals(selectedpriority)&& !filtered_observable_list.contains(task)) {
+
+                        filtered_observable_list.add(task);
+                        //System.out.println("added with succes ");
+                    }
+
+                }
+
+            }
+
+            Tasks_Tableview.setItems(filtered_observable_list);
+
+
+
+
+        });
+
+
+        statusCombobox.setOnAction(event -> {
+
+            List<Task> filtred_list = new ArrayList<>();
+
+            ObservableList<Task> filtered_observable_list = FXCollections.observableList(filtred_list);
+
+            //String selction = categoryCombobox.getSelectionModel().getSelectedItem();
+
+            String selectedstatus = statusCombobox.getSelectionModel().getSelectedItem();
+
+            if(selectedstatus.equals("Undone")){
+
+                for (Task task : tasks_list_model.getList()){
+
+                    if(!task.isDone() &&!filtered_observable_list.contains(task)) {
+
+                        filtered_observable_list.add(task);
+                        //System.out.println("added with succes ");
+                    }
+
+                }
+
+            }else if (selectedstatus.equals("Done")){
+
+                //executing assencding sort
+
+                for (Task task : tasks_list_model.getList()){
+
+                    if(task.isDone() && !filtered_observable_list.contains(task)) {
+
+                        filtered_observable_list.add(task);
+                        //System.out.println("added with succes ");
+                    }
+
+                }
+            }else{
+
+                //System.out.println("selected priorirty is "+selectedpriority);
+
+                load_data();
+
+
+
+            }
+
+            Tasks_Tableview.setItems(filtered_observable_list);
+
+        });
+
+
+
+
+
     }
 
+    public void assending_sort(ObservableList<Task> list){
+
+        for(Task task : tasks_list_model.getList()){
+            if(task.getPeriority().equals("Low")){
+                list.add(task);
+            }
+
+        }
+
+        for(Task task : tasks_list_model.getList()){
+            if(task.getPeriority().equals("Medium")){
+                list.add(task);
+            }
+
+        }
+
+        for(Task task : tasks_list_model.getList()){
+            if(task.getPeriority().equals("High")){
+                list.add(task);
+            }
+
+        }
+    }/***/
+
+    public void dessending_sort(ObservableList<Task> list){
+        for(Task task : tasks_list_model.getList()){
+            if(task.getPeriority().equals("High")){
+                list.add(task);
+            }
+
+        }
+        for(Task task : tasks_list_model.getList()){
+            if(task.getPeriority().equals("Medium")){
+                list.add(task);
+            }
+
+        }
+
+        for(Task task : tasks_list_model.getList()){
+            if(task.getPeriority().equals("Low")){
+                list.add(task);
+            }
+
+        }
+    }/***/
 
     public void onAddTaskButton() throws IOException {
         //load fxml file
@@ -196,9 +347,9 @@ public class DashBoardController implements Initializable {
         stage.show();
 
 
-    }
+    }/***/
 
-    /*loads data from DB , get the Observable List and what happened in the Task_list model by
+    /**loads data from DB , get the Observable List and what happened in the Task_list model by
         * clearing the Observable List
         * then retrieving all the tasks from database (using DAO object)
         * linking them with the Observabale list
@@ -480,7 +631,7 @@ public class DashBoardController implements Initializable {
         ////////
 
 
-
+        initFilterListeners();
 
     }
 
@@ -561,4 +712,89 @@ public class DashBoardController implements Initializable {
 //            System.err.println("Error sending email: " + e.getMessage());
 //        }
 //    }
+
+
+    public void OnImportButton(){
+
+        File file = fileChooser.showOpenDialog(new Stage());
+
+        BufferedReader reader = null ;
+        String line ="";
+        try {
+            reader = new BufferedReader(new FileReader(file));
+            while((line = reader.readLine()) != null ){
+
+                String [] row = line.split(",");
+                Date temp = new SimpleDateFormat("yyyy-mm-dd").parse(row[1]);
+                Boolean temp_boolean = Boolean.valueOf(row[4]);
+                Task task_input = new Task(row[0],temp,row[2],row[3],row[4],temp_boolean);
+                taskDAO.CreateTask(task_input);
+                System.out.println("done with succes ");
+                System.out.println(task_input.toString());
+
+
+            }
+
+
+        }catch (Exception e ){
+            e.printStackTrace();
+
+        }finally {
+
+        }
+
+
+
+    }
+
+    private void writeToCSV(ObservableList<Task> rowsData) {
+        File csvFileName = fileChooser.showSaveDialog(new Stage());
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFileName))) {
+            // Writing row data to the CSV file
+            for (Task rowData : rowsData) {
+                String[] task_info = new String[5];
+                task_info[0]= rowData.name;
+                task_info[1]= rowData.deadline.toString();
+                task_info[2]= rowData.category;
+                task_info[3]= rowData.description;
+                task_info[4]= String.valueOf(rowData.done);
+                for(int i=0;i<5;i++){
+
+                    writer.write(task_info[i]);
+                    if(i!=4)writer.write(",");
+                }
+                writer.newLine(); // Move to the next line for the next row
+            }
+        } catch (IOException e) {
+            // Handle file writing errors
+            e.printStackTrace();
+        }
+    }
+
+    public void OnExportButton() {
+
+
+        ObservableList<Task> selectedRows = Tasks_Tableview.getSelectionModel().getSelectedItems();
+
+        if (!selectedRows.isEmpty()) {
+            writeToCSV(selectedRows);
+        } else {
+            // Handle case where no rows are selected
+            System.out.println("Please select rows to export.");
+        }
+
+    }
+
+    public void HandleStaticsButton(ActionEvent event) throws IOException {
+
+        FXMLLoader staticsloader = new FXMLLoader(getClass().getResource("View/Dashboard/stats.fxml"));
+
+        //Scene scene = new Scene(staticsloader.load());
+
+        Stage stage = new Stage(staticsloader.load());
+
+        stage.show();
+
+    }
 }
