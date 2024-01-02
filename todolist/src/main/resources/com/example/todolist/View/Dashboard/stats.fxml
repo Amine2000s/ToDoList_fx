@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="522.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" >
+   <children>
+      <Pane prefHeight="522.0" prefWidth="734.0">
+         <children>
+            <TabPane prefHeight="522.0" prefWidth="734.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Bar Chart">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <BarChart layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="538.0">
+                                <xAxis>
+                                  <CategoryAxis side="BOTTOM" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                              <JFXButton fx:id="Reload_BarChart_Data" buttonType="RAISED" layoutX="626.0" layoutY="85.0" ripplerFill="#cf1515" text="Reload data" />
+                              <JFXButton fx:id="Save_BarChart" layoutX="647.0" layoutY="149.0" text="Save" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Pie Chart ">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <PieChart layoutX="14.0" layoutY="14.0" />
+                              <JFXButton fx:id="Reload_PieChart_Data" layoutX="618.0" layoutY="46.0" text="Reload data" />
+                              <JFXButton fx:id="Save_PieChart" layoutX="618.0" layoutY="132.0" text="Save" />
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -46,14 +46,14 @@ public class AddTaskController implements Initializable {
 
     int Task_id;// variable used te determine if we should update or create
 
-    //linking the dashboard Tableview with a Local variable of same type for easy Access
+    /** links the dashboard Tableview with a Local variable of same type for easy Access*/
     public void setTableView__local(TasksList task_list_local) {
 
         tasksList_local = task_list_local;
 
     }
 
-    //this function check if all input field are filled , returning true or false reflecting the state
+    /** this function check if all input field are filled , returning true or false reflecting the state */
     public boolean checkinputvalid(){
 
         if(taskename.getText().isEmpty()){return false;}
@@ -69,7 +69,7 @@ public class AddTaskController implements Initializable {
         return true;
     }
 
-    //function gets the content of the selected radio button
+    /** function gets the content of the selected radio button */
     private String getSelectedRadioButton(ToggleGroup Group) {
 
         for (Toggle node : Group.getToggles()) {
@@ -85,7 +85,7 @@ public class AddTaskController implements Initializable {
     }
 
 
-    //part of the check input valid operation , its mission to check if there is a checkked radio box
+    /** part of the check input valid operation , its mission to check if there is a checkked radio box */
     private boolean checktogglevalue(ToggleGroup Group) {
         for (Toggle node : Group.getToggles()) {
             JFXRadioButton radioButton = (JFXRadioButton) node;
@@ -97,7 +97,7 @@ public class AddTaskController implements Initializable {
     }
 
 
-   //function to create || update tasks
+   /** function to create || update tasks */
     @FXML
     public void onAddbtn(ActionEvent event) throws IOException {
 
@@ -181,7 +181,7 @@ public class AddTaskController implements Initializable {
 
     }
 
-    //function for setting the Task id , Important for Updating Tasks
+    /** function for setting the Task id , Important for Updating Tasks */
     public void setTask_id(int task_id) {
 
         this.Task_id = task_id;

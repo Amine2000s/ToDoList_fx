@@ -6,12 +6,22 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" scope="RUNTIME" name="jfoenix" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="io.github.palexdev.materialfx" level="project" />
     <orderEntry type="library" name="annotations-13.01" level="project" />
     <orderEntry type="library" name="activation" level="project" />
     <orderEntry type="library" name="mail" level="project" />
-    <orderEntry type="library" name="mysql-connector-j-8.1.0" level="project" />
     <orderEntry type="library" name="mysql.connector.java" level="project" />
-    <orderEntry type="library" name="sun.mail.javax" level="project" />
+    <orderEntry type="library" exported="" name="sun.mail.javax" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$USER_HOME$/Desktop/JavaFxLibs/openjfx-20.0.1_windows-x64_bin-sdk/javafx-sdk-20.0.1/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/Desktop/JavaFxLibs/openjfx-20.0.1_windows-x64_bin-sdk/javafx-sdk-20.0.1/lib" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" exported="" name="io.github.palexdev.materialfx" level="application" />
+    <orderEntry type="library" exported="" name="mysql-connector-j-8.1.01" level="application" />
   </component>
 </module>
