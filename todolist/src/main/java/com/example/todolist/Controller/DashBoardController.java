@@ -93,7 +93,7 @@ public class DashBoardController implements Initializable {
     TasksList tasks_list_model = new TasksList();
 
 
-    Task task; /** used for retrieving info and gputting them into object task from add or for the info panel*/
+    Task task; /** used for retrieving info and putting them into object task from add or for the info panel*/
 
     TaskDaoImp taskDAO = new TaskDaoImp();/**Data access Object for CRUD operations**/
 
@@ -715,7 +715,9 @@ public class DashBoardController implements Initializable {
 
 
     public void OnImportButton(){
-
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().clear();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("csv file", "*.csv"));
         File file = fileChooser.showOpenDialog(new Stage());
 
         BufferedReader reader = null ;
@@ -725,7 +727,7 @@ public class DashBoardController implements Initializable {
             while((line = reader.readLine()) != null ){
 
                 String [] row = line.split(",");
-                Date temp = new SimpleDateFormat("yyyy-mm-dd").parse(row[1]);
+                Date temp = new SimpleDateFormat("yyyy-MM-dd").parse(row[1]);
                 Boolean temp_boolean = Boolean.valueOf(row[4]);
                 Task task_input = new Task(row[0],temp,row[2],row[3],row[4],temp_boolean);
                 taskDAO.CreateTask(task_input);
@@ -748,6 +750,11 @@ public class DashBoardController implements Initializable {
     }
 
     private void writeToCSV(ObservableList<Task> rowsData) {
+
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setInitialFileName("task export.csv");
+        fileChooser.getExtensionFilters().clear();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("csv file", "*.csv"));
         File csvFileName = fileChooser.showSaveDialog(new Stage());
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFileName))) {
