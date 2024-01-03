@@ -727,9 +727,9 @@ public class DashBoardController implements Initializable {
             while((line = reader.readLine()) != null ){
 
                 String [] row = line.split(",");
-                Date temp = new SimpleDateFormat("yyyy-MM-dd").parse(row[1]);
+                Date temp = new SimpleDateFormat("yyyy-MM-dd").parse(row[5]);
                 Boolean temp_boolean = Boolean.valueOf(row[4]);
-                Task task_input = new Task(row[0],temp,row[2],row[3],row[4],temp_boolean);
+                Task task_input = new Task(row[0],temp,row[1],row[3],row[2],temp_boolean);
                 taskDAO.CreateTask(task_input);
                 System.out.println("done with succes ");
                 System.out.println(task_input.toString());
@@ -760,17 +760,19 @@ public class DashBoardController implements Initializable {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFileName))) {
             // Writing row data to the CSV file
             for (Task rowData : rowsData) {
-                String[] task_info = new String[5];
+                String[] task_info = new String[6];
                 task_info[0]= rowData.name;
-                task_info[1]= rowData.deadline.toString();
+                task_info[1]= rowData.periority;
                 task_info[2]= rowData.category;
                 task_info[3]= rowData.description;
                 task_info[4]= String.valueOf(rowData.done);
-                for(int i=0;i<5;i++){
+                task_info[5]= rowData.deadline.toString();
+                for(int i=0;i<6;i++){
 
                     writer.write(task_info[i]);
-                    if(i!=4)writer.write(",");
+                    if(i!=5)writer.write(",");
                 }
+
                 writer.newLine(); // Move to the next line for the next row
             }
         } catch (IOException e) {
