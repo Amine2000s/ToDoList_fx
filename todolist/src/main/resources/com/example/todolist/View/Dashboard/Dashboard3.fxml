@@ -6,11 +6,16 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ImageInput?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
@@ -27,23 +32,24 @@
                     </rotationAxis>
                 </SVGGlyph>
             </graphic>
-         <padding>
-            <Insets right="8.0" />
-         </padding>
+            <padding>
+                <Insets right="8.0" />
+            </padding>
         </JFXButton>
         <AnchorPane id="hbox" prefHeight="720.0" prefWidth="205.0" stylesheets="@Dashboard.css">
             <children>
-                <Rectangle fill="#3d8ffb" height="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="166.0" />
-                <JFXButton id="Dashboard" layoutX="6.0" layoutY="156.0" prefHeight="56.0" prefWidth="191.0" stylesheets="@Dashboard.css" text="Dashboard" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="166.0">
+            <Rectangle fx:id="staticsRec" fill="#3d8ffb" height="56.0" layoutX="6.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0" />
+                <Rectangle fx:id="dashboardRec" fill="#3d8ffb" height="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="166.0" />
+                <JFXButton id="Dashboard" fx:id="Dashboard_button" layoutX="6.0" layoutY="156.0" onAction="#HandleDashboardButton" prefHeight="56.0" prefWidth="191.0" stylesheets="@Dashboard.css" text="Dashboard" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="166.0">
                     <graphic>
                         <SVGGlyph id="svg1" prefHeight="44.0" prefWidth="45.0" stylesheets="@Dashboard.css" translateX="-10.0" />
                     </graphic>
                 </JFXButton>
-            <JFXButton id="Dashboard" alignment="TOP_LEFT" layoutX="6.0" layoutY="236.0" prefHeight="56.0" prefWidth="191.0" stylesheets="@Dashboard.css" text="Statics">
-               <graphic>
-                  <SVGGlyph id="svg2" prefHeight="44.0" prefWidth="51.0" stylesheets="@Dashboard.css" translateX="-10.0" translateY="-2.0" />
-               </graphic>
-            </JFXButton>
+                <JFXButton id="Dashboard" fx:id="Statics_button" alignment="TOP_LEFT" layoutX="6.0" layoutY="236.0" onAction="#HandleStaticsButton" prefHeight="56.0" prefWidth="191.0" stylesheets="@Dashboard.css" text="Statics">
+                    <graphic>
+                        <SVGGlyph id="svg2" prefHeight="44.0" prefWidth="51.0" stylesheets="@Dashboard.css" translateX="-10.0" translateY="-2.0" />
+                    </graphic>
+                </JFXButton>
             </children>
         </AnchorPane>
         <StackPane layoutX="291.0" layoutY="169.0" prefHeight="488.0" prefWidth="780.0" style="-fx-background-color: #fff;" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="274.0" AnchorPane.topAnchor="232.0">
@@ -58,21 +64,21 @@
                         <ScrollPane id="ScrollPane" hbarPolicy="NEVER" hmax="0.0" layoutY="-1.0" prefHeight="489.0" prefWidth="795.0" stylesheets="@Dashboard.css" vmax="5.0">
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="802.0" prefWidth="778.0" style="-fx-background-color: #ffffff;">
-                           <children>
-                              <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutX="-9.0" layoutY="-44.0" prefHeight="878.0" prefWidth="783.0" stylesheets="@Dashboard.css" AnchorPane.topAnchor="-44.0">
-                                <columns>
-                                  <TableColumn id="TableView" fx:id="isDone_Column" editable="false" prefWidth="73.59998780488968" resizable="false" sortable="false" text="Status" />
-                                  <TableColumn id="TableView" fx:id="Name" editable="false" prefWidth="201.3333282470703" resizable="false" sortable="false" text="Name" />
-                                    <TableColumn id="TableView" fx:id="Priority" editable="false" prefWidth="120.2667236328125" resizable="false" sortable="false" text="Priority" />
-                                    <TableColumn id="TableView" fx:id="Category" editable="false" prefWidth="138.66680908203125" resizable="false" sortable="false" text="Category" />
-                                    <TableColumn id="TableView" fx:id="Deadline" editable="false" prefWidth="106.4000244140625" resizable="false" sortable="false" text="Deadline " />
-                                    <TableColumn id="TableView" fx:id="Edit_Column" editable="false" maxWidth="137.39998779296877" minWidth="130.39998779296877" prefWidth="141.39998779296877" resizable="false" sortable="false" text="Edit" />
-                                </columns>
-                                 <cursor>
-                                    <Cursor fx:constant="HAND" />
-                                 </cursor>
-                              </TableView>
-                           </children>
+                                    <children>
+                                        <TableView id="TableView" fx:id="Tasks_Tableview" fixedCellSize="-5.0" layoutX="-9.0" layoutY="-44.0" prefHeight="878.0" prefWidth="783.0" stylesheets="@Dashboard.css" AnchorPane.topAnchor="-44.0">
+                                            <columns>
+                                                <TableColumn id="TableView" fx:id="isDone_Column" editable="false" prefWidth="73.59998780488968" resizable="false" sortable="false" text="Status" />
+                                                <TableColumn id="TableView" fx:id="Name" editable="false" prefWidth="201.3333282470703" resizable="false" sortable="false" text="Name" />
+                                                <TableColumn id="TableView" fx:id="Priority" editable="false" prefWidth="120.2667236328125" resizable="false" sortable="false" text="Priority" />
+                                                <TableColumn id="TableView" fx:id="Category" editable="false" prefWidth="138.66680908203125" resizable="false" sortable="false" text="Category" />
+                                                <TableColumn id="TableView" fx:id="Deadline" editable="false" prefWidth="106.4000244140625" resizable="false" sortable="false" text="Deadline " />
+                                                <TableColumn id="TableView" fx:id="Edit_Column" editable="false" maxWidth="137.39998779296877" minWidth="130.39998779296877" prefWidth="141.39998779296877" resizable="false" sortable="false" text="Edit" />
+                                            </columns>
+                                            <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                            </cursor>
+                                        </TableView>
+                                    </children>
                                 </AnchorPane>
                             </content>
                         </ScrollPane>
@@ -87,47 +93,68 @@
                 <Insets />
             </opaqueInsets>
         </JFXComboBox>
-      <JFXButton id="refreshbtn" fx:id="AddTaskBtn1" layoutX="797.0" layoutY="172.0" minHeight="29.0" minWidth="39.0" onAction="#load_data" prefHeight="36.0" prefWidth="47.0" snapToPixel="false" stylesheets="@Dashboard.css" text=" " AnchorPane.bottomAnchor="514.0" AnchorPane.topAnchor="170.0">
-         <graphic>
-            <SVGGlyph id="Svgrefresh" prefHeight="30.0" prefWidth="30.0" stylesheets="@Dashboard.css" translateX="5.0" />
-         </graphic>
-         <padding>
-            <Insets bottom="8.0" right="3.0" top="8.0" />
-         </padding>
-      </JFXButton>
+        <JFXButton id="refreshbtn" fx:id="AddTaskBtn1" layoutX="797.0" layoutY="172.0" minHeight="29.0" minWidth="39.0" onAction="#load_data" prefHeight="36.0" prefWidth="47.0" snapToPixel="false" stylesheets="@Dashboard.css" text=" " AnchorPane.bottomAnchor="514.0" AnchorPane.topAnchor="170.0">
+            <graphic>
+                <SVGGlyph id="Svgrefresh" prefHeight="30.0" prefWidth="30.0" stylesheets="@Dashboard.css" translateX="5.0" />
+            </graphic>
+            <padding>
+                <Insets bottom="8.0" right="3.0" top="8.0" />
+            </padding>
+        </JFXButton>
         <StackPane layoutY="-6.0" prefHeight="726.0" prefWidth="270.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1013.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
             <children>
                 <Pane prefHeight="751.0" prefWidth="270.0" style="-fx-background-color: #fff; -fx-border-radius: 0.5px; -fx-border-color: #B8B8B8;">
-               <children>
-                  <VBox fx:id="NotificationBox" layoutX="5.0" layoutY="70.0" prefHeight="359.0" prefWidth="261.0" spacing="5.0" stylesheets="@Dashboard.css">
-                     <children>
-                        <JFXButton id="removeNotification" fx:id="removeNotification" minHeight="25.0" onAction="#removeNotification" prefHeight="38.0" prefWidth="95.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Clear" translateX="166.0">
-                           <padding>
-                              <Insets left="8.0" right="8.0" />
-                           </padding>
-                        </JFXButton>
-                     </children>
-                  </VBox>
-                  <Label id="NotificaionLabel" layoutX="5.0" layoutY="42.0" prefWidth="150.0" stylesheets="@Dashboard.css" text="Notifications :" />
-               </children></Pane>
+                    <children>
+                        <VBox fx:id="NotificationBox" layoutX="5.0" layoutY="70.0" prefHeight="359.0" prefWidth="261.0" spacing="5.0" stylesheets="@Dashboard.css">
+                            <children>
+                                <JFXButton id="removeNotification" fx:id="removeNotification" minHeight="25.0" onAction="#removeNotification" prefHeight="38.0" prefWidth="95.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Clear" translateX="166.0">
+                                    <padding>
+                                        <Insets left="8.0" right="8.0" />
+                                    </padding>
+                                </JFXButton>
+                            </children>
+                        </VBox>
+                        <Label id="NotificaionLabel" layoutX="5.0" layoutY="42.0" prefWidth="150.0" stylesheets="@Dashboard.css" text="Notifications :" />
+                    </children></Pane>
             </children>
         </StackPane>
-      <SVGGlyph id="svgInfo" layoutX="949.0" layoutY="29.0" prefHeight="50.0" prefWidth="50.0" stylesheets="@Dashboard.css">
+        <SVGGlyph id="svgInfo" layoutX="949.0" layoutY="29.0" prefHeight="50.0" prefWidth="50.0" stylesheets="@Dashboard.css">
+            <children>
+                <JFXButton id="infoButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100px; -fx-border-radius: 100%;" stylesheets="@Dashboard.css" translateX="5.0" translateY="4.0" />
+            </children>
+        </SVGGlyph>
+        <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" visible="false" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
+        <JFXButton id="AddTaskBtn" fx:id="AddTaskBtn2" layoutX="245.0" layoutY="94.0" minHeight="38.0" onAction="#OnImportButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Import ">
+            <padding>
+                <Insets right="8.0" />
+            </padding>
+        </JFXButton>
+        <JFXButton id="AddTaskBtn" layoutX="412.0" layoutY="94.0" minHeight="38.0" onAction="#OnExportButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="export">
+            <padding>
+                <Insets right="8.0" />
+            </padding>
+        </JFXButton>
+      <AnchorPane fx:id="Statics_Anchor" layoutX="206.0" prefHeight="720.0" prefWidth="805.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../Statics/Statics.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="271.4" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXButton id="infoButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100px; -fx-border-radius: 100%;" stylesheets="@Dashboard.css" translateX="5.0" translateY="4.0" />
+            <Rectangle arcHeight="5.0" fill="DODGERBLUE" height="200.0" layoutX="14.0" layoutY="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="769.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.600000000000023" AnchorPane.topAnchor="12.0">
+               <effect>
+                  <ImageInput>
+                     <source>
+                        <Image url="file:/C:/Users/LEGION/Documents/GitHub/ToDoList_fx/todolist/src/main/resources/com/example/todolist/View/Images/Group%2020.png" />
+                     </source>
+                  </ImageInput>
+               </effect>
+            </Rectangle>
+            <LineChart fx:id="LineChart" layoutX="20.0" layoutY="282.0">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
          </children>
-      </SVGGlyph>
-      <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
-      <JFXButton id="AddTaskBtn" fx:id="AddTaskBtn2" layoutX="245.0" layoutY="94.0" minHeight="38.0" onAction="#OnImportButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Import ">
-         <padding>
-            <Insets right="8.0" />
-         </padding>
-      </JFXButton>
-      <JFXButton id="AddTaskBtn" layoutX="412.0" layoutY="94.0" minHeight="38.0" onAction="#OnExportButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="export">
-         <padding>
-            <Insets right="8.0" />
-         </padding>
-      </JFXButton>
+      </AnchorPane>
 
     </children>
 </AnchorPane>

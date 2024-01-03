@@ -22,12 +22,15 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -43,6 +46,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.swing.*;
+
 
 import java.net.URL;
 
@@ -84,7 +88,15 @@ public class DashBoardController implements Initializable {
 
     @FXML
     private JFXButton Statics_button ;
+    @FXML
+    private JFXButton Dashboard_button;
 
+    @FXML
+    private Rectangle staticsRec;
+    @FXML
+    private Rectangle dashboardRec;
+    @FXML
+    private AnchorPane Statics_Anchor;
 
     @FXML
     StackPane main_board ;
@@ -136,7 +148,8 @@ public class DashBoardController implements Initializable {
         categoryCombobox.setItems(FXCollections.observableArrayList("All", "General", "Study", "Sport"));
         priorityCombobox.setItems(FXCollections.observableArrayList("All", "High", "Medium", "Low", "Descending", "Ascending"));
         statusCombobox.setItems(FXCollections.observableArrayList("All", "Done", "Undone"));
-
+        staticsRec.setVisible(false);
+        Statics_Anchor.setVisible(false);
         initFilterListeners();
     }
         /*class EnlargeHandler implements EventHandler<ActionEvent> {
@@ -795,15 +808,23 @@ public class DashBoardController implements Initializable {
 
     }
 
-    public void HandleStaticsButton(ActionEvent event) throws IOException {
+    public void HandleStaticsButton() throws IOException {
+       Statics_button.setOnAction(event ->{
+            staticsRec.setVisible(true);
+            dashboardRec.setVisible(false);
+            Statics_Anchor.setVisible(true);
 
-        FXMLLoader staticsloader = new FXMLLoader(getClass().getResource("View/Dashboard/stats.fxml"));
-
-        //Scene scene = new Scene(staticsloader.load());
-
-        Stage stage = new Stage(staticsloader.load());
-
-        stage.show();
-
+       });
     }
+
+    public void HandleDashboardButton() throws IOException {
+        Dashboard_button.setOnAction(event ->{
+            dashboardRec.setVisible(true);
+            staticsRec.setVisible(false);
+            Statics_Anchor.setVisible(false);
+        });
+    }
+
+
+
 }
