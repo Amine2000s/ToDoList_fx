@@ -715,7 +715,9 @@ public class DashBoardController implements Initializable {
 
 
     public void OnImportButton(){
-
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.getExtensionFilters().clear();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("csv file", "*.csv"));
         File file = fileChooser.showOpenDialog(new Stage());
 
         BufferedReader reader = null ;
@@ -750,6 +752,9 @@ public class DashBoardController implements Initializable {
     private void writeToCSV(ObservableList<Task> rowsData) {
 
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+        fileChooser.setInitialFileName("task export.csv");
+        fileChooser.getExtensionFilters().clear();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("csv file", "*.csv"));
         File csvFileName = fileChooser.showSaveDialog(new Stage());
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(csvFileName))) {
