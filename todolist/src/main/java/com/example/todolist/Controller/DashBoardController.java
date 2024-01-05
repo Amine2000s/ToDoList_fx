@@ -7,23 +7,23 @@ import com.example.todolist.Model.TasksList;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
+
+
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.LineChart;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -37,7 +37,9 @@ import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javafx.scene.paint.Color;
 
+import java.awt.*;
 import java.io.*;
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -49,6 +51,7 @@ import javax.swing.*;
 
 
 import java.net.URL;
+import java.util.List;
 
 
 public class DashBoardController implements Initializable {
@@ -97,7 +100,8 @@ public class DashBoardController implements Initializable {
     private Rectangle dashboardRec;
     @FXML
     private AnchorPane Statics_Anchor;
-
+    @FXML
+    private JFXButton Contact_Button;
     @FXML
     StackPane main_board ;
 
@@ -150,6 +154,9 @@ public class DashBoardController implements Initializable {
         statusCombobox.setItems(FXCollections.observableArrayList("All", "Done", "Undone"));
         staticsRec.setVisible(false);
         Statics_Anchor.setVisible(false);
+        Contact_Button.setOnMouseClicked(event->{
+            openWebpage("https://github.com/Amine2000s/ToDoList_fx");
+        });
         initFilterListeners();
     }
         /*class EnlargeHandler implements EventHandler<ActionEvent> {
@@ -825,6 +832,14 @@ public class DashBoardController implements Initializable {
         });
     }
 
-
-
+    private void openWebpage(String url){
+        try{
+            if(Desktop.isDesktopSupported()){
+                Desktop.getDesktop().browse(new URI(url));
+                System.out.println("url");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 }
