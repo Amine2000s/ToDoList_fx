@@ -328,3 +328,33 @@
     -fx-font-size: 38px;
     -fx-font-weight: bold;
 }
+#ImportBtn {
+    -fx-text-fill: #005FDB;
+    -fx-alignment: center;
+    -fx-font: normal 16px 'Inter';
+    -fx-font-weight: 700;
+    -fx-line-height: normal;
+    -fx-background-radius:  4.256px;
+    -fx-background-color: rgba(25, 59, 103, 0.05);
+
+}
+#ExportBtn{
+    -fx-text-fill: #005FDB;
+    -fx-alignment: center;
+    -fx-font: normal 16px 'Inter';
+    -fx-font-weight: 700;
+    -fx-line-height: normal;
+    -fx-background-radius:  4.256px;
+    -fx-background-color: rgba(25, 59, 103, 0.05);
+}
+
+#ExportSvg{
+    -fx-background-image: url('../Images/add-dock-export.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 25px 25px;
+}
+#ImportSvg{
+    -fx-background-image: url('../Images/add-dock.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 25px 25px;
+}
