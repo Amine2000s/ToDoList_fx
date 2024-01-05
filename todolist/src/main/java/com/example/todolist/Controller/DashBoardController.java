@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXComboBox;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -102,10 +103,8 @@ public class DashBoardController implements Initializable {
     private AnchorPane Statics_Anchor;
     @FXML
     private JFXButton Contact_Button;
-    @FXML
-    StackPane main_board ;
 
-    /**returns and obersrvable list for task object by using its method getList()*/
+    /**returns and observable list for task object by using its method getList()*/
     TasksList tasks_list_model = new TasksList();
 
 
@@ -118,8 +117,7 @@ public class DashBoardController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //System.out.println("hello from init ");
 
-         fileChooser = new FileChooser() ;
-         fileChooser.setInitialDirectory(new File("C:\\Users\\amin\\Documents\\ToDoList_fx\\inputfiles"));
+
         load_data();
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/Dashboard/Dashboardactl.fxml"));
 
@@ -166,7 +164,7 @@ public class DashBoardController implements Initializable {
         }
     }*/
     /**
-     * initialise Listeners for Categrory,priority,status Combox boxes
+     * initialise Listeners for Category,priority,status Combobox boxes
      * */
     public void initFilterListeners(){
 
@@ -199,17 +197,17 @@ public class DashBoardController implements Initializable {
 
             ObservableList<Task> filtered_observable_list = FXCollections.observableList(filtred_list);
 
-            String selction = categoryCombobox.getSelectionModel().getSelectedItem();
+            String selection = categoryCombobox.getSelectionModel().getSelectedItem();
 
             String selectedpriority = priorityCombobox.getSelectionModel().getSelectedItem();
 
-            if(selectedpriority=="Descending"){
+            if(Objects.equals(selectedpriority, "Descending")){
 
                 //execute dessending sort
                 dessending_sort(filtered_observable_list);
                 System.out.println(filtered_observable_list.toString());
 
-            }else if (selectedpriority=="Ascending"){
+            }else if (Objects.equals(selectedpriority, "Ascending")){
 
                 //executing assencding sort
                 assending_sort(filtered_observable_list);
@@ -385,12 +383,12 @@ public class DashBoardController implements Initializable {
 
         Tasks_Tableview.setItems(tasks_list_model.getList());
 
-        //Linking every Column with its propery value from the Task Class ,
+        //Linking every Column with its property value from the Task Class ,
 
         /////////////////////////////////////////////////////////////////////////////////////
         //isDone_Column.setCellValueFactory(new PropertyValueFactory<Task, Boolean>("status"));
         //isDone_Column.setCellValueFactory(cellData ->cellData.getValue().isDone(););
-        /**coonitnute tommorow here chof kifah trj3 el boolean bollean property ou kamel akhdm 3la check box */
+        /**coonitnute tommorow here chof kifah trj3 el  boolean property ou kamel akhdm 3la check box */
 
         Name.setCellValueFactory(new PropertyValueFactory<Task, String>("name"));
         Priority.setCellValueFactory(new PropertyValueFactory<Task, String>("periority"));
@@ -439,11 +437,11 @@ public class DashBoardController implements Initializable {
                             }
                             task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
                             AddTaskController addTaskController = loader.getController();//loading the Controller
-                            addTaskController.setAddTaskBtn_name("Confirm");//editing on the add task btn to Confrim
+                            addTaskController.setAddTaskBtn_name("Confirm");//editing on the add task btn to Confirm
 
                             addTaskController.setTableView__local(tasks_list_model);//linking the dashboard table view
                             addTaskController.setTask_id(task.getId());//getting the task id
-                            addTaskController.filltextfields(task);//filling the textfields by old data
+                            addTaskController.filltextfields(task);//filling the text-fields by old data
                             //need to fix the date bug
                             Parent parent = loader.getRoot();
                             Stage stage = new Stage();
@@ -584,7 +582,7 @@ public class DashBoardController implements Initializable {
 
         isDone_Column.setCellValueFactory(cellData -> {
             boolean isDone = cellData.getValue().isDone();
-            return new javafx.beans.property.SimpleBooleanProperty(isDone);
+            return new SimpleBooleanProperty(isDone);
         });
 
         isDone_Column.setCellFactory(column -> new TableCell<>() {
@@ -598,6 +596,13 @@ public class DashBoardController implements Initializable {
                     taskDAO.Update_Task_status(task.getId(),checkBox.isSelected());
 
                     //System.out.println("Task: " + task.getName() + ", Is Done: " + task.isDone());
+                });
+                checkBox.selectedProperty().addListener((obs,wasSelected,isSelected)->{
+                    if (isSelected) {
+                        getTableRow().setOpacity(0.2);
+                    } else {
+                        getTableRow().setOpacity(1);
+                    }
                 });
             }
 
@@ -643,7 +648,7 @@ public class DashBoardController implements Initializable {
 
         Tasks_Tableview.setItems(sortedTasks);
 
-        ////// checkbox functoinality
+        ////// checkbox functionality
 
 
 
@@ -662,11 +667,11 @@ public class DashBoardController implements Initializable {
             java.util.Date deadline = new java.util.Date(sqlDate.getTime());
             LocalDate localDeadLine = deadline.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             if(localDeadLine.minusDays(1).isEqual(currentDate)){
-                Label label = new Label(task.getName()+"Dead Line is Tommorow");
+                Label label = new Label(task.getName()+"Dead Line is Tomorrow");
                 label.getStyleClass().add("NotificationBoxlabel");
                 label.setWrapText(true);
                 NotificationBox.getChildren().add(label);
-                //SendMail(task.getName()+" Deadline is Tommorow");
+                //SendMail(task.getName()+" Deadline is Tomorrow");
                 label.toBack();
             }
             else if(localDeadLine.isEqual(currentDate)) {
@@ -751,7 +756,7 @@ public class DashBoardController implements Initializable {
                 Boolean temp_boolean = Boolean.valueOf(row[4]);
                 Task task_input = new Task(row[0],temp,row[1],row[3],row[2],temp_boolean);
                 taskDAO.CreateTask(task_input);
-                System.out.println("done with succes ");
+                System.out.println("done with success ");
                 System.out.println(task_input.toString());
 
 
