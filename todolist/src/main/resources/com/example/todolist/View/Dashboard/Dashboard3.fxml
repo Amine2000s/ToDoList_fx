@@ -102,6 +102,11 @@
                 <Insets bottom="8.0" right="3.0" top="8.0" />
             </padding>
         </JFXButton>
+        <SVGGlyph id="svgInfo" layoutX="949.0" layoutY="29.0" prefHeight="50.0" prefWidth="50.0" stylesheets="@Dashboard.css">
+            <children>
+                <JFXButton id="infoButton" fx:id="Contact_Button" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100px; -fx-border-radius: 100%;" stylesheets="@Dashboard.css" translateX="5.0" translateY="4.0" />
+            </children>
+        </SVGGlyph>
         <StackPane layoutY="-6.0" prefHeight="726.0" prefWidth="270.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="1013.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
             <children>
                 <Pane prefHeight="751.0" prefWidth="270.0" style="-fx-background-color: #fff; -fx-border-radius: 0.5px; -fx-border-color: #B8B8B8;">
@@ -142,11 +147,6 @@
                     </children></Pane>
             </children>
         </StackPane>
-        <SVGGlyph id="svgInfo" layoutX="949.0" layoutY="29.0" prefHeight="50.0" prefWidth="50.0" stylesheets="@Dashboard.css">
-            <children>
-                <JFXButton id="infoButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100px; -fx-border-radius: 100%;" stylesheets="@Dashboard.css" translateX="5.0" translateY="4.0" />
-            </children>
-        </SVGGlyph>
         <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
       <AnchorPane fx:id="Statics_Anchor" layoutX="206.0" prefHeight="720.0" prefWidth="805.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../Statics/Statics.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="271.4" AnchorPane.topAnchor="0.0">
          <children>
