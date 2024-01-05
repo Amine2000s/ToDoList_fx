@@ -17,6 +17,7 @@
 <?import javafx.scene.effect.ImageInput?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -115,6 +116,29 @@
                             </children>
                         </VBox>
                         <Label id="NotificaionLabel" layoutX="5.0" layoutY="42.0" prefWidth="150.0" stylesheets="@Dashboard.css" text="Notifications :" />
+                  <HBox layoutX="3.0" layoutY="673.0" prefHeight="36.0" prefWidth="270.0" spacing="5.0">
+                     <children>
+                          <JFXButton id="ImportBtn" fx:id="AddTaskBtn2" maxHeight="38.0" maxWidth="136.0" minHeight="38.0" minWidth="102.0" onAction="#OnImportButton" prefHeight="38.0" prefWidth="126.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Import">
+                              <padding>
+                                  <Insets right="8.0" />
+                              </padding>
+                           <graphic>
+                              <SVGGlyph id="ImportSvg" prefHeight="25.0" prefWidth="25.0" stylesheets="@Dashboard.css" translateX="-3.0" />
+                           </graphic>
+                          </JFXButton>
+                          <JFXButton id="ExportBtn" maxWidth="136.0" onAction="#OnExportButton" prefHeight="38.0" prefWidth="126.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Export" textFill="#c9c9c9">
+                              <padding>
+                                  <Insets right="8.0" />
+                              </padding>
+                           <graphic>
+                              <SVGGlyph id="ExportSvg" prefHeight="25.0" prefWidth="25.0" stylesheets="@Dashboard.css" translateX="-3.0" />
+                           </graphic>
+                          </JFXButton>
+                     </children>
+                     <padding>
+                        <Insets left="4.0" right="4.0" />
+                     </padding>
+                  </HBox>
                     </children></Pane>
             </children>
         </StackPane>
@@ -123,18 +147,8 @@
                 <JFXButton id="infoButton" prefHeight="40.0" prefWidth="40.0" style="-fx-background-radius: 100px; -fx-border-radius: 100%;" stylesheets="@Dashboard.css" translateX="5.0" translateY="4.0" />
             </children>
         </SVGGlyph>
-        <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" visible="false" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
-        <JFXButton id="AddTaskBtn" fx:id="AddTaskBtn2" layoutX="245.0" layoutY="94.0" minHeight="38.0" onAction="#OnImportButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Import ">
-            <padding>
-                <Insets right="8.0" />
-            </padding>
-        </JFXButton>
-        <JFXButton id="AddTaskBtn" layoutX="412.0" layoutY="94.0" minHeight="38.0" onAction="#OnExportButton" prefHeight="38.0" prefWidth="133.0" snapToPixel="false" stylesheets="@Dashboard.css" text="export">
-            <padding>
-                <Insets right="8.0" />
-            </padding>
-        </JFXButton>
-      <AnchorPane fx:id="Statics_Anchor" layoutX="206.0" prefHeight="720.0" prefWidth="805.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../Statics/Statics.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="271.4" AnchorPane.topAnchor="0.0">
+        <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
+      <AnchorPane fx:id="Statics_Anchor" layoutX="206.0" prefHeight="720.0" prefWidth="805.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../Statics/Statics.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="271.4" AnchorPane.topAnchor="0.0">
          <children>
             <Rectangle arcHeight="5.0" fill="DODGERBLUE" height="200.0" layoutX="14.0" layoutY="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="769.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.600000000000023" AnchorPane.topAnchor="12.0">
                <effect>
