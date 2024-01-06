@@ -7,8 +7,9 @@
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.chart.StackedBarChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -148,7 +149,7 @@
             </children>
         </StackPane>
         <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
-      <AnchorPane fx:id="Statics_Anchor" layoutX="206.0" prefHeight="720.0" prefWidth="805.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../Statics/Statics.css" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="271.4" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="Statics_Anchor" layoutX="206.0" prefHeight="720.0" prefWidth="805.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../Statics/Statics.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="271.4" AnchorPane.topAnchor="0.0">
          <children>
             <Rectangle arcHeight="5.0" fill="DODGERBLUE" height="200.0" layoutX="14.0" layoutY="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="769.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.600000000000023" AnchorPane.topAnchor="12.0">
                <effect>
@@ -159,14 +160,24 @@
                   </ImageInput>
                </effect>
             </Rectangle>
-            <LineChart fx:id="LineChart" layoutX="20.0" layoutY="282.0">
+            <PieChart fx:id="Priority_Pie" layoutX="14.0" layoutY="12.0" prefHeight="342.0" prefWidth="686.0" />
+            <PieChart fx:id="Task_Pie" layoutX="524.0" layoutY="437.0" prefHeight="211.0" prefWidth="262.0" />
+            <StackedBarChart fx:id="Categorystackbar" layoutX="19.0" layoutY="382.0" prefHeight="288.0" prefWidth="457.0" stylesheets="@stats.css">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>
               <yAxis>
                 <NumberAxis side="LEFT" />
               </yAxis>
-            </LineChart>
+            </StackedBarChart>
+            <JFXButton id="refreshbtn" fx:id="reloadstats" layoutX="733.0" layoutY="98.0" minHeight="29.0" minWidth="39.0" onAction="#UpdateStats" prefHeight="36.0" prefWidth="47.0" snapToPixel="false" stylesheets="@Dashboard.css" text=" ">
+               <padding>
+                  <Insets bottom="8.0" right="3.0" top="8.0" />
+               </padding>
+               <graphic>
+                  <SVGGlyph id="Svgrefresh" prefHeight="30.0" prefWidth="30.0" stylesheets="@Dashboard.css" />
+               </graphic>
+            </JFXButton>
          </children>
       </AnchorPane>
 
