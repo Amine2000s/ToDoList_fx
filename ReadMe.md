@@ -6,11 +6,11 @@
 - [X] add search functionality 
 - [X] add checkbox
 - [X] add category options in add task
-- [X] add category options in dashboardad
-- [X] add checkbox functionallity soon
-- [X] add filtreing functionality(3/3) 
+- [X] add category options in dashboard
+- [X] add checkbox functionality soon
+- [X] add filtering functionality(3/3) 
 - [X] add notification functionality (smtp email sending) (very soon) 
-- [ ] add import and export fucntionality 
+- [X] add import and export functionality 
 - [ ] javadoc 
 - [ ] statistics 
 

@@ -150,11 +150,10 @@ public class DashBoardController implements Initializable {
         categoryCombobox.setItems(FXCollections.observableArrayList("All", "General", "Study", "Sport"));
         priorityCombobox.setItems(FXCollections.observableArrayList("All", "High", "Medium", "Low", "Descending", "Ascending"));
         statusCombobox.setItems(FXCollections.observableArrayList("All", "Done", "Undone"));
+        CurrentCategoryLabel.setText("All");
         staticsRec.setVisible(false);
         Statics_Anchor.setVisible(false);
-        Contact_Button.setOnMouseClicked(event->{
-            openWebpage("https://github.com/Amine2000s/ToDoList_fx");
-        });
+
         initFilterListeners();
     }
         /*class EnlargeHandler implements EventHandler<ActionEvent> {
@@ -164,7 +163,7 @@ public class DashBoardController implements Initializable {
         }
     }*/
     /**
-     * initialise Listeners for Category,priority,status Combobox boxes
+     * initialise Listeners for Category,priority,status Combobox boxes,Category Label and Info Button
      * */
     public void initFilterListeners(){
 
@@ -287,8 +286,13 @@ public class DashBoardController implements Initializable {
 
         });
 
+        Contact_Button.setOnMouseClicked(event->{
+            openWebpage("https://github.com/Amine2000s/ToDoList_fx");
+        });
 
-
+        categoryCombobox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            CurrentCategoryLabel.setText(newValue);
+        });
 
 
     }
@@ -691,52 +695,52 @@ public class DashBoardController implements Initializable {
         }
         NotificationBox.getChildren().clear();
     }
-//    public void SendMail(String notification) {
-//        // Sender's credentials
-//        final String username = "edd07bf091e201";
-//        final String password = "de739a16c27665";
-//
-//        // Recipient's email address
-//        String toEmail = "abdoukermiche123@gmail.com";
-//
-//        // Email properties
-//        Properties props = new Properties();
-//        props.put("mail.smtp.host", "sandbox.smtp.mailtrap.io");
-//        props.put("mail.smtp.port", "25");
-//        props.put("mail.smtp.auth", "true");
-//        props.put("mail.smtp.starttls.enable", "true");
-//
-//
-//        // Session to get debug information
-//        Session session = Session.getInstance(props, new Authenticator() {
-//            @Override
-//            protected PasswordAuthentication getPasswordAuthentication() {
-//                return new PasswordAuthentication(username, password);
-//            }
-//        });
-//
-//        try {
-//            // Create a MimeMessage object
-//            Message message = new MimeMessage(session);
-//
-//            // Set the sender and recipient addresses
-//            message.setFrom(new InternetAddress(username));
-//            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-//
-//            // Set the email subject and content
-//            message.setSubject(" Deadline is close");
-//            message.setText(notification);
-//
-//            // Send the email
-//            Transport.send(message);
-//
-//            System.out.println("Email sent successfully.");
-//
-//        } catch (MessagingException e) {
-//            e.printStackTrace();
-//            System.err.println("Error sending email: " + e.getMessage());
-//        }
-//    }
+    public void SendMail(String notification) {
+        // Sender's credentials
+        final String username = "edd07bf091e201";
+        final String password = "de739a16c27665";
+
+        // Recipient's email address
+        String toEmail = "abdoukermiche123@gmail.com";
+
+        // Email properties
+        Properties props = new Properties();
+        props.put("mail.smtp.host", "sandbox.smtp.mailtrap.io");
+        props.put("mail.smtp.port", "25");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+
+
+        // Session to get debug information
+        Session session = Session.getInstance(props, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+
+        try {
+            // Create a MimeMessage object
+            Message message = new MimeMessage(session);
+
+            // Set the sender and recipient addresses
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
+
+            // Set the email subject and content
+            message.setSubject(" Deadline is close");
+            message.setText(notification);
+
+            // Send the email
+            Transport.send(message);
+
+            System.out.println("Email sent successfully.");
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+            System.err.println("Error sending email: " + e.getMessage());
+        }
+    }
 
 
     public void OnImportButton(){
