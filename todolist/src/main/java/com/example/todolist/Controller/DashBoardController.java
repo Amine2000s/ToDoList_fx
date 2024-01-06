@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXComboBox;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -104,6 +106,16 @@ public class DashBoardController implements Initializable {
     @FXML
     private JFXButton Contact_Button;
 
+    @FXML
+    StackedBarChart<String,Integer> Categorystackbar ;
+    @FXML
+    PieChart Priority_Pie ;
+    @FXML
+    PieChart Task_Pie ;
+
+    @FXML
+    JFXButton reloadStats ;
+
     /**returns and observable list for task object by using its method getList()*/
     TasksList tasks_list_model = new TasksList();
 
@@ -112,7 +124,17 @@ public class DashBoardController implements Initializable {
 
     TaskDaoImp taskDAO = new TaskDaoImp();/**Data access Object for CRUD operations**/
 
+    /**  staticstics Variables */
 
+    int TotalNumberOftasks =0 ;
+    int NumberofDoneTasks =0 ;
+    int NumberofUndoneTasks =0 ;
+    int NumberofHighPriorityTasks =0 ;
+    int NumberofMediuemPriorityTasks =0 ;
+    int NumberofLowPriorityTasks =0 ;
+    int NumberofGeneralTasks  =0 ;
+    int NumberofStudyTasks  =0 ;
+    int NumberofSportTasks =0 ;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //System.out.println("hello from init ");
@@ -155,6 +177,75 @@ public class DashBoardController implements Initializable {
         Statics_Anchor.setVisible(false);
 
         initFilterListeners();
+
+
+
+
+        initialiseStatisticsCalculation();
+        init_Categorystackbar();
+        init_Priority_Pie();
+        init_Task_Pie();
+        /*CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Task Category ");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Tasks Number ");
+
+        //Category_BarChart= new BarChart(xAxis,yAxis);
+        System.out.println(NumberofGeneralTasks);
+        System.out.println(NumberofStudyTasks);
+        System.out.println(NumberofSportTasks);
+
+        XYChart.Series<String,Integer> data = new XYChart.Series();
+        data.setName("General");
+        XYChart.Series<String,Integer> data2 = new XYChart.Series();
+        data2.setName("Study");
+        XYChart.Series<String,Integer> data3 = new XYChart.Series();
+        data3.setName("Sport");
+        data.getData().add(new XYChart.Data("General",NumberofGeneralTasks));
+        data2.getData().add(new XYChart.Data("Study",NumberofStudyTasks));
+        data3.getData().add(new XYChart.Data("Sport",NumberofSportTasks));
+
+
+        Categorystackbar.getData().addAll(data,data2,data3);
+
+        /** pie chart of priority *//*
+        ObservableList<PieChart.Data> PriorityPieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("High",NumberofHighPriorityTasks),
+                new PieChart.Data("Medium",NumberofMediuemPriorityTasks),
+                new PieChart.Data("Low",NumberofLowPriorityTasks));
+
+               /* PriorityPieChartData.forEach(data1 ->
+                    data1.nameProperty().bind(
+                            Bindings.concat(
+                                    data1.getName()," Priority : ",data1.pieValueProperty()
+                            )
+                    )
+                 );*//*
+        PriorityPieChartData.forEach(data5 ->
+                data5.nameProperty().bind(
+                        Bindings.concat(
+                                data5.getName()," ",data5.pieValueProperty()
+                        )
+                )
+        );
+        Priority_Pie.getData().addAll(PriorityPieChartData);
+*/
+        /** pie Chart of Status*/
+/*
+        ObservableList<PieChart.Data> statusPieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Done",NumberofDoneTasks),
+                new PieChart.Data("Undone",NumberofUndoneTasks));
+
+        statusPieChartData.forEach(data6 ->
+                data6.nameProperty().bind(
+                        Bindings.concat(
+                                data6.getName()," ",data6.pieValueProperty()
+                        )
+                )
+        );
+
+        Task_Pie.getData().addAll(statusPieChartData);*/
     }
         /*class EnlargeHandler implements EventHandler<ActionEvent> {
             public void handle(ActionEvent e) {
@@ -230,7 +321,6 @@ public class DashBoardController implements Initializable {
             }
 
             Tasks_Tableview.setItems(filtered_observable_list);
-
 
 
 
@@ -830,9 +920,15 @@ public class DashBoardController implements Initializable {
             dashboardRec.setVisible(false);
             Statics_Anchor.setVisible(true);
 
+            /** bar chart creation */
+
+
+
        });
     }
+    public void HandleBarChart_Category(){
 
+    }
     public void HandleDashboardButton() throws IOException {
         Dashboard_button.setOnAction(event ->{
             dashboardRec.setVisible(true);
@@ -851,4 +947,135 @@ public class DashBoardController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    public void initialiseStatisticsCalculation(){TotalNumberOftasks =0 ;
+         NumberofDoneTasks =0 ;
+         NumberofUndoneTasks =0 ;
+         NumberofHighPriorityTasks =0 ;
+         NumberofMediuemPriorityTasks =0 ;
+         NumberofLowPriorityTasks =0 ;
+         NumberofGeneralTasks  =0 ;
+         NumberofStudyTasks  =0 ;
+         NumberofSportTasks =0 ;
+
+         TotalNumberOftasks =tasks_list_model.getList().size();
+
+         for(Task task : tasks_list_model.getList()){
+             switch (task.periority){
+                 case "High" : NumberofHighPriorityTasks++;break;
+                 case "Medium" : NumberofMediuemPriorityTasks++;break;
+                 case "Low" :    NumberofLowPriorityTasks++;break;
+             }
+
+             switch (task.getCategory()){
+                 case "General" : NumberofGeneralTasks++;break;
+                 case "Study" : NumberofStudyTasks++;break;
+                 case "Sport" :    NumberofSportTasks++;break;
+             }
+
+             if (task.isDone()){
+                 NumberofDoneTasks++;
+             }else{
+                 NumberofUndoneTasks++;
+             }
+
+         }
+
+    }
+
+    void init_Categorystackbar(){
+        if(!Categorystackbar.getData().isEmpty()) {
+            Categorystackbar.getData().clear();
+        }
+
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Task Category ");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Tasks Number ");
+
+        //Category_BarChart= new BarChart(xAxis,yAxis);
+        System.out.println(NumberofGeneralTasks);
+        System.out.println(NumberofStudyTasks);
+        System.out.println(NumberofSportTasks);
+
+        XYChart.Series<String,Integer> data = new XYChart.Series();
+        data.setName("General");
+        XYChart.Series<String,Integer> data2 = new XYChart.Series();
+        data2.setName("Study");
+        XYChart.Series<String,Integer> data3 = new XYChart.Series();
+        data3.setName("Sport");
+        data.getData().add(new XYChart.Data("General",NumberofGeneralTasks));
+        data2.getData().add(new XYChart.Data("Study",NumberofStudyTasks));
+        data3.getData().add(new XYChart.Data("Sport",NumberofSportTasks));
+
+
+        Categorystackbar.getData().addAll(data,data2,data3);
+
+
+    }
+    void init_Priority_Pie(){
+        if(!Priority_Pie.getData().isEmpty()) {
+            Priority_Pie.getData().clear();
+        }
+        ObservableList<PieChart.Data> PriorityPieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("High",NumberofHighPriorityTasks),
+                new PieChart.Data("Medium",NumberofMediuemPriorityTasks),
+                new PieChart.Data("Low",NumberofLowPriorityTasks));
+
+               /* PriorityPieChartData.forEach(data1 ->
+                    data1.nameProperty().bind(
+                            Bindings.concat(
+                                    data1.getName()," Priority : ",data1.pieValueProperty()
+                            )
+                    )
+                 );*/
+        PriorityPieChartData.forEach(data5 ->
+                data5.nameProperty().bind(
+                        Bindings.concat(
+                                data5.getName()," ",data5.pieValueProperty()
+                        )
+                )
+        );
+        Priority_Pie.getData().addAll(PriorityPieChartData);
+
+    }
+    void init_Task_Pie(){
+        if(!Task_Pie.getData().isEmpty()) {
+            Task_Pie.getData().clear();
+        }
+
+        ObservableList<PieChart.Data> statusPieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Done",NumberofDoneTasks),
+                new PieChart.Data("Undone",NumberofUndoneTasks));
+
+        statusPieChartData.forEach(data6 ->
+                data6.nameProperty().bind(
+                        Bindings.concat(
+                                data6.getName()," ",data6.pieValueProperty()
+                        )
+                )
+        );
+
+        Task_Pie.getData().addAll(statusPieChartData);
+
+
+    }
+    @FXML
+    void UpdateStats(){
+        initialiseStatisticsCalculation();
+        Categorystackbar.getData().get(0).getData().get(0).setYValue(NumberofGeneralTasks);
+        Categorystackbar.getData().get(1).getData().get(0).setYValue(NumberofStudyTasks);
+        Categorystackbar.getData().get(2).getData().get(0).setYValue(NumberofSportTasks);
+
+        Priority_Pie.getData().get(0).setPieValue(NumberofHighPriorityTasks);
+        Priority_Pie.getData().get(1).setPieValue(NumberofMediuemPriorityTasks);
+        Priority_Pie.getData().get(2).setPieValue(NumberofLowPriorityTasks);
+
+        Task_Pie.getData().get(0).setPieValue(NumberofDoneTasks);
+        Task_Pie.getData().get(1).setPieValue(NumberofUndoneTasks);
+        System.out.println("doneeeeee0");
+
+    }
+
 }
