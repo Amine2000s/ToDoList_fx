@@ -11,6 +11,8 @@
 - [X] add filtering functionality(3/3) 
 - [X] add notification functionality (smtp email sending) (very soon) 
 - [X] add import and export functionality 
-- [ ] javadoc 
-- [ ] statistics 
+- [X] javadoc 
+- [X] statistics 
 
+## Project Report
+https://docs.google.com/document/d/1MYS-kUBWwz4gcqQCvUGV1hPx33otaXT76FUaxyg_aQs/edit#heading=h.qrpsdo962ssb
