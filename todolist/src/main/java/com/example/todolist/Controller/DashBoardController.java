@@ -906,7 +906,6 @@ public class DashBoardController implements Initializable {
 
 
     }
-    @FXML
     void UpdateStats(){
         initialiseStatisticsCalculation();
         Categorystackbar.getData().get(0).getData().get(0).setYValue(NumberofGeneralTasks);

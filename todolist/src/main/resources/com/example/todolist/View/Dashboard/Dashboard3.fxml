@@ -170,14 +170,6 @@
                         <NumberAxis side="LEFT" />
                     </yAxis>
                 </StackedBarChart>
-                <JFXButton id="refreshbtn" fx:id="reloadstats" layoutX="744.0" layoutY="184.0" minHeight="29.0" minWidth="39.0" onAction="#UpdateStats" prefHeight="36.0" prefWidth="47.0" snapToPixel="false" stylesheets="@Dashboard.css" text=" ">
-                    <padding>
-                        <Insets bottom="8.0" right="3.0" top="8.0" />
-                    </padding>
-                    <graphic>
-                        <SVGGlyph id="Svgrefresh" prefHeight="30.0" prefWidth="30.0" stylesheets="@Dashboard.css" />
-                    </graphic>
-                </JFXButton>
             </children>
         </AnchorPane>
 
