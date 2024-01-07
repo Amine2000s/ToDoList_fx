@@ -40,7 +40,7 @@
         </JFXButton>
         <AnchorPane id="hbox" prefHeight="720.0" prefWidth="205.0" stylesheets="@Dashboard.css">
             <children>
-            <Rectangle fx:id="staticsRec" fill="#3d8ffb" height="56.0" layoutX="6.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0" />
+                <Rectangle fx:id="staticsRec" fill="#3d8ffb" height="56.0" layoutX="6.0" layoutY="236.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0" />
                 <Rectangle fx:id="dashboardRec" fill="#3d8ffb" height="56.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="191.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="166.0" />
                 <JFXButton id="Dashboard" fx:id="Dashboard_button" layoutX="6.0" layoutY="156.0" onAction="#HandleDashboardButton" prefHeight="56.0" prefWidth="191.0" stylesheets="@Dashboard.css" text="Dashboard" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="166.0">
                     <graphic>
@@ -122,64 +122,64 @@
                             </children>
                         </VBox>
                         <Label id="NotificaionLabel" layoutX="5.0" layoutY="42.0" prefWidth="150.0" stylesheets="@Dashboard.css" text="Notifications :" />
-                  <HBox layoutX="3.0" layoutY="673.0" prefHeight="36.0" prefWidth="270.0" spacing="5.0">
-                     <children>
-                          <JFXButton id="ImportBtn" fx:id="AddTaskBtn2" maxHeight="38.0" maxWidth="136.0" minHeight="38.0" minWidth="102.0" onAction="#OnImportButton" prefHeight="38.0" prefWidth="126.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Import">
-                              <padding>
-                                  <Insets right="8.0" />
-                              </padding>
-                           <graphic>
-                              <SVGGlyph id="ImportSvg" prefHeight="25.0" prefWidth="25.0" stylesheets="@Dashboard.css" translateX="-3.0" />
-                           </graphic>
-                          </JFXButton>
-                          <JFXButton id="ExportBtn" maxWidth="136.0" onAction="#OnExportButton" prefHeight="38.0" prefWidth="126.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Export" textFill="#c9c9c9">
-                              <padding>
-                                  <Insets right="8.0" />
-                              </padding>
-                           <graphic>
-                              <SVGGlyph id="ExportSvg" prefHeight="25.0" prefWidth="25.0" stylesheets="@Dashboard.css" translateX="-3.0" />
-                           </graphic>
-                          </JFXButton>
-                     </children>
-                     <padding>
-                        <Insets left="4.0" right="4.0" />
-                     </padding>
-                  </HBox>
+                        <HBox layoutX="3.0" layoutY="673.0" prefHeight="36.0" prefWidth="270.0" spacing="5.0">
+                            <children>
+                                <JFXButton id="ImportBtn" fx:id="AddTaskBtn2" maxHeight="38.0" maxWidth="136.0" minHeight="38.0" minWidth="102.0" onAction="#OnImportButton" prefHeight="38.0" prefWidth="126.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Import">
+                                    <padding>
+                                        <Insets right="8.0" />
+                                    </padding>
+                                    <graphic>
+                                        <SVGGlyph id="ImportSvg" prefHeight="25.0" prefWidth="25.0" stylesheets="@Dashboard.css" translateX="-3.0" />
+                                    </graphic>
+                                </JFXButton>
+                                <JFXButton id="ExportBtn" maxWidth="136.0" onAction="#OnExportButton" prefHeight="38.0" prefWidth="126.0" snapToPixel="false" stylesheets="@Dashboard.css" text="Export" textFill="#c9c9c9">
+                                    <padding>
+                                        <Insets right="8.0" />
+                                    </padding>
+                                    <graphic>
+                                        <SVGGlyph id="ExportSvg" prefHeight="25.0" prefWidth="25.0" stylesheets="@Dashboard.css" translateX="-3.0" />
+                                    </graphic>
+                                </JFXButton>
+                            </children>
+                            <padding>
+                                <Insets left="4.0" right="4.0" />
+                            </padding>
+                        </HBox>
                     </children></Pane>
             </children>
         </StackPane>
         <Label id="CurrentCategoryLabel" fx:id="CurrentCategoryLabel" layoutX="226.0" layoutY="99.0" prefHeight="56.0" prefWidth="186.0" stylesheets="@Dashboard.css" AnchorPane.bottomAnchor="565.0" AnchorPane.leftAnchor="226.0" AnchorPane.rightAnchor="871.0" AnchorPane.topAnchor="99.0" />
-      <AnchorPane fx:id="Statics_Anchor" layoutX="206.0" prefHeight="720.0" prefWidth="805.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../Statics/Statics.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="271.4" AnchorPane.topAnchor="0.0">
-         <children>
-            <Rectangle arcHeight="5.0" fill="DODGERBLUE" height="200.0" layoutX="14.0" layoutY="12.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="769.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.600000000000023" AnchorPane.topAnchor="12.0">
-               <effect>
-                  <ImageInput>
-                     <source>
-                        <Image url="file:/C:/Users/LEGION/Documents/GitHub/ToDoList_fx/todolist/src/main/resources/com/example/todolist/View/Images/Group%2020.png" />
-                     </source>
-                  </ImageInput>
-               </effect>
-            </Rectangle>
-            <PieChart fx:id="Priority_Pie" layoutX="14.0" layoutY="12.0" prefHeight="342.0" prefWidth="686.0" />
-            <PieChart fx:id="Task_Pie" layoutX="524.0" layoutY="437.0" prefHeight="211.0" prefWidth="262.0" />
-            <StackedBarChart fx:id="Categorystackbar" layoutX="19.0" layoutY="382.0" prefHeight="288.0" prefWidth="457.0" stylesheets="@stats.css">
-              <xAxis>
-                <CategoryAxis side="BOTTOM" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis side="LEFT" />
-              </yAxis>
-            </StackedBarChart>
-            <JFXButton id="refreshbtn" fx:id="reloadstats" layoutX="733.0" layoutY="98.0" minHeight="29.0" minWidth="39.0" onAction="#UpdateStats" prefHeight="36.0" prefWidth="47.0" snapToPixel="false" stylesheets="@Dashboard.css" text=" ">
-               <padding>
-                  <Insets bottom="8.0" right="3.0" top="8.0" />
-               </padding>
-               <graphic>
-                  <SVGGlyph id="Svgrefresh" prefHeight="30.0" prefWidth="30.0" stylesheets="@Dashboard.css" />
-               </graphic>
-            </JFXButton>
-         </children>
-      </AnchorPane>
+        <AnchorPane fx:id="Statics_Anchor" layoutX="206.0" prefHeight="720.0" prefWidth="805.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../Statics/Statics.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="206.0" AnchorPane.rightAnchor="271.4" AnchorPane.topAnchor="0.0">
+            <children>
+                <Rectangle arcHeight="5.0" fill="DODGERBLUE" height="200.0" layoutX="14.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="769.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="22.600000000000023" AnchorPane.topAnchor="2.0">
+                    <effect>
+                        <ImageInput>
+                            <source>
+                                <Image url="file:/C:/Users/LEGION/Documents/GitHub/ToDoList_fx/todolist/src/main/resources/com/example/todolist/View/Images/Group%2020.png" />
+                            </source>
+                        </ImageInput>
+                    </effect>
+                </Rectangle>
+                <PieChart fx:id="Priority_Pie" layoutX="284.0" layoutY="363.0" legendVisible="false" prefHeight="342.0" prefWidth="686.0" />
+                <PieChart id="DonePie" fx:id="Task_Pie" layoutX="19.0" layoutY="157.0" legendVisible="false" prefHeight="298.0" prefWidth="445.0" stylesheets="@../Statics/Statics.css" />
+                <StackedBarChart fx:id="Categorystackbar" alternativeRowFillVisible="false" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="19.0" layoutY="415.0" legendVisible="false" prefHeight="288.0" prefWidth="457.0" stylesheets="@../Statics/Statics.css" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
+                    <xAxis>
+                        <CategoryAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" />
+                    </yAxis>
+                </StackedBarChart>
+                <JFXButton id="refreshbtn" fx:id="reloadstats" layoutX="744.0" layoutY="184.0" minHeight="29.0" minWidth="39.0" onAction="#UpdateStats" prefHeight="36.0" prefWidth="47.0" snapToPixel="false" stylesheets="@Dashboard.css" text=" ">
+                    <padding>
+                        <Insets bottom="8.0" right="3.0" top="8.0" />
+                    </padding>
+                    <graphic>
+                        <SVGGlyph id="Svgrefresh" prefHeight="30.0" prefWidth="30.0" stylesheets="@Dashboard.css" />
+                    </graphic>
+                </JFXButton>
+            </children>
+        </AnchorPane>
 
     </children>
 </AnchorPane>

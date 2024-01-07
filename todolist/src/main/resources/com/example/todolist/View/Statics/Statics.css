@@ -1,3 +1,15 @@
 .rectangle{
     -fx-background-image: url("../Images/Group 20.png");
 }
+.default-color0.chart-bar{
+    -fx-bar-fill: #006AF5;
+
+}
+
+.default-color1.chart-bar{
+    -fx-bar-fill: #F53900;
+}
+
+.default-color2.chart-bar{
+    -fx-bar-fill: #F5DC00;
+}
