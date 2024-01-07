@@ -21,6 +21,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
@@ -144,8 +145,8 @@ public class DashBoardController implements Initializable {
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/Dashboard/Dashboardactl.fxml"));
 
         //try {
-          //  main_board.getChildren().add((Node) fxmlLoader.load());
-            //System.out.println("added with succes");
+        //  main_board.getChildren().add((Node) fxmlLoader.load());
+        //System.out.println("added with succes");
         /*} catch (IOException e) {
             e.printStackTrace();
         }*/
@@ -179,80 +180,11 @@ public class DashBoardController implements Initializable {
         initFilterListeners();
 
 
-
-
         initialiseStatisticsCalculation();
         init_Categorystackbar();
         init_Priority_Pie();
         init_Task_Pie();
-        /*CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setLabel("Task Category ");
-
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel("Tasks Number ");
-
-        //Category_BarChart= new BarChart(xAxis,yAxis);
-        System.out.println(NumberofGeneralTasks);
-        System.out.println(NumberofStudyTasks);
-        System.out.println(NumberofSportTasks);
-
-        XYChart.Series<String,Integer> data = new XYChart.Series();
-        data.setName("General");
-        XYChart.Series<String,Integer> data2 = new XYChart.Series();
-        data2.setName("Study");
-        XYChart.Series<String,Integer> data3 = new XYChart.Series();
-        data3.setName("Sport");
-        data.getData().add(new XYChart.Data("General",NumberofGeneralTasks));
-        data2.getData().add(new XYChart.Data("Study",NumberofStudyTasks));
-        data3.getData().add(new XYChart.Data("Sport",NumberofSportTasks));
-
-
-        Categorystackbar.getData().addAll(data,data2,data3);
-
-        /** pie chart of priority *//*
-        ObservableList<PieChart.Data> PriorityPieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("High",NumberofHighPriorityTasks),
-                new PieChart.Data("Medium",NumberofMediuemPriorityTasks),
-                new PieChart.Data("Low",NumberofLowPriorityTasks));
-
-               /* PriorityPieChartData.forEach(data1 ->
-                    data1.nameProperty().bind(
-                            Bindings.concat(
-                                    data1.getName()," Priority : ",data1.pieValueProperty()
-                            )
-                    )
-                 );*//*
-        PriorityPieChartData.forEach(data5 ->
-                data5.nameProperty().bind(
-                        Bindings.concat(
-                                data5.getName()," ",data5.pieValueProperty()
-                        )
-                )
-        );
-        Priority_Pie.getData().addAll(PriorityPieChartData);
-*/
-        /** pie Chart of Status*/
-/*
-        ObservableList<PieChart.Data> statusPieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Done",NumberofDoneTasks),
-                new PieChart.Data("Undone",NumberofUndoneTasks));
-
-        statusPieChartData.forEach(data6 ->
-                data6.nameProperty().bind(
-                        Bindings.concat(
-                                data6.getName()," ",data6.pieValueProperty()
-                        )
-                )
-        );
-
-        Task_Pie.getData().addAll(statusPieChartData);*/
     }
-        /*class EnlargeHandler implements EventHandler<ActionEvent> {
-            public void handle(ActionEvent e) {
-
-            }
-        }
-    }*/
     /**
      * initialise Listeners for Category,priority,status Combobox boxes,Category Label and Info Button
      * */
@@ -586,92 +518,8 @@ public class DashBoardController implements Initializable {
             return cell;
         };
         Edit_Column.setCellFactory(cellFactory);//linking the cell with the edit column
-        //Tasks_Tableview.setItems(tasks_list_model.getList());
-        //////checkbox functionality //
-   /*     Callback<TableColumn<Task, String>, TableCell<Task, String>> cellcheckbox = (TableColumn<Task, String> param) -> {
-            // make cell containing buttons
 
-            final TableCell<Task, String> cell2 = new TableCell<Task, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
 
-                    } else {
-                        JFXCheckBox checkbox = new JFXCheckBox() ;
-
-                        checkbox.setOnMouseClicked((MouseEvent event) ->{
-                            task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
-
-                            if(checkbox.isSelected()){
-                                //query to updates to true ;
-                                TaskDAO.Update_Task_status(task.getId(),true);
-                            }else{
-                                //query to update it to false ;
-                                TaskDAO.Update_Task_status(task.getId(),false);
-
-                            }
-                            load_data();
-                        });
-                        setGraphic(checkbox);
-
-                        setText(null);
-                    }
-                }
-
-            };
-            return cell2 ;
-        };
-        isDone_Column.setCellFactory(cellcheckbox);//linking the cell with the edit column
-        ///////////////////////////////checkbox*/
-        /*
-        * isDoneColumn.setCellValueFactory(cellData -> cellData.getValue().isDoneProperty());
-
-        // Set the cell factory to use a CheckBox for the isDoneColumn
-        isDoneColumn.setCellFactory(new Callback<>() {
-            @Override
-            public TableCell<Task, Boolean> call(TableColumn<Task, Boolean> param) {
-                return new TableCell<>() {
-                    private final CheckBox checkBox = new CheckBox();
-
-                    {
-                        // Handle checkbox action
-                        checkBox.setOnAction(event -> {
-                            Task task = getTableView().getItems().get(getIndex());
-                            task.setDone(checkBox.isSelected()); // Update the Task's property
-
-                            // Update the database here (execute an update query)
-                            // You'll need to implement database update logic
-
-                            // Refresh the TableView to reflect changes
-                            getTableView().refresh();
-                        });
-                    }
-
-                    @Override
-                    protected void updateItem(Boolean item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty || item == null) {
-                            setGraphic(null);
-                        } else {
-                            checkBox.setSelected(item); // Set checkbox value based on Task's property
-                            setGraphic(checkBox);
-                        }
-                    }
-                };
-            }
-        });
-
-        // Add other columns to the TableView
-
-        tableView.getColumns().addAll(isDoneColumn);
-
-        *
-        *
-        * */
 
 
         isDone_Column.setCellValueFactory(cellData -> {
@@ -919,11 +767,7 @@ public class DashBoardController implements Initializable {
             staticsRec.setVisible(true);
             dashboardRec.setVisible(false);
             Statics_Anchor.setVisible(true);
-
-            /** bar chart creation */
-
-
-
+            UpdateStats();
        });
     }
     public void HandleBarChart_Category(){
@@ -1023,13 +867,6 @@ public class DashBoardController implements Initializable {
                 new PieChart.Data("Medium",NumberofMediuemPriorityTasks),
                 new PieChart.Data("Low",NumberofLowPriorityTasks));
 
-               /* PriorityPieChartData.forEach(data1 ->
-                    data1.nameProperty().bind(
-                            Bindings.concat(
-                                    data1.getName()," Priority : ",data1.pieValueProperty()
-                            )
-                    )
-                 );*/
         PriorityPieChartData.forEach(data5 ->
                 data5.nameProperty().bind(
                         Bindings.concat(
@@ -1038,6 +875,10 @@ public class DashBoardController implements Initializable {
                 )
         );
         Priority_Pie.getData().addAll(PriorityPieChartData);
+        PriorityPieChartData.get(0).getNode().setStyle("-fx-pie-color: #F53900");
+        PriorityPieChartData.get(1).getNode().setStyle("-fx-pie-color: #F5DC00");
+        PriorityPieChartData.get(2).getNode().setStyle("-fx-pie-color: #7dcc28");
+//        Priority_Pie.setLegendVisible(false);
 
     }
     void init_Task_Pie(){
@@ -1049,6 +890,7 @@ public class DashBoardController implements Initializable {
                 new PieChart.Data("Done",NumberofDoneTasks),
                 new PieChart.Data("Undone",NumberofUndoneTasks));
 
+
         statusPieChartData.forEach(data6 ->
                 data6.nameProperty().bind(
                         Bindings.concat(
@@ -1058,10 +900,12 @@ public class DashBoardController implements Initializable {
         );
 
         Task_Pie.getData().addAll(statusPieChartData);
+        statusPieChartData.get(0).getNode().setStyle("-fx-pie-color: #7dcc28");
+        statusPieChartData.get(1).getNode().setStyle("-fx-pie-color: #F53900");
+        Task_Pie.setLegendVisible(false);
 
 
     }
-    @FXML
     void UpdateStats(){
         initialiseStatisticsCalculation();
         Categorystackbar.getData().get(0).getData().get(0).setYValue(NumberofGeneralTasks);
