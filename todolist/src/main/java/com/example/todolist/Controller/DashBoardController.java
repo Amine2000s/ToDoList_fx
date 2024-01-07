@@ -21,7 +21,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.geometry.Side;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.*;
@@ -32,7 +31,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -51,7 +49,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.*;
+import javax.print.MultiDocPrintService;
 
 
 import java.net.URL;
@@ -168,7 +166,7 @@ public class DashBoardController implements Initializable {
                 }
             };
         });
-
+        fileChooser = new FileChooser() ;
         checkDeadLine();
         categoryCombobox.setItems(FXCollections.observableArrayList("All", "General", "Study", "Sport"));
         priorityCombobox.setItems(FXCollections.observableArrayList("All", "High", "Medium", "Low", "Descending", "Ascending"));
@@ -601,7 +599,9 @@ public class DashBoardController implements Initializable {
         initFilterListeners();
 
     }
-
+    /**
+     * function for checking the deadline of task
+     */
     public void checkDeadLine(){
         LocalDate currentDate = LocalDate.now();
         for(Task task : Tasks_Tableview.getItems()){
@@ -633,6 +633,9 @@ public class DashBoardController implements Initializable {
         }
         NotificationBox.getChildren().clear();
     }
+    /**
+     * function for sending mail
+     */
     public void SendMail(String notification) {
         // Sender's credentials
         final String username = "edd07bf091e201";
@@ -679,7 +682,9 @@ public class DashBoardController implements Initializable {
             System.err.println("Error sending email: " + e.getMessage());
         }
     }
-
+    /***
+     * function for handling the reload button
+     */
 
     public void OnImportButton(){
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -715,7 +720,9 @@ public class DashBoardController implements Initializable {
 
 
     }
-
+    /***
+     * function for handling the export button
+     */
     private void writeToCSV(ObservableList<Task> rowsData) {
 
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -747,7 +754,9 @@ public class DashBoardController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     *function to handle export button clicking
+     */
     public void OnExportButton() {
 
 
@@ -761,7 +770,9 @@ public class DashBoardController implements Initializable {
         }
 
     }
-
+    /**
+     * function for handling the statics button
+     */
     public void HandleStaticsButton() throws IOException {
        Statics_button.setOnAction(event ->{
             staticsRec.setVisible(true);
@@ -792,6 +803,9 @@ public class DashBoardController implements Initializable {
         }
     }
 
+    /**
+     * initializing statistics to start calculation
+     */
     public void initialiseStatisticsCalculation(){TotalNumberOftasks =0 ;
          NumberofDoneTasks =0 ;
          NumberofUndoneTasks =0 ;
@@ -826,7 +840,9 @@ public class DashBoardController implements Initializable {
          }
 
     }
-
+    /**
+     * function for initialising the category bar chart
+     */
     void init_Categorystackbar(){
         if(!Categorystackbar.getData().isEmpty()) {
             Categorystackbar.getData().clear();
@@ -858,6 +874,9 @@ public class DashBoardController implements Initializable {
 
 
     }
+    /**
+     * function for initialising the priority pie chart
+     */
     void init_Priority_Pie(){
         if(!Priority_Pie.getData().isEmpty()) {
             Priority_Pie.getData().clear();
@@ -878,9 +897,12 @@ public class DashBoardController implements Initializable {
         PriorityPieChartData.get(0).getNode().setStyle("-fx-pie-color: #F53900");
         PriorityPieChartData.get(1).getNode().setStyle("-fx-pie-color: #F5DC00");
         PriorityPieChartData.get(2).getNode().setStyle("-fx-pie-color: #7dcc28");
-//        Priority_Pie.setLegendVisible(false);
+        Priority_Pie.setLegendVisible(false);
 
     }
+    /**
+     * function for initialising the task pie chart
+     */
     void init_Task_Pie(){
         if(!Task_Pie.getData().isEmpty()) {
             Task_Pie.getData().clear();
@@ -906,6 +928,9 @@ public class DashBoardController implements Initializable {
 
 
     }
+    /**
+     * function for updating the statistics
+     */
     void UpdateStats(){
         initialiseStatisticsCalculation();
         Categorystackbar.getData().get(0).getData().get(0).setYValue(NumberofGeneralTasks);
@@ -918,8 +943,6 @@ public class DashBoardController implements Initializable {
 
         Task_Pie.getData().get(0).setPieValue(NumberofDoneTasks);
         Task_Pie.getData().get(1).setPieValue(NumberofUndoneTasks);
-        System.out.println("doneeeeee0");
-
     }
 
 }

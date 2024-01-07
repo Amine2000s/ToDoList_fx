@@ -161,7 +161,7 @@
                     </effect>
                 </Rectangle>
                 <PieChart fx:id="Priority_Pie" layoutX="284.0" layoutY="363.0" legendVisible="false" prefHeight="342.0" prefWidth="686.0" />
-                <PieChart id="DonePie" fx:id="Task_Pie" layoutX="19.0" layoutY="157.0" legendVisible="false" prefHeight="298.0" prefWidth="445.0" stylesheets="@../Statics/Statics.css" />
+                <PieChart id="DonePie" fx:id="Task_Pie" layoutX="19.0" layoutY="148.0" legendVisible="false" prefHeight="298.0" prefWidth="445.0" stylesheets="@../Statics/Statics.css" />
                 <StackedBarChart fx:id="Categorystackbar" alternativeRowFillVisible="false" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" layoutX="19.0" layoutY="415.0" legendVisible="false" prefHeight="288.0" prefWidth="457.0" stylesheets="@../Statics/Statics.css" verticalGridLinesVisible="false" verticalZeroLineVisible="false">
                     <xAxis>
                         <CategoryAxis side="BOTTOM" />
