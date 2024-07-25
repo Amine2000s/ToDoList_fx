@@ -15,6 +15,7 @@
 - Display tasks with title, description, and due date.
 - User-friendly interface.
 - Easy to use and manage tasks efficiently.
+- Import/Export task through a CSV format  
 - Dashboard for statistics
 
 ## Setup
