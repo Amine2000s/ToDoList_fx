@@ -1,6 +1,7 @@
 # Description
  Taks Manager Application using Java and JavaFx with MYSQL database.
 
+<<<<<<< HEAD
 
 ## Features
 
@@ -67,4 +68,18 @@ To run this application locally:
 ![picture_3](/diagrams/image3.png)
 ![picture_7](/diagrams/image11.png)
 ![picture_7](/diagrams/image13.png)
+=======
+- [X] add search functionality 
+- [X] add checkbox
+- [X] add category options in add task
+- [X] add category options in dashboard
+- [X] add checkbox functionality soon
+- [X] add filtering functionality(3/3) 
+- [X] add notification functionality (smtp email sending) (very soon) 
+- [X] add import and export functionality 
+- [X] javadoc 
+- [X] statistics 
+>>>>>>> da1e08616183598a258edbcd10bf2ab9d16e0561
 
+## Project Report
+https://docs.google.com/document/d/1MYS-kUBWwz4gcqQCvUGV1hPx33otaXT76FUaxyg_aQs/edit#heading=h.qrpsdo962ssb

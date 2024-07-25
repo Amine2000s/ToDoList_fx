@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXComboBox;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.*;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -29,7 +31,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
@@ -48,7 +49,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.*;
+import javax.print.MultiDocPrintService;
 
 
 import java.net.URL;
@@ -104,6 +105,16 @@ public class DashBoardController implements Initializable {
     @FXML
     private JFXButton Contact_Button;
 
+    @FXML
+    StackedBarChart<String,Integer> Categorystackbar ;
+    @FXML
+    PieChart Priority_Pie ;
+    @FXML
+    PieChart Task_Pie ;
+
+    @FXML
+    JFXButton reloadStats ;
+
     /**returns and observable list for task object by using its method getList()*/
     TasksList tasks_list_model = new TasksList();
 
@@ -112,7 +123,17 @@ public class DashBoardController implements Initializable {
 
     TaskDaoImp taskDAO = new TaskDaoImp();/**Data access Object for CRUD operations**/
 
+    /**  staticstics Variables */
 
+    int TotalNumberOftasks =0 ;
+    int NumberofDoneTasks =0 ;
+    int NumberofUndoneTasks =0 ;
+    int NumberofHighPriorityTasks =0 ;
+    int NumberofMediuemPriorityTasks =0 ;
+    int NumberofLowPriorityTasks =0 ;
+    int NumberofGeneralTasks  =0 ;
+    int NumberofStudyTasks  =0 ;
+    int NumberofSportTasks =0 ;
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //System.out.println("hello from init ");
@@ -122,8 +143,8 @@ public class DashBoardController implements Initializable {
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("View/Dashboard/Dashboardactl.fxml"));
 
         //try {
-          //  main_board.getChildren().add((Node) fxmlLoader.load());
-            //System.out.println("added with succes");
+        //  main_board.getChildren().add((Node) fxmlLoader.load());
+        //System.out.println("added with succes");
         /*} catch (IOException e) {
             e.printStackTrace();
         }*/
@@ -145,7 +166,7 @@ public class DashBoardController implements Initializable {
                 }
             };
         });
-
+        fileChooser = new FileChooser() ;
         checkDeadLine();
         categoryCombobox.setItems(FXCollections.observableArrayList("All", "General", "Study", "Sport"));
         priorityCombobox.setItems(FXCollections.observableArrayList("All", "High", "Medium", "Low", "Descending", "Ascending"));
@@ -155,13 +176,13 @@ public class DashBoardController implements Initializable {
         Statics_Anchor.setVisible(false);
 
         initFilterListeners();
-    }
-        /*class EnlargeHandler implements EventHandler<ActionEvent> {
-            public void handle(ActionEvent e) {
 
-            }
-        }
-    }*/
+
+        initialiseStatisticsCalculation();
+        init_Categorystackbar();
+        init_Priority_Pie();
+        init_Task_Pie();
+    }
     /**
      * initialise Listeners for Category,priority,status Combobox boxes,Category Label and Info Button
      * */
@@ -230,7 +251,6 @@ public class DashBoardController implements Initializable {
             }
 
             Tasks_Tableview.setItems(filtered_observable_list);
-
 
 
 
@@ -496,92 +516,8 @@ public class DashBoardController implements Initializable {
             return cell;
         };
         Edit_Column.setCellFactory(cellFactory);//linking the cell with the edit column
-        //Tasks_Tableview.setItems(tasks_list_model.getList());
-        //////checkbox functionality //
-   /*     Callback<TableColumn<Task, String>, TableCell<Task, String>> cellcheckbox = (TableColumn<Task, String> param) -> {
-            // make cell containing buttons
 
-            final TableCell<Task, String> cell2 = new TableCell<Task, String>() {
-                @Override
-                public void updateItem(String item, boolean empty) {
-                    super.updateItem(item, empty);
-                    //that cell created only on non-empty rows
-                    if (empty) {
-                        setGraphic(null);
-                        setText(null);
 
-                    } else {
-                        JFXCheckBox checkbox = new JFXCheckBox() ;
-
-                        checkbox.setOnMouseClicked((MouseEvent event) ->{
-                            task = Tasks_Tableview.getSelectionModel().getSelectedItem();//getting the selected Object
-
-                            if(checkbox.isSelected()){
-                                //query to updates to true ;
-                                TaskDAO.Update_Task_status(task.getId(),true);
-                            }else{
-                                //query to update it to false ;
-                                TaskDAO.Update_Task_status(task.getId(),false);
-
-                            }
-                            load_data();
-                        });
-                        setGraphic(checkbox);
-
-                        setText(null);
-                    }
-                }
-
-            };
-            return cell2 ;
-        };
-        isDone_Column.setCellFactory(cellcheckbox);//linking the cell with the edit column
-        ///////////////////////////////checkbox*/
-        /*
-        * isDoneColumn.setCellValueFactory(cellData -> cellData.getValue().isDoneProperty());
-
-        // Set the cell factory to use a CheckBox for the isDoneColumn
-        isDoneColumn.setCellFactory(new Callback<>() {
-            @Override
-            public TableCell<Task, Boolean> call(TableColumn<Task, Boolean> param) {
-                return new TableCell<>() {
-                    private final CheckBox checkBox = new CheckBox();
-
-                    {
-                        // Handle checkbox action
-                        checkBox.setOnAction(event -> {
-                            Task task = getTableView().getItems().get(getIndex());
-                            task.setDone(checkBox.isSelected()); // Update the Task's property
-
-                            // Update the database here (execute an update query)
-                            // You'll need to implement database update logic
-
-                            // Refresh the TableView to reflect changes
-                            getTableView().refresh();
-                        });
-                    }
-
-                    @Override
-                    protected void updateItem(Boolean item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty || item == null) {
-                            setGraphic(null);
-                        } else {
-                            checkBox.setSelected(item); // Set checkbox value based on Task's property
-                            setGraphic(checkBox);
-                        }
-                    }
-                };
-            }
-        });
-
-        // Add other columns to the TableView
-
-        tableView.getColumns().addAll(isDoneColumn);
-
-        *
-        *
-        * */
 
 
         isDone_Column.setCellValueFactory(cellData -> {
@@ -663,7 +599,9 @@ public class DashBoardController implements Initializable {
         initFilterListeners();
 
     }
-
+    /**
+     * function for checking the deadline of task
+     */
     public void checkDeadLine(){
         LocalDate currentDate = LocalDate.now();
         for(Task task : Tasks_Tableview.getItems()){
@@ -695,6 +633,9 @@ public class DashBoardController implements Initializable {
         }
         NotificationBox.getChildren().clear();
     }
+    /**
+     * function for sending mail
+     */
     public void SendMail(String notification) {
         // Sender's credentials
         final String username = "edd07bf091e201";
@@ -741,7 +682,9 @@ public class DashBoardController implements Initializable {
             System.err.println("Error sending email: " + e.getMessage());
         }
     }
-
+    /***
+     * function for handling the reload button
+     */
 
     public void OnImportButton(){
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -777,7 +720,9 @@ public class DashBoardController implements Initializable {
 
 
     }
-
+    /***
+     * function for handling the export button
+     */
     private void writeToCSV(ObservableList<Task> rowsData) {
 
         fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -809,7 +754,9 @@ public class DashBoardController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    /**
+     *function to handle export button clicking
+     */
     public void OnExportButton() {
 
 
@@ -823,16 +770,20 @@ public class DashBoardController implements Initializable {
         }
 
     }
-
+    /**
+     * function for handling the statics button
+     */
     public void HandleStaticsButton() throws IOException {
        Statics_button.setOnAction(event ->{
             staticsRec.setVisible(true);
             dashboardRec.setVisible(false);
             Statics_Anchor.setVisible(true);
-
+            UpdateStats();
        });
     }
+    public void HandleBarChart_Category(){
 
+    }
     public void HandleDashboardButton() throws IOException {
         Dashboard_button.setOnAction(event ->{
             dashboardRec.setVisible(true);
@@ -851,4 +802,147 @@ public class DashBoardController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    /**
+     * initializing statistics to start calculation
+     */
+    public void initialiseStatisticsCalculation(){TotalNumberOftasks =0 ;
+         NumberofDoneTasks =0 ;
+         NumberofUndoneTasks =0 ;
+         NumberofHighPriorityTasks =0 ;
+         NumberofMediuemPriorityTasks =0 ;
+         NumberofLowPriorityTasks =0 ;
+         NumberofGeneralTasks  =0 ;
+         NumberofStudyTasks  =0 ;
+         NumberofSportTasks =0 ;
+
+         TotalNumberOftasks =tasks_list_model.getList().size();
+
+         for(Task task : tasks_list_model.getList()){
+             switch (task.periority){
+                 case "High" : NumberofHighPriorityTasks++;break;
+                 case "Medium" : NumberofMediuemPriorityTasks++;break;
+                 case "Low" :    NumberofLowPriorityTasks++;break;
+             }
+
+             switch (task.getCategory()){
+                 case "General" : NumberofGeneralTasks++;break;
+                 case "Study" : NumberofStudyTasks++;break;
+                 case "Sport" :    NumberofSportTasks++;break;
+             }
+
+             if (task.isDone()){
+                 NumberofDoneTasks++;
+             }else{
+                 NumberofUndoneTasks++;
+             }
+
+         }
+
+    }
+    /**
+     * function for initialising the category bar chart
+     */
+    void init_Categorystackbar(){
+        if(!Categorystackbar.getData().isEmpty()) {
+            Categorystackbar.getData().clear();
+        }
+
+        CategoryAxis xAxis = new CategoryAxis();
+        xAxis.setLabel("Task Category ");
+
+        NumberAxis yAxis = new NumberAxis();
+        yAxis.setLabel("Tasks Number ");
+
+        //Category_BarChart= new BarChart(xAxis,yAxis);
+        System.out.println(NumberofGeneralTasks);
+        System.out.println(NumberofStudyTasks);
+        System.out.println(NumberofSportTasks);
+
+        XYChart.Series<String,Integer> data = new XYChart.Series();
+        data.setName("General");
+        XYChart.Series<String,Integer> data2 = new XYChart.Series();
+        data2.setName("Study");
+        XYChart.Series<String,Integer> data3 = new XYChart.Series();
+        data3.setName("Sport");
+        data.getData().add(new XYChart.Data("General",NumberofGeneralTasks));
+        data2.getData().add(new XYChart.Data("Study",NumberofStudyTasks));
+        data3.getData().add(new XYChart.Data("Sport",NumberofSportTasks));
+
+
+        Categorystackbar.getData().addAll(data,data2,data3);
+
+
+    }
+    /**
+     * function for initialising the priority pie chart
+     */
+    void init_Priority_Pie(){
+        if(!Priority_Pie.getData().isEmpty()) {
+            Priority_Pie.getData().clear();
+        }
+        ObservableList<PieChart.Data> PriorityPieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("High",NumberofHighPriorityTasks),
+                new PieChart.Data("Medium",NumberofMediuemPriorityTasks),
+                new PieChart.Data("Low",NumberofLowPriorityTasks));
+
+        PriorityPieChartData.forEach(data5 ->
+                data5.nameProperty().bind(
+                        Bindings.concat(
+                                data5.getName()," ",data5.pieValueProperty()
+                        )
+                )
+        );
+        Priority_Pie.getData().addAll(PriorityPieChartData);
+        PriorityPieChartData.get(0).getNode().setStyle("-fx-pie-color: #F53900");
+        PriorityPieChartData.get(1).getNode().setStyle("-fx-pie-color: #F5DC00");
+        PriorityPieChartData.get(2).getNode().setStyle("-fx-pie-color: #7dcc28");
+        Priority_Pie.setLegendVisible(false);
+
+    }
+    /**
+     * function for initialising the task pie chart
+     */
+    void init_Task_Pie(){
+        if(!Task_Pie.getData().isEmpty()) {
+            Task_Pie.getData().clear();
+        }
+
+        ObservableList<PieChart.Data> statusPieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Done",NumberofDoneTasks),
+                new PieChart.Data("Undone",NumberofUndoneTasks));
+
+
+        statusPieChartData.forEach(data6 ->
+                data6.nameProperty().bind(
+                        Bindings.concat(
+                                data6.getName()," ",data6.pieValueProperty()
+                        )
+                )
+        );
+
+        Task_Pie.getData().addAll(statusPieChartData);
+        statusPieChartData.get(0).getNode().setStyle("-fx-pie-color: #7dcc28");
+        statusPieChartData.get(1).getNode().setStyle("-fx-pie-color: #F53900");
+        Task_Pie.setLegendVisible(false);
+
+
+    }
+    /**
+     * function for updating the statistics
+     */
+    void UpdateStats(){
+        initialiseStatisticsCalculation();
+        Categorystackbar.getData().get(0).getData().get(0).setYValue(NumberofGeneralTasks);
+        Categorystackbar.getData().get(1).getData().get(0).setYValue(NumberofStudyTasks);
+        Categorystackbar.getData().get(2).getData().get(0).setYValue(NumberofSportTasks);
+
+        Priority_Pie.getData().get(0).setPieValue(NumberofHighPriorityTasks);
+        Priority_Pie.getData().get(1).setPieValue(NumberofMediuemPriorityTasks);
+        Priority_Pie.getData().get(2).setPieValue(NumberofLowPriorityTasks);
+
+        Task_Pie.getData().get(0).setPieValue(NumberofDoneTasks);
+        Task_Pie.getData().get(1).setPieValue(NumberofUndoneTasks);
+    }
+
 }
