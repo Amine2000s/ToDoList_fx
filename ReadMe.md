@@ -46,13 +46,13 @@ To run this application locally:
 
 
  * Database : Save Informations of Tasks in "tasks" Table
- * 
+   
  * DAO : Data Access Object , Works as API between the Model and Database , Contains Mainly main Database Queries
- * 
+   
  * Model : Contains informations about Task and  All Tasks informations , Receives them from Database and from the Controller
- * 
+   
  * Controller : Handle Interactions that happens on the GUI and Works as an Intermediary between View And Controller
- * 
+   
  * View: Handles The User Intercation with the GUI
 
 
