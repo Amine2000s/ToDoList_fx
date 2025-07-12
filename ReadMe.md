@@ -3,9 +3,9 @@
 
 ## Contributors 
 
- Abbderahmane Kermiche [@Kr-abdou](https://github.com/Kr-Abdou) : Front End Development 
+ Abbderahmane Kermiche [@Kr-abdou](https://github.com/Kr-Abdou) : UI Development 
 
- Chabi Amin [@Amine200s](https://github.com/Amine2000s) : Back end  Development 
+ Chabi Amin [@Amine200s](https://github.com/Amine2000s) : Back end(logic)  Development 
 
 ## Features
 
